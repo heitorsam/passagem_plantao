@@ -1,6 +1,10 @@
 <?php
-session_start();	
+    	
     //PHP GERAL
+    session_start();
+
+    //CONEXAO
+    include 'conexao.php';
 
     //PAGINA ATUAL
     $_SESSION['pagina_acesso'] = substr($_SERVER["PHP_SELF"],1,30);
