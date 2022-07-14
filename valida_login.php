@@ -18,7 +18,7 @@
 		
 		echo $usuario;	echo '</br>'; echo $senha; echo '</br>';
 		
-		$result_usuario = oci_parse($conn_ora, "SELECT escala_medica.VALIDA_SENHA_FUNC_LOGIN(:usuario,:senha) AS RESP_LOGIN,
+		$result_usuario = oci_parse($conn_ora, "SELECT passagem_plantao.VALIDA_SENHA_FUNC_LOGIN(:usuario,:senha) AS RESP_LOGIN,
 												(SELECT INITCAP(usu.NM_USUARIO)
 													FROM dbasgu.USUARIOS usu
 													WHERE usu.CD_USUARIO = :usuario) AS NM_USUARIO,													
