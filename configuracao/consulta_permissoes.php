@@ -18,7 +18,7 @@
     ON tp.CD_TIP_PRESTA = prest.CD_TIP_PRESTA
     INNER JOIN dbasgu.USUARIOS usu
     ON usu.CD_PRESTADOR = prest.CD_PRESTADOR
-    WHERE usu.CD_USUARIO = '$var_frm_usuario'
+    WHERE usu.CD_USUARIO = UPPER('$var_frm_usuario')
     AND prest.TP_SITUACAO = 'A'
     AND prest.CD_TIP_PRESTA = 4
     ORDER BY prest.NM_PRESTADOR ASC";
@@ -36,7 +36,7 @@
 
     $var_cod = $row_usu['CD_USUARIO'];
     $var_nome = $row_usu['NM_USUARIO'];
-    $var_funcao = $row_usu['NM_TIP_PRESTA']
+    $var_funcao = $row_usu['NM_TIP_PRESTA'];
 
 
 
