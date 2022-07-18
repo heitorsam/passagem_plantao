@@ -1,4 +1,27 @@
+<?php
 
+  $sn_readonly = '';
+
+  //SE FOR EXIBICAO
+  if(isset($var_cod_dur)){ 
+
+    $cons_dur = "SELECT dur.* 
+                 FROM passagem_plantao.DURANTE dur
+                 WHERE dur.CD_DURANTE = $var_cod_dur";
+
+
+    $result_dur = oci_parse($conn_ora,$cons_dur);
+
+    @oci_execute($result_dur);
+
+    $row_dur = oci_fetch_array($result_dur);
+
+    $sn_readonly = 'readonly';
+
+  }
+
+                          
+?>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-adm" data-toggle="modal" data-target="#edit_modal">
@@ -31,7 +54,7 @@
                         <div class='col-md-3' style='text-align:left'>
 
                             Equip. com Problema? </br>
-                            <select class='form-control' name='frm_ep_sn'>
+                            <select class='form-control' name='frm_ep_sn' onchange="habilitar()" id='ep_sn'>
 
                                 <option value=""> Selecione </option>
                                 <option value="S"> Sim </option>
@@ -39,25 +62,13 @@
 
                             </select>
 
+
                         </div>
 
                         <div class='col-md-3' style='text-align:left'>
 
                           Qual?</br>
-                          <input class="form-control" name='frm_equip_desc'>
-
-                        </div>
-
-                        <div class='col-md-3' style='text-align:left'>
-
-                        Utilizado Carrinho? </br>
-                        <select class='form-control' name='frm_ce_sn'>
-
-                          <option value=""> Selecione </option>
-                          <option value="S"> Sim </option>
-                          <option value="N"> Não </option>
-
-                        </select>
+                          <input class="form-control" name='frm_equip_desc' id='qual' disabled value="<?php echo @$row_dur['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                         </div>
                         </br>
@@ -65,6 +76,20 @@
                     </br>
 
                     <div class='row'>
+
+                    
+                    <div class='col-md-3' style='text-align:left'>
+
+                      Utilizado Carrinho? </br>
+                      <select class='form-control' name='frm_ce_sn'>
+
+                        <option value=""> Selecione </option>
+                        <option value="S"> Sim </option>
+                        <option value="N"> Não </option>
+
+                      </select>
+
+                    </div>
 
                       <div class='col-md-3' style='text-align:left'>
 
@@ -82,7 +107,7 @@
                       <div class='col-md-3' style='text-align:left'>
 
                         Informe o Lacre</br>
-                        <input class="form-control" name='frm_lac_desc'>
+                        <input class="form-control" name='frm_lac_desc' value="<?php echo @$row_dur['LACRE_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
 
@@ -99,17 +124,17 @@
 
                       </div>
 
-                      <div class='col-md-3' style='text-align:left'>
-
-                        Motivo</br>
-                        <input class="form-control" name='frm_lt_motivo'>
-
-                      </div>
-
                     </div>
 
                     </br>
                     <div class='row'>
+
+                      <div class='col-md-3' style='text-align:left'>
+
+                        Motivo</br>
+                        <input class="form-control" name='frm_lt_motivo'value="<?php echo @$row_dur['LT_MOTIVO_DESC']; ?>" <?php echo $sn_readonly; ?>>
+
+                      </div>
 
                       <div class='col-md-3' style='text-align:left'>
 
@@ -127,7 +152,7 @@
                       <div class='col-md-3' style='text-align:left'>
 
                       Qual?</br>
-                      <input class="form-control" name='frm_mm_motivo'>
+                      <input class="form-control" name='frm_mm_motivo'value="<?php echo @$row_dur['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
 
@@ -166,7 +191,7 @@
                       <div class='col-md-8' style='text-align:left'>
 
                       Conduta</br>
-                      <input class="form-control" name='frm_con_desc'>
+                      <input class="form-control" name='frm_con_desc'value="<?php echo @$row_dur['CONDUTA_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
 
@@ -191,7 +216,7 @@
                         <div class='col-md-9' style='text-align:left'>
 
                         Desfecho</br>
-                        <input class="form-control" name='frm_ip_desc'>
+                        <input class="form-control" name='frm_ip_desc'value="<?php echo @$row_dur['IP_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                         </div>
 
@@ -200,8 +225,10 @@
                       </br>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
-                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
-                      </div>
+                          <?php if(!isset($var_cod_dur)){ ?>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
+                          <?php } ?>
+                        </div>
             
     
                 </form>
@@ -211,3 +238,26 @@
         </div>
     </div>
 </div>
+
+<script>
+function habilitar(){
+
+ 
+	var input = document.getElementById("ep_sn").value;
+  var input2 = document.getElementById("qual");
+
+  if(input == ''){
+    input2.disabled = true;
+  }
+
+  if(input == 'N'){
+    input2.disabled = true;
+  }
+
+  if(input == 'S'){
+    input2.disabled = false;
+  }
+
+
+};
+</script>

@@ -206,8 +206,20 @@ NULL CD_USUARIO_ULT_ALT,
 NULL HR_ULT_ALT
 FROM DUAL ;
 
+----SELECT HISTORICO DE PASSAGENS----
+
+SELECT * FROM passagem_plantao.durante
+
+SELECT * FROM dbamv.unid_int
 
 
+SELECT PPD.CD_UNID_INT, 
+      UI.DS_UNID_INT, 
+      PPD.CD_USUARIO_CADASTRO, 
+      TO_CHAR(PPD.HR_CADASTRO, DD/MM/YYYY 24H) 
+       FROM passagem_plantao.durante PPD
+       INNER JOIN dbamv.unid_int UI
+       ON UI.CD_UNID_INT = PPD.CD_UNID_INT
 
 
 

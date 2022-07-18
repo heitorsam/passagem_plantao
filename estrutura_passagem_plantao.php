@@ -3,6 +3,7 @@
         include 'cabecalho.php';
 
        @$var_exibir_pp = $_POST['frm_unid_inter_pp'];
+       @$var_exibir_dt = $_POST['frm_dta']
 
     ?>
 
@@ -32,19 +33,31 @@
 
                             <div class='col-md-3' style='text-align:left'>
 
-                                Unidade de Internação:
-                                
-                                <div class='input-group'>
-                                
-                                    <select class='form-control' name='frm_unid_inter_pp'>
-                                        
-                                        <?php include 'configuracao/consulta_unid_int_pp.php'; ?>
+                                Unidade de Internação
+                                <select class='form-control' name='frm_unid_inter_pp' required>
+                                    
+                                    <?php include 'configuracao/consulta_unid_int_pp.php'; ?>
 
-                                    </select>
+                                </select>
+                                </br>   
+                                                        
+                                </div>
 
-                                    <div><button type='submit' class='btn btn-primary'><i class="fas fa-search"></i></button></div>
+                                <div class='col-md-2'>
+
+
+                                Data
+                                <input class='form-control' name='frm_dta' type='date' required>
 
                                 </div>
+
+                                <div class="col-md-3">  
+
+                                <br>
+                                <button type="submit" class="btn btn-primary" >
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                </button> 
+
                                 </br>                                
 
                             </div>
