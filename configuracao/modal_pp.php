@@ -56,9 +56,29 @@
                             Equip. com Problema? </br>
                             <select class='form-control' name='frm_ep_sn' onchange="habilitar()" id='ep_sn'>
 
-                                <option value=""> Selecione </option>
-                                <option value="S"> Sim </option>
-                                <option value="N"> Não </option>
+                                <!-- IF CONSULTA -->
+                                <?php if(isset($var_cod_dur)){ ?>
+
+                                  <!-- IF SIM OU NAO -->
+                                  <?php if($row_dur['EQUIP_SN'] == 'S'){ ?>
+
+                                    <option value="S"> Sim </option>
+
+                                  <?php }else{ ?>
+
+                                    <option value="N"> Não </option>
+
+                                  <?php } ?>
+                                  <!-- FIM IF SIM OU NAO -->                                 
+
+                                <?php }else{ ?>  
+
+                                  <option value=""> Selecione </option>
+                                  <option value="S"> Sim </option>
+                                  <option value="N"> Não </option>
+
+                                <?php } ?>  
+                                <!-- FIM IF CONSULTA -->
 
                             </select>
 
@@ -83,9 +103,29 @@
                       Utilizado Carrinho? </br>
                       <select class='form-control' name='frm_ce_sn' onchange="habilitar1()" id='ce_sn'>
 
+                        <!-- IF CONSULTA -->
+                        <?php if(isset($var_cod_dur)){ ?>
+
+                           <!-- IF SIM OU NAO -->
+                           <?php if($row_dur['CAR_SN'] == 'S'){ ?>
+
+                          <option value="S"> Sim </option>
+
+                          <?php }else{ ?>
+
+                          <option value="N"> Não </option>
+
+                          <?php } ?>
+                          <!-- FIM IF SIM OU NAO -->                                 
+
+                          <?php }else{ ?>  
+
                         <option value=""> Selecione </option>
                         <option value="S"> Sim </option>
                         <option value="N"> Não </option>
+
+                        <?php } ?>  
+                        <!-- FIM IF CONSULTA -->
 
                       </select>
 
@@ -96,9 +136,28 @@
                         Reposto/Lacrado? </br>
                         <select class='form-control' name='frm_rl_sn' disabled onchange="habilitar2()" id='rl_sn'>
 
+                        <!-- IF CONSULTA -->
+                        <?php if(isset($var_cod_dur)){ ?>
+
+                        <!-- IF SIM OU NAO -->
+                        <?php if($row_dur['REP_LAC_SN'] == 'S'){ ?>
+
+                        <option value="S"> Sim </option>
+
+                        <?php }else{ ?>
+
+                        <option value="N"> Não </option>
+
+                        <?php } ?>
+                        <!-- FIM IF SIM OU NAO -->                                 
+
+                        <?php }else{ ?>  
+
                           <option value=""> Selecione </option>
                           <option value="S"> Sim </option>
                           <option value="N"> Não </option>
+
+                        <?php } ?>  
 
                         </select>
 
@@ -116,9 +175,29 @@
                         Leito Bloqueado? </br>
                         <select class='form-control' name='frm_lt_sn' onchange="habilitar3()" id='lt_sn'>
 
+                        <!-- IF CONSULTA -->
+                        <?php if(isset($var_cod_dur)){ ?>
+
+                        <!-- IF SIM OU NAO -->
+                        <?php if($row_dur['LT_BLOQ_SN'] == 'S'){ ?>
+
+                        <option value="S"> Sim </option>
+
+                        <?php }else{ ?>
+
+                        <option value="N"> Não </option>
+
+                        <?php } ?>
+                        <!-- FIM IF SIM OU NAO -->                                 
+
+                        <?php }else{ ?>  
+
                           <option value=""> Selecione </option>
                           <option value="S"> Sim </option>
                           <option value="N"> Não </option>
+
+                        <?php } ?>  
+
 
                         </select>
 
@@ -141,9 +220,28 @@
                         Falta Medicamento? </br>
                         <select class='form-control' name='frm_ft_mm' onchange="habilitar4(); habilitar5()" id='ft_mm'>
 
+                        <!-- IF CONSULTA -->
+                        <?php if(isset($var_cod_dur)){ ?>
+
+                        <!-- IF SIM OU NAO -->
+                        <?php if($row_dur['FT_MM_SN'] == 'S'){ ?>
+
+                        <option value="S"> Sim </option>
+
+                        <?php }else{ ?>
+
+                        <option value="N"> Não </option>
+
+                        <?php } ?>
+                        <!-- FIM IF SIM OU NAO -->                                 
+
+                        <?php }else{ ?>  
+
                           <option value=""> Selecione </option>
                           <option value="S"> Sim </option>
                           <option value="N"> Não </option>
+
+                        <?php } ?>  
 
                         </select>
 
@@ -161,9 +259,29 @@
                         Farmácia Avisada? </br>
                         <select class='form-control' name='frm_farm_sn' id='farm_sn' disabled>
 
+                        <!-- IF CONSULTA -->
+                        <?php if(isset($var_cod_dur)){ ?>
+
+                        <!-- IF SIM OU NAO -->
+                        <?php if($row_dur['FARM_SN'] == 'S'){ ?>
+
+                        <option value="S"> Sim </option>
+
+                        <?php }else{ ?>
+
+                        <option value="N"> Não </option>
+
+                        <?php } ?>
+                        <!-- FIM IF SIM OU NAO -->                                 
+
+                        <?php }else{ ?>  
+
                           <option value=""> Selecione </option>
                           <option value="S"> Sim </option>
                           <option value="N"> Não </option>
+
+                        <?php } ?>  
+
 
                         </select>
 
@@ -179,9 +297,28 @@
                         Problemas com Paciente? </br>
                         <select class='form-control' name='frm_pp_sn' onchange="habilitar6()" id='pp_sn'>
 
+                        <!-- IF CONSULTA -->
+                        <?php if(isset($var_cod_dur)){ ?>
+
+                        <!-- IF SIM OU NAO -->
+                        <?php if($row_dur['PPF_SN'] == 'S'){ ?>
+
+                        <option value="S"> Sim </option>
+
+                        <?php }else{ ?>
+
+                        <option value="N"> Não </option>
+
+                        <?php } ?>
+                        <!-- FIM IF SIM OU NAO -->                                 
+
+                        <?php }else{ ?>  
+
                           <option value=""> Selecione </option>
                           <option value="S"> Sim </option>
                           <option value="N"> Não </option>
+
+                        <?php } ?>
 
                         </select>
 
@@ -205,9 +342,28 @@
                           Intercorrência? </br>
                           <select class='form-control' name='frm_ip_sn' onchange="habilitar7()" id='ip_sn'>
 
+                          <!-- IF CONSULTA -->
+                          <?php if(isset($var_cod_dur)){ ?>
+
+                          <!-- IF SIM OU NAO -->
+                          <?php if($row_dur['IP_SN'] == 'S'){ ?>
+
+                          <option value="S"> Sim </option>
+
+                          <?php }else{ ?>
+
+                          <option value="N"> Não </option>
+
+                          <?php } ?>
+                          <!-- FIM IF SIM OU NAO -->                                 
+
+                          <?php }else{ ?>  
+
                             <option value=""> Selecione </option>
                             <option value="S"> Sim </option>
                             <option value="N"> Não </option>
+
+                            <?php } ?>
 
                           </select>
 
@@ -420,7 +576,4 @@ if(input15 == 'S'){
 
 
 };
-
-
-
 </script>

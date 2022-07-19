@@ -13,7 +13,7 @@
                         INNER JOIN dbasgu.usuarios USU
                             ON PPD.CD_USUARIO_CADASTRO = USU.CD_USUARIO
                         WHERE PPD.CD_UNID_INT = '$var_unid_inter'
-                        AND TO_CHAR(PPD.HR_CADASTRO, 'MM/YYYY') = TO_CHAR(TO_DATE('$var_date' || '-01', 'YYYY-MM-DD'),'MM/YYYY')";
+                        AND TO_CHAR(PPD.HR_CADASTRO, '/MM/YYYY') = TO_CHAR(TO_DATE('$var_date' || '-01', 'YYYY-MM-DD'),'/MM/YYYY')";
 
 
 
@@ -61,63 +61,13 @@
                         <i class="fa-solid fa-paper-plane"></i></a>'; 
                          echo '</td>';
 
-
-
-
-
-
                         echo'</tr>';
                     }
-            
-        
                 ?>
 
             </tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </table>
             
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
