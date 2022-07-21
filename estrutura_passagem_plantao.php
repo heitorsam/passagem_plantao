@@ -82,6 +82,12 @@
                     
                     <div class="div_br"> </div>
                     <div class="div_br"> </div>
+
+                     <!--LISTA DURANTE-->
+                     <?php include 'configuracao/exibir_lista_durante.php'; ?>
+
+                    <div class="div_br"> </div>
+                    <div class="div_br"> </div>
                     
                     <!--TABELA PASSAGEM-->
                     <?php include 'configuracao/exibir_pp.php'?>

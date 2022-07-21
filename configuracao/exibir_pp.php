@@ -67,7 +67,6 @@
                     <th style="text-align: center;">Resumo</th>
                     <th style="text-align: center;">Unidade de Internação</th>
                     <th style="text-align: center;">Ações</th>
-                    <th style="text-align: center;">Status</th>
 
                 </tr>
 
