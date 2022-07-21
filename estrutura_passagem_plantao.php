@@ -6,15 +6,40 @@
 
             @$var_exibir_pp = $_POST['frm_unid_inter_pp'];
 
+            @$_SESSION['ss_unid_int_pp'] = $_POST['frm_unid_inter_pp'];
+
 
         }else{
 
-            @$var_exibir_pp = 0;
-        }
-       
-       @$var_dt_sel = $_POST['frm_dta'];
-       @$var_exibir_dt = date("d/m/Y", strtotime($_POST['frm_dta']));
+            if(isset($_SESSION['ss_unid_int_pp'])){
 
+                @$var_exibir_pp = $_SESSION['ss_unid_int_pp'];
+
+            }else{
+
+                @$var_exibir_pp = 0;
+
+            }
+        }
+          
+
+        if(isset($_POST['frm_dta'])){
+
+            @$var_dt_sel = $_POST['frm_dta'];
+            @$var_exibir_dt = date("d/m/Y", strtotime($var_dt_sel));
+            @$_SESSION['ss_dt'] = $var_dt_sel;
+
+        }else{
+
+            if(isset($_SESSION['ss_dt'])){
+
+                @$var_dt_sel = $_SESSION['ss_dt'];
+                @$var_exibir_dt = date("d/m/Y", strtotime($var_dt_sel));
+
+            }
+        }
+
+        
     ?>
 
     <!DOCTYPE HTML>
