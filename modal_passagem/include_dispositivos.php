@@ -1,6 +1,6 @@
 <?php
 
-    $consulta_dispo ="SELECT resp.DS_RESPOSTA
+ $consulta_dispo ="SELECT DISTINCT resp.DS_RESPOSTA
                         FROM dbamv.SAE_HISTORICO_ENFERMAGEM she
                         INNER JOIN dbamv.SAE_RESP_SELCND_HIST_ENFERMG sel
                         ON sel.CD_HISTORICO_ENFERMAGEM = she.CD_HISTORICO_ENFERMAGEM
@@ -10,7 +10,8 @@
                         ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                         WHERE sel.CD_PERGUNTA_HISTORICO IN (2695, 341, 338, 342, 340)
                         --AND resp.SN_ATIVO = 'S'
-                        AND she.CD_ATENDIMENTO = $var_atd";
+                        AND she.CD_ATENDIMENTO = $var_atd
+                        AND TO_DATE('$var_exibir_dt','DD/MM/YYYY') = TRUNC(she.DT_INICIO)";
 
 $result_consulta_dispo = oci_parse($conn_ora,$consulta_dispo);
 

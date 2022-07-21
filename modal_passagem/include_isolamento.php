@@ -9,7 +9,7 @@ $consulta_iso ="SELECT resp.DS_RESPOSTA
                 INNER JOIN dbamv.SAE_RESPOSTA_HISTORICO_ENFERMG resp
                 ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                 WHERE sel.CD_PERGUNTA_HISTORICO IN (475, 419, 289, 343)
-                AND she.CD_ATENDIMENTO = ". $row_exibir_pac['CD_ATENDIMENTO'];
+                AND she.CD_ATENDIMENTO = $var_atd";
 
 
 
@@ -25,6 +25,6 @@ $consulta_iso ="SELECT resp.DS_RESPOSTA
 <div class='col-md-12' style='text-align:left'>
 
     Isolamento:
-    <textarea class='textarea' rows="4" style="width: 100%;" name='frm_isolamento' readonly><?php echo $row_iso ['DS_RESPOSTA']; ?></textarea>
+    <textarea class='textarea' rows="4" style="width: 100%;" name='frm_isolamento' readonly><?php echo @$row_iso ['DS_RESPOSTA']; ?></textarea>
 
 </div>
