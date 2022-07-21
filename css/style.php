@@ -811,7 +811,7 @@ h99{
 
 .textarea {
 
-width: 100%;
+  width: 100%;
   height: 80px;
   padding: 12px 20px;
   box-sizing: border-box;

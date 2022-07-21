@@ -1,7 +1,10 @@
 
+
+
 <?php
 
-    $con_exibir_durante = "SELECT TO_CHAR(dur.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,  
+    $con_exibir_durante = "SELECT dur.CD_DURANTE, 
+                          TO_CHAR(dur.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,  
                           usu.CD_USUARIO, usu.NM_USUARIO
                           FROM passagem_plantao.DURANTE dur
                           INNER JOIN dbasgu.USUARIOS usu
@@ -42,8 +45,18 @@
                         echo '<td class="align-middle" style="text-align: center;">' . $row_dur['HR_CADASTRO'] . '</td>';
                         echo '<td class="align-middle" style="text-align: center;">' . $row_dur['CD_USUARIO'] . '</td>';
                         echo '<td class="align-middle" style="text-align: center;">' . $row_dur['NM_USUARIO'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . '[VISUALIZAR] E [EXCLUIR]' . '</td>';
-                        
+                        echo '<td class="align-middle" style="text-align: center;">';
+
+                        $var_cod_dur = $row_dur['CD_DURANTE'];
+
+                        include 'modal_passagem/visualizar_dur.php';
+                    
+                        echo '<a type="button" class="btn btn-adm"
+                        href="configuracao/excluir_durante.php?codigo='. $var_cod_dur . '">'. ' 
+                        <i class="fa-solid fa-trash-can"></i></a>'; 
+                        echo '</td>';
+
+
                     echo'</tr>';
                     }
                                 
