@@ -1,28 +1,47 @@
-CREATE USER escala_medica IDENTIFIED BY pepita_sjc_23062022_ouro_08_12;
+CREATE USER passagem_plantao IDENTIFIED BY sjc_valendo_um_botton_13072022;
 
-GRANT CREATE SESSION TO escala_medica;
-GRANT CREATE PROCEDURE TO escala_medica;
-GRANT CREATE TABLE TO escala_medica;
-GRANT CREATE TRIGGER TO escala_medica;
-GRANT CREATE VIEW TO escala_medica;
-GRANT UNLIMITED TABLESPACE TO escala_medica;
-GRANT CREATE SEQUENCE TO escala_medica;
+GRANT CREATE SESSION TO passagem_plantao;
+GRANT CREATE PROCEDURE TO passagem_plantao;
+GRANT CREATE TABLE TO passagem_plantao;
+GRANT CREATE TRIGGER TO passagem_plantao;
+GRANT CREATE VIEW TO passagem_plantao;
+GRANT UNLIMITED TABLESPACE TO passagem_plantao;
+GRANT CREATE SEQUENCE TO passagem_plantao;
 
-GRANT EXECUTE ON dbasgu.FNC_MV2000_HMVPEP TO escala_medica;
-GRANT SELECT ON dbasgu.USUARIOS TO escala_medica;
-GRANT SELECT ON DBASGU.PAPEL_USUARIOS TO escala_medica;
-GRANT SELECT ON DBASGU.PAPEL TO escala_medica;
+GRANT EXECUTE ON dbasgu.FNC_MV2000_HMVPEP TO passagem_plantao;
+GRANT SELECT ON dbasgu.USUARIOS TO passagem_plantao;
+GRANT SELECT ON DBASGU.PAPEL_USUARIOS TO passagem_plantao;
+GRANT SELECT ON DBASGU.PAPEL TO passagem_plantao;
 
 --SEQUENCES
 --GRANT SELECT ON dbamv.SEQ_PRODUTO TO portal_cadastro;
 
 --SELECT + INSERT
-GRANT SELECT, INSERT ON dbamv.PRO_FAT TO portal_cadastro;
+--GRANT SELECT, INSERT ON dbamv.PRO_FAT TO portal_cadastro;
 
 --SELECT
-GRANT SELECT ON dbamv.PRESTADOR TO escala_medica;
-GRANT SELECT ON dbamv.PRESTADOR_TIP_COMUN TO escala_medica;
-GRANT SELECT ON dbamv.TIP_COMUN TO escala_medica;
-GRANT SELECT ON dbamv.ESPECIALID TO escala_medica;
-GRANT REFERENCES ON dbamv.PRESTADOR TO escala_medica;
-GRANT REFERENCES ON dbamv.ESPECIALID TO escala_medica;
+GRANT SELECT ON dbamv.PRESTADOR TO passagem_plantao;
+GRANT SELECT ON dbamv.TIP_PRESTA TO passagem_plantao;
+GRANT SELECT ON dbamv.UNID_INT TO passagem_plantao;
+GRANT SELECT ON dbamv.PACIENTE TO passagem_plantao;
+GRANT SELECT ON dbamv.ATENDIME TO passagem_plantao;
+GRANT SELECT ON dbamv.CONVENIO TO passagem_plantao;
+GRANT SELECT ON dbamv.UNID_INT TO passagem_plantao;
+GRANT SELECT ON dbamv.CID TO passagem_plantao;
+GRANT SELECT ON dbamv.SAE_HISTORICO_ENFERMAGEM TO passagem_plantao;
+GRANT SELECT ON dbamv.SAE_RESP_SELCND_HIST_ENFERMG TO passagem_plantao;
+GRANT SELECT ON dbamv.SAE_PERGUNTA_HISTORICO_ENFERMG TO passagem_plantao;
+GRANT SELECT ON dbamv.SAE_RESPOSTA_HISTORICO_ENFERMG TO passagem_plantao;
+GRANT SELECT ON dbamv.SUBSTANCIA TO passagem_plantao;
+GRANT SELECT ON dbamv.HIST_SUBS_PAC TO passagem_plantao;
+GRANT SELECT ON dbamv.VDIC_RESPOSTA_METADADO_HEITOR TO passagem_plantao;
+GRANT SELECT ON dbamv.PRE_MED TO passagem_plantao;
+GRANT SELECT ON dbamv.ITPRE_MED TO passagem_plantao;
+GRANT SELECT ON dbamv.TIP_PRESC TO passagem_plantao;
+GRANT SELECT ON dbamv.PAR_MED TO passagem_plantao;
+GRANT SELECT ON dbamv.AVISO_CIRURGIA TO passagem_plantao;
+GRANT SELECT ON dbamv.CIRURGIA_AVISO TO passagem_plantao;
+GRANT SELECT ON dbamv.CIRURGIA TO passagem_plantao;
+GRANT SELECT ON dbamv.ITPED_RX TO passagem_plantao;
+GRANT SELECT ON dbamv.LAUDO_RX TO passagem_plantao;
+GRANT SELECT ON dbamv.TIP_FRE TO passagem_plantao;
