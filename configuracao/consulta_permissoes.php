@@ -34,9 +34,9 @@
     //OCI_FETCH_ARRAY TRANSFORMA O RESULTADO EM UM TABELA
     $row_usu = oci_fetch_array($result_usuario);
 
-    $var_cod = $row_usu['CD_USUARIO'];
-    $var_nome = $row_usu['NM_USUARIO'];
-    $var_funcao = $row_usu['NM_TIP_PRESTA'];
+    $var_cod = @$row_usu['CD_USUARIO'];
+    $var_nome = @$row_usu['NM_USUARIO'];
+    $var_funcao = @$row_usu['NM_TIP_PRESTA'];
 
 
 

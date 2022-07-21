@@ -45,3 +45,6 @@ GRANT SELECT ON dbamv.CIRURGIA TO passagem_plantao;
 GRANT SELECT ON dbamv.ITPED_RX TO passagem_plantao;
 GRANT SELECT ON dbamv.LAUDO_RX TO passagem_plantao;
 GRANT SELECT ON dbamv.TIP_FRE TO passagem_plantao;
+GRANT SELECT ON dbamv.PW_CASO_PROTOCOLO TO passagem_plantao;
+GRANT SELECT ON dbamv.PW_ALERTA_PROTOCOLO TO passagem_plantao;
+GRANT SELECT ON dbamv.MOV_INT TO passagem_plantao;

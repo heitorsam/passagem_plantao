@@ -2,8 +2,18 @@
 
         include 'cabecalho.php';
 
-       @$var_exibir_pp = $_POST['frm_unid_inter_pp'];
-       @$var_exibir_dt = $_POST['frm_dta']
+        if(isset($_POST['frm_unid_inter_pp'])){
+
+            @$var_exibir_pp = $_POST['frm_unid_inter_pp'];
+
+
+        }else{
+
+            @$var_exibir_pp = 0;
+        }
+       
+       @$var_dt_sel = $_POST['frm_dta'];
+       @$var_exibir_dt = date("d/m/Y", strtotime($_POST['frm_dta']));
 
     ?>
 
@@ -47,7 +57,7 @@
 
 
                                 Data
-                                <input class='form-control' name='frm_dta' type='date' required>
+                                <input class='form-control' name='frm_dta' type='date' value='<?php echo $var_dt_sel; ?>' required>
 
                                 </div>
 
