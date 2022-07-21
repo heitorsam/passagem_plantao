@@ -80,15 +80,9 @@
 
             </body>
 
-
         </html>
 
-
-
     </DOCTYPE HTML>
-
-
-
 
     <?php
 

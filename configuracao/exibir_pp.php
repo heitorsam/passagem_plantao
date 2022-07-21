@@ -70,6 +70,14 @@
                     echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_LEITO'] . '</td>';
                     echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_RESUMO'] . '</td>';
                     echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_UNID_INT'] . '</td>';
+                    echo '<td class="align-middle" style="text-align: center;">';
+
+                        include 'configuracao/modal_paciente.php';
+
+                     echo '</td>';
+                 
+
+                        
 
                     echo'</tr>';
                     }
