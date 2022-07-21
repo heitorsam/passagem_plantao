@@ -27,7 +27,7 @@
 
                 <form method='POST' action='configuracao/consulta_pac.php'>
 
-                    <?php include 'modal_passagem/include_informações_gerais.php'; ?>
+                    <?php include 'modal_passagem/include_informacoes_gerais.php'; ?>
                     
                     <br>
 

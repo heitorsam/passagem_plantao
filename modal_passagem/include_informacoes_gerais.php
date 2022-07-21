@@ -6,6 +6,7 @@
                         unid.DS_UNID_INT , 
                         lt.CD_LEITO, 
                         lt.DS_RESUMO,
+                        pac.CD_PACIENTE, 
                         pac.NM_PACIENTE, 
                         TO_CHAR(pac.DT_NASCIMENTO, 'DD/MM/YYYY') AS NASCIMENTO,
                         FLOOR((SYSDATE - pac.DT_NASCIMENTO) / 365.242199) AS IDADE,
@@ -24,7 +25,7 @@
                         AND lt.CD_UNID_INT = $var_exibir_pp
                         AND atd.DT_ALTA IS NULL
                         AND atd.DT_ALTA_MEDICA IS NULL
-                        AND atd.CD_ATENDIMENTO = ".$row_exibir_pac['CD_ATENDIMENTO'];
+                        AND atd.CD_ATENDIMENTO = $var_atd ";
 
                         $result_consulta_info = oci_parse($conn_ora,$consulta_info_ger);
 

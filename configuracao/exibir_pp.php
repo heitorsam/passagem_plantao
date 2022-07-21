@@ -1,7 +1,7 @@
 
 <?php
 
-    $con_exibir_paciente="SELECT 
+    echo $con_exibir_paciente="SELECT 
                           lt_set.CD_ATENDIMENTO, 
                           lt_set.CD_PACIENTE, 
                           pac.NM_PACIENTE, 
@@ -41,7 +41,7 @@
                           INNER JOIN dbamv.UNID_INT uni
                           ON uni.CD_UNID_INT = lt_set.CD_UNID_INT
                           WHERE lt_set.CD_UNID_INT = $var_exibir_pp
-                          AND TO_CHAR(TO_DATE('$var_exibir_dt','DD/MM/YYYY'),'DD/MM/YYYY')  BETWEEN TO_CHAR(lt_set.DT_ENTRADA,'DD/MM/YYYY') AND TO_CHAR(lt_set.DT_SAIDA,'DD/MM/YYYY')";
+                          AND TO_DATE('$var_exibir_dt','DD/MM/YYYY')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA";
 
     $result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
 
