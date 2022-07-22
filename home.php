@@ -31,10 +31,6 @@
                     <a href="estrutura_passagem_plantao.php" class="botao_home" type="submit"><i class="far fa-clipboard"></i> Passagem Plantão</a>
                     <span class="espaco_pequeno"></span>    
 
-                    <a href="historico_pp.php" class="botao_home" type="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> Historico de Passagem</a>
-                    <span class="espaco_pequeno"></span>    
-                
-
                 <div class="div_br"> </div>
                 <div class="div_br"> </div>
 

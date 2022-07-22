@@ -3,7 +3,7 @@
 
 <?php
 
-    $con_exibir_durante = "SELECT dur.CD_DURANTE, 
+    @$con_exibir_durante = "SELECT dur.CD_DURANTE, 
                           TO_CHAR(dur.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,  
                           usu.CD_USUARIO, usu.NM_USUARIO
                           FROM passagem_plantao.DURANTE dur
@@ -11,7 +11,7 @@
                             ON usu.CD_USUARIO = dur.CD_USUARIO_CADASTRO
                           WHERE TO_DATE('$var_exibir_dt','DD/MM/YYYY') = TRUNC(dur.DT_PLANTAO)";
 
-    $result_exibir_dur = oci_parse($conn_ora,$con_exibir_durante);
+    @$result_exibir_dur = oci_parse($conn_ora,$con_exibir_durante);
 
     @oci_execute($result_exibir_dur);
 

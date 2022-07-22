@@ -1,7 +1,7 @@
 
 <?php
 
-    $con_exibir_paciente="SELECT 
+    @$con_exibir_paciente="SELECT 
                           lt_set.CD_ATENDIMENTO, 
                           lt_set.CD_PACIENTE, 
                           pac.NM_PACIENTE, 
@@ -43,7 +43,7 @@
                           WHERE lt_set.CD_UNID_INT = $var_exibir_pp
                           AND TO_DATE('$var_exibir_dt','DD/MM/YYYY')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA";
 
-    $result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
+    @$result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
 
     @oci_execute($result_exibir_pac);
 

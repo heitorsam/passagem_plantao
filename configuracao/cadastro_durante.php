@@ -3,6 +3,7 @@
 session_start();
 include '../conexao.php';
 
+$var_frm_data= $_POST['frm_dta'];
 $var_frm_unid= $_POST['frm_unid'];
 $var_frm_ep_sn = $_POST['frm_ep_sn'];
 $var_frm_equip_desc = $_POST['frm_equip_desc'];

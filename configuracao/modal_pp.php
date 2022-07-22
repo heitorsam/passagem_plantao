@@ -44,6 +44,8 @@
 
                     <div class='row'>
 
+                        <input class='form-control' name='frm_dta' type='date' value='<?php echo $var_dt_sel; ?>' hidden>
+
                         <div class='col-md-3' style='text-align:left'>
 
                           Unid </br>
