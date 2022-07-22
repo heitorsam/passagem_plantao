@@ -8,7 +8,6 @@ $var_del = $_GET['codigo'];
 $con_del_permi = "DELETE FROM passagem_plantao.permissoes PPP
                      WHERE PPP.CD_PERMISSAO = '$var_del'";
 
-echo $con_del_permi;
 
 
 $result_del_permi = oci_parse($conn_ora,$con_del_permi);

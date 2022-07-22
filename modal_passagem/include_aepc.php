@@ -6,7 +6,7 @@ $consulta_aepc="SELECT 'PARECER: (' || TO_CHAR(pm.DT_SOLICITACAO, 'DD/MM/YYYY') 
                 INNER JOIN dbamv.ESPECIALID esp
                 ON esp.CD_ESPECIALID = pm.CD_ESPECIALID
                 WHERE pm.CD_ATENDIMENTO = $var_atd
-                
+
                 UNION ALL
 
                 SELECT 'CIRURGIA : (' || TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY') || ') '|| cir.DS_CIRURGIA AS DS_DESCRICAO
@@ -17,14 +17,14 @@ $consulta_aepc="SELECT 'PARECER: (' || TO_CHAR(pm.DT_SOLICITACAO, 'DD/MM/YYYY') 
                 ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                 WHERE ac.TP_SITUACAO = 'A'
                 AND ac.CD_ATENDIMENTO = $var_atd
-
+                
                 UNION ALL
 
                 SELECT 
                 CASE
                 WHEN itrx.CD_LAUDO IS NOT NULL THEN 'EXAMES : (' || TO_CHAR(pm.DT_PRE_MED, 'DD/MM/YYYY') || ') '
                     || tp.DS_TIP_PRESC || ' [LAUDO: ' || ld.HR_LAUDO || ']'
-                ELSE 'EXAMES : (' || pm.DT_PRE_MED || ') '|| tp.DS_TIP_PRESC 
+                ELSE 'EXAMES : (' || TO_CHAR(pm.DT_PRE_MED, 'DD/MM/YYYY') || ') '|| tp.DS_TIP_PRESC 
                     || ' [LAUDO: AGUARDANDO]'
                 END AS DS_DESCRICAO
                 FROM dbamv.PRE_MED pm

@@ -4,6 +4,7 @@
 
         if(isset($_POST['frm_unid_inter_pp'])){
 
+  
             @$var_exibir_pp = $_POST['frm_unid_inter_pp'];
 
             @$_SESSION['ss_unid_int_pp'] = $_POST['frm_unid_inter_pp'];
@@ -11,6 +12,7 @@
 
         }else{
 
+            @$var_exibir_pp = 0;
             if(isset($_SESSION['ss_unid_int_pp'])){
 
                 @$var_exibir_pp = $_SESSION['ss_unid_int_pp'];
@@ -39,7 +41,6 @@
             }
         }
 
-        
     ?>
 
     <!DOCTYPE HTML>
@@ -69,7 +70,7 @@
                             <div class='col-md-3' style='text-align:left'>
 
                                 Unidade de Internação
-                                <select class='form-control' name='frm_unid_inter_pp' required>
+                                <select class='form-control' name='frm_unid_inter_pp' value="<?php echo $var_exibir_pp ?>" required>
                                     
                                     <?php include 'configuracao/consulta_unid_int_pp.php'; ?>
 
@@ -103,7 +104,26 @@
 
                     <!--FORM DURANTE-->
 
-                    <?php include 'configuracao/modal_pp.php'; ?>
+                    
+
+                    <?php 
+
+                        @$aux_sel = date('d/m/Y', strtotime($var_dt_sel));
+                        @$hoje = date('d/m/Y'); 
+                        
+                        if($aux_sel == $hoje){
+
+                            include 'configuracao/modal_pp.php';
+
+                        }else{
+
+                            //echo 'Não é Igual';
+                        
+                        }
+
+                        
+                    
+                    ?>
                     
                     <div class="div_br"> </div>
                     <div class="div_br"> </div>

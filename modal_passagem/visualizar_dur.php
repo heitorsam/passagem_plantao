@@ -44,9 +44,9 @@
 
                     <div class='row'>
 
-                        <div class='col-md-3' style='text-align:left'>
+                        <div class='col-md-3' style='text-align:left' hidden>
 
-                          Unid </br>
+                          Descrição Unidade: </br>
                           <input class="form-control" name='frm_unid' type="text" value="<?php echo $var_exibir_pp ?>" readonly>
 
                         </div>
@@ -85,9 +85,9 @@
 
                         </div>
 
-                        <div class='col-md-3' style='text-align:left'>
+                        <div class='col-md-9' style='text-align:left'>
 
-                          Qual?</br>
+                          Qual?:</br>
                           <input class="form-control" name='frm_equip_desc' id='qual' disabled value="<?php echo @$row_dur_detalhe['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                         </div>
@@ -165,7 +165,7 @@
 
                       <div class='col-md-3' style='text-align:left'>
 
-                        Informe o Lacre</br>
+                        Informe o Lacre:</br>
                         <input class="form-control" name='frm_lac_desc' id='lac_desc' disabled value="<?php echo @$row_dur_detalhe['LACRE_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
@@ -210,7 +210,7 @@
 
                       <div class='col-md-3' style='text-align:left'>
 
-                        Motivo</br>
+                        Motivo:</br>
                         <input class="form-control" name='frm_lt_motivo'id='lt_motivo' disabled value="<?php echo @$row_dur_detalhe['LT_MOTIVO_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
@@ -249,7 +249,7 @@
 
                       <div class='col-md-3' style='text-align:left'>
 
-                      Qual?</br>
+                      Qual?:</br>
                       <input class="form-control" name='frm_mm_motivo'id='mm_motivo' disabled value="<?php echo @$row_dur_detalhe['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
@@ -324,12 +324,10 @@
 
                       </div>
 
-                      
-                      <div class='col-md-8' style='text-align:left'>
-
-                      Conduta</br>
-                      <input class="form-control" name='frm_con_desc' id='con_desc' disabled value="<?php echo @$row_dur_detalhe['CONDUTA_DESC']; ?>" <?php echo $sn_readonly; ?>>
-
+                      <div class='col-md-12' style='text-align:left'>
+                      <br>
+                      Conduta:</br>
+                      <textarea class='textarea' style="width: 100%;" name='frm_con_desc' id='con_desc' disabled <?php echo $sn_readonly; ?>><?php echo $row_dur_detalhe ['CONDUTA_DESC']; ?> </textarea>
                       </div>
 
                     </div>
@@ -369,11 +367,10 @@
 
                         </div>
                         
-                        <div class='col-md-9' style='text-align:left'>
-
-                        Desfecho</br>
-                        <input class="form-control" name='frm_ip_desc' id='ip_desc' disabled value="<?php echo @$row_dur_detalhe['IP_DESC']; ?>" <?php echo $sn_readonly; ?>>
-
+                        <div class='col-md-12' style='text-align:left'>
+                        <br>
+                        Desfecho:</br>
+                        <textarea class='textarea' style="width: 100%;" name='frm_ip_desc' id='ip_desc' disabled <?php echo $sn_readonly; ?>><?php echo $row_dur_detalhe ['IP_DESC']; ?> </textarea>
                         </div>
 
                     </div>

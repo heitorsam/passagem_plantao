@@ -46,13 +46,13 @@
 
                         <input class='form-control' name='frm_dta' type='date' value='<?php echo $var_dt_sel; ?>' hidden>
 
-                        <div class='col-md-3' style='text-align:left'>
+                        <div class='col-md-3' style='text-align:left' hidden>
 
-                          Unid </br>
+                          Descrição Unidade: </br>
                           <input class="form-control" name='frm_unid' type="text" value="<?php echo $var_exibir_pp ?>" readonly>
 
                         </div>
-                        
+
                         <div class='col-md-3' style='text-align:left'>
 
                             Equip. com Problema? </br>
@@ -87,10 +87,10 @@
 
                         </div>
 
-                        <div class='col-md-3' style='text-align:left'>
+                        <div class='col-md-9' style='text-align:left'>
 
-                          Qual?</br>
-                          <input class="form-control" name='frm_equip_desc' id='qual' disabled value="<?php echo @$row_dur['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                          Qual?:</br>
+                          <input minlength='5' class="form-control" name='frm_equip_desc' id='qual' disabled value="<?php echo @$row_dur['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                         </div>
                         </br>
@@ -167,8 +167,8 @@
 
                       <div class='col-md-3' style='text-align:left'>
 
-                        Informe o Lacre</br>
-                        <input class="form-control" name='frm_lac_desc' id='lac_desc' disabled value="<?php echo @$row_dur['LACRE_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                        Informe o Lacre:</br>
+                        <input minlength='5' class="form-control" name='frm_lac_desc' id='lac_desc' disabled value="<?php echo @$row_dur['LACRE_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
 
@@ -212,8 +212,8 @@
 
                       <div class='col-md-3' style='text-align:left'>
 
-                        Motivo</br>
-                        <input class="form-control" name='frm_lt_motivo'id='lt_motivo' disabled value="<?php echo @$row_dur['LT_MOTIVO_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                        Motivo:</br>
+                        <input minlength='5' class="form-control" name='frm_lt_motivo'id='lt_motivo' disabled value="<?php echo @$row_dur['LT_MOTIVO_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
 
@@ -251,8 +251,8 @@
 
                       <div class='col-md-3' style='text-align:left'>
 
-                      Qual?</br>
-                      <input class="form-control" name='frm_mm_motivo'id='mm_motivo' disabled value="<?php echo @$row_dur['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                      Qual?:</br>
+                      <input minlength='5' class="form-control" name='frm_mm_motivo'id='mm_motivo' disabled value="<?php echo @$row_dur['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                       </div>
 
@@ -326,11 +326,16 @@
 
                       </div>
 
-                      
-                      <div class='col-md-8' style='text-align:left'>
+                    </div>
+                    <br>
 
-                      Conduta</br>
-                      <input class="form-control" name='frm_con_desc' id='con_desc' disabled value="<?php echo @$row_dur['CONDUTA_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                    <div class='row'>
+
+                      <div class='col-md-12' style='text-align:left'>
+
+                      Conduta:</br>
+
+                      <textarea minlength='5' class='textarea' style="width: 100%;" name='frm_con_desc' id='con_desc' disabled value="<?php echo $row_dur ['CONDUTA_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
 
                       </div>
 
@@ -371,11 +376,11 @@
 
                         </div>
                         
-                        <div class='col-md-9' style='text-align:left'>
+                        <div class='col-md-12' style='text-align:left'>
+                        <br>
 
-                        Desfecho</br>
-                        <input class="form-control" name='frm_ip_desc' id='ip_desc' disabled value="<?php echo @$row_dur['IP_DESC']; ?>" <?php echo $sn_readonly; ?>>
-
+                        Desfecho:</br>
+                        <textarea minlength='5' class='textarea' style="width: 100%;" name='frm_ip_desc' id='ip_desc' disabled value="<?php echo $row_dur ['IP_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
                         </div>
 
                     </div>

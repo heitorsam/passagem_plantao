@@ -50,11 +50,23 @@
                         $var_cod_dur = $row_dur['CD_DURANTE'];
 
                         include 'modal_passagem/visualizar_dur.php';
-                    
-                        echo '<a type="button" class="btn btn-adm"
-                        href="configuracao/excluir_durante.php?codigo='. $var_cod_dur . '">'. ' 
-                        <i class="fa-solid fa-trash-can"></i></a>'; 
-                        echo '</td>';
+
+                        
+                        @$aux_sel = date('d/m/Y', strtotime($var_dt_sel));
+                        @$hoje = date('d/m/Y'); 
+                        
+                        if($aux_sel == $hoje){
+
+                            echo '<a type="button" class="btn btn-adm"
+                            href="configuracao/excluir_durante.php?codigo='. $var_cod_dur . '">'. ' 
+                            <i class="fa-solid fa-trash-can"></i></a>'; 
+                            echo '</td>';
+
+                        }else{
+
+                            //echo 'Não é Igual';
+                        
+                        }
 
 
                     echo'</tr>';
