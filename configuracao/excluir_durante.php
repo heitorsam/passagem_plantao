@@ -6,7 +6,8 @@ include '../conexao.php';
 $var_deletar = $_GET['codigo'];    
 
 $con_del_durante = "DELETE FROM passagem_plantao.DURANTE dur
-                     WHERE dur.CD_DURANTE = '$var_deletar'";
+                     WHERE dur.CD_DURANTE = '$var_deletar'
+                     AND dur.CD_USUARIO_CADASTRO = '$var_user'";
 
 echo $con_del_durante;
 

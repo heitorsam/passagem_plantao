@@ -1,6 +1,4 @@
 
-
-
 <?php
 
     @$con_exibir_durante = "SELECT dur.CD_DURANTE, 
@@ -55,8 +53,10 @@
                         
                         @$aux_sel = date('d/m/Y', strtotime($var_dt_sel));
                         @$hoje = date('d/m/Y'); 
+                        @$usuario_log = $row_dur['CD_USUARIO'];
+                        @$usu_session = $_SESSION['usuarioLogin'];
                         
-                        if($aux_sel == $hoje){
+                        if($aux_sel == $hoje AND $usuario_log == $usu_session ){
 
                            echo '<a class="btn btn-adm" href="configuracao/excluir_durante.php?codigo=' . $var_cod_dur . '' .
                                  '" onclick=\'return confirm("Tem certeza que deseja excluir?");\'>' .
