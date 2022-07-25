@@ -9,7 +9,8 @@
                           FROM passagem_plantao.DURANTE dur
                           INNER JOIN dbasgu.USUARIOS usu
                             ON usu.CD_USUARIO = dur.CD_USUARIO_CADASTRO
-                          WHERE TO_DATE('$var_exibir_dt','DD/MM/YYYY') = TRUNC(dur.DT_PLANTAO)";
+                          WHERE TO_DATE('$var_exibir_dt','DD/MM/YYYY') = TRUNC(dur.DT_PLANTAO)
+                          AND dur.CD_UNID_INT = $var_exibir_pp";
 
     @$result_exibir_dur = oci_parse($conn_ora,$con_exibir_durante);
 
@@ -57,10 +58,9 @@
                         
                         if($aux_sel == $hoje){
 
-                            echo '<a type="button" class="btn btn-adm"
-                            href="configuracao/excluir_durante.php?codigo='. $var_cod_dur . '">'. ' 
-                            <i class="fa-solid fa-trash-can"></i></a>'; 
-                            echo '</td>';
+                           echo '<a class="btn btn-adm" href="configuracao/excluir_durante.php?codigo=' . $var_cod_dur . '' .
+                                 '" onclick=\'return confirm("Tem certeza que deseja excluir?");\'>' .
+                                 '<i class="fas fa-trash"></i></a>';
 
                         }else{
 

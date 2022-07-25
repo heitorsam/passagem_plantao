@@ -2,10 +2,6 @@
 
     $consulta_info_ger ="SELECT 
     atd.CD_ATENDIMENTO,
-    unid.CD_UNID_INT, 
-    unid.DS_UNID_INT , 
-    lt.CD_LEITO, 
-    lt.DS_RESUMO,
     pac.CD_PACIENTE, 
     pac.NM_PACIENTE, 
     TO_CHAR(pac.DT_NASCIMENTO, 'DD/MM/YYYY') AS NASCIMENTO,
@@ -17,12 +13,7 @@
     ON pac.CD_PACIENTE = atd.CD_PACIENTE
     INNER JOIN dbamv.CONVENIO conv
     ON conv.CD_CONVENIO = atd.CD_CONVENIO
-    INNER JOIN dbamv.LEITO lt
-    ON lt.CD_LEITO = atd.CD_LEITO
-    INNER JOIN dbamv.UNID_INT unid
-    On unid.CD_UNID_INT = lt.CD_UNID_INT
     WHERE atd.TP_ATENDIMENTO = 'I'
-    AND lt.CD_UNID_INT = $var_exibir_pp
     AND atd.CD_ATENDIMENTO = $var_atd ";
 
     $result_consulta_info = oci_parse($conn_ora,$consulta_info_ger);
@@ -35,14 +26,7 @@
     
 <div class='row'>
 
-    <div class='col-md-2' style='text-align:left'>
-
-        Leito:
-        <input class='form-control' name='frm_leito' type='text' value="<?php echo $row_info['DS_RESUMO']; ?>" readonly> 
-
-    </div>
-
-    <div class='col-md-4' style='text-align:left'>
+    <div class='col-md-5' style='text-align:left'>
 
         Nome:
         <input class='form-control' name='frm_nome' type='text' value= "<?php echo $row_info['NM_PACIENTE']; ?>" readonly> 
@@ -63,7 +47,7 @@
 
     </div>
 
-    <div class='col-md-3' style='text-align:left'>
+    <div class='col-md-4' style='text-align:left'>
 
         Convenio:
         <input class='form-control' name='frm_idade' type='text' value="<?php echo $row_info['NM_CONVENIO']; ?>" readonly> 

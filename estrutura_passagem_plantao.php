@@ -109,7 +109,7 @@
 
                     <?php          
 
-                        $var_bloq_cad_dur = "SELECT COUNT (dur.dt_plantao) AS QTD
+                        @$var_bloq_cad_dur = "SELECT COUNT (dur.dt_plantao) AS QTD
                                             FROM passagem_plantao.durante dur
                                             WHERE dur.cd_usuario_cadastro = '$var_user'
                                             and dur.cd_unid_int = '$var_exibir_pp'
@@ -120,9 +120,9 @@
 
                         @oci_execute($result_bloq_cad_dur);
 
-                        $row_quantidade = oci_fetch_array($result_bloq_cad_dur);
+                        @$row_quantidade = oci_fetch_array($result_bloq_cad_dur);
 
-                        $qtd_durante = $row_quantidade['QTD'];
+                        @$qtd_durante = $row_quantidade['QTD'];
                         
                     ?>
 
