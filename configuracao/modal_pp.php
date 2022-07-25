@@ -388,9 +388,12 @@
                       </br>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
+                          
+                          
                           <?php if(!isset($var_cod_dur)){ ?>
                             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
                           <?php } ?>
+                          
                         </div>
             
     
