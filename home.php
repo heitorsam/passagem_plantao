@@ -35,15 +35,15 @@
                     
                 ?>
 
-                <div class="div_br"> </div>
-                <div class="div_br"> </div>
+                    <div class="div_br"> </div>
+                    <div class="div_br"> </div>
 
-                <h11><i class="fas fa-cog"></i> Configurações</h11>
+                    <h11><i class="fas fa-cog"></i> Configurações</h11>
 
-                <div class="div_br"> </div>
+                    <div class="div_br"> </div>
 
-                <a href="estrutura_permissoes.php" class="botao_home btn-adm" type="submit"><i class="fa-solid fa-chart-bar"></i> Permissões</a>
-                <span class="espaco_pequeno"></span> 
+                    <a href="estrutura_permissoes.php" class="botao_home btn-adm" type="submit"><i class="fa-solid fa-chart-bar"></i> Permissões</a>
+                    <span class="espaco_pequeno"></span> 
 
                 <?php } ?>
 

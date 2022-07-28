@@ -146,14 +146,14 @@ CD_DURANTE           INT NOT NULL,
 DT_PLANTAO           TIMESTAMP,
 CD_UNID_INT          INT NOT NULL,
 EQUIP_SN             VARCHAR(1),
-EQUIP_DESC           VARCHAR(20),
+EQUIP_DESC           VARCHAR(100),
 CAR_SN               VARCHAR(1),
 REP_LAC_SN           VARCHAR(1),
 LACRE_DESC           VARCHAR(20),
 LT_BLOQ_SN           VARCHAR(1),
-LT_MOTIVO_DESC       VARCHAR(20),
+LT_MOTIVO_DESC       VARCHAR(50),
 FT_MM_SN             VARCHAR(1),
-MM_DESC              VARCHAR(30),
+MM_DESC              VARCHAR(50),
 FARM_SN              VARCHAR(1),
 PPF_SN               VARCHAR(1),
 CONDUTA_DESC         VARCHAR(100),
@@ -212,14 +212,25 @@ SELECT * FROM passagem_plantao.durante
 
 SELECT * FROM dbamv.unid_int
 
+SELECT * FROM dbasgu.usuarios
+
 
 SELECT PPD.CD_UNID_INT, 
       UI.DS_UNID_INT, 
       PPD.CD_USUARIO_CADASTRO, 
-      TO_CHAR(PPD.HR_CADASTRO, DD/MM/YYYY 24H) 
+      USU.NM_USUARIO,
+      TO_CHAR(PPD.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS DIA
        FROM passagem_plantao.durante PPD
        INNER JOIN dbamv.unid_int UI
-       ON UI.CD_UNID_INT = PPD.CD_UNID_INT
+             ON UI.CD_UNID_INT = PPD.CD_UNID_INT
+       INNER JOIN dbasgu.usuarios USU
+             ON PPD.CD_USUARIO_CADASTRO = USU.CD_USUARIO
+       WHERE PPD.CD_UNID_INT = '1'
+       AND EXTRACT (YEAR FROM PPD.HR_CADASTRO) = 2022
+       AND EXTRACT (MONTH FROM PPD.HR_CADASTRO) = 07
+       
+       
+       SELECT * FROM 
 
 
 

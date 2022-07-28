@@ -107,6 +107,7 @@
 
                     <!--FORM DURANTE-->
 
+
                     <?php          
 
                         @$var_bloq_cad_dur = "SELECT COUNT (dur.dt_plantao) AS QTD
@@ -141,7 +142,6 @@
                         
                         }
 
-                        
                     
                     ?>
                     
