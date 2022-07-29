@@ -11,7 +11,7 @@
                         WHERE sel.CD_PERGUNTA_HISTORICO IN (2695, 341, 338, 342, 340)
                         --AND resp.SN_ATIVO = 'S'
                         AND she.CD_ATENDIMENTO = $var_atd
-                        AND TO_DATE('$var_exibir_dt','DD/MM/YYYY') = TRUNC(she.DT_INICIO)";
+                        AND TO_DATE('$var_exibir_dt','YYYY-MM-DD') = TRUNC(she.DT_INICIO)";
 
 $result_consulta_dispo = oci_parse($conn_ora,$consulta_dispo);
 

@@ -4,124 +4,168 @@
         include 'configuracao/consulta_permissoes.php';
     ?>
 
-    <!DOCTYPE HTML>
+    <h11><i class="fa-solid fa-chart-bar"></i> Permissões</h11>
+    <span class="espaco_pequeno" style="width: 6px"></span>
+    <h27><a href="home.php" style="color: #444444; text-decoration: none;"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</a></h27>
+    <div class="div_br"></div>
 
-        <html>
 
-            <body>
 
-                <div class="container">
+    <div class="row">
 
-                    <h11><i class="fa-solid fa-chart-bar"></i> Permissões</h11>
-                    <span class="espaco_pequeno" style="width: 6px"></span>
-                    <h27><a href="home.php" style="color: #444444; text-decoration: none;"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</a></h27>
-                    <div class="div_br"></div>
+        <div class='col-md-3' style='text-align:left'>
 
+            Código Usuário:
+            <div class="input-group">
+            <?php 
+            
+                //CONSULTA_LISTA
+                $consulta_lista = "SELECT usu.CD_USUARIO AS NOME
+                                    FROM dbamv.PRESTADOR prest
+                                INNER JOIN dbamv.TIP_PRESTA tp
+                                    ON tp.CD_TIP_PRESTA = prest.CD_TIP_PRESTA
+                                INNER JOIN dbasgu.USUARIOS usu
+                                    ON usu.CD_PRESTADOR = prest.CD_PRESTADOR
+                                WHERE prest.TP_SITUACAO = 'A'
+                                    AND prest.CD_TIP_PRESTA = 4
+                                ORDER BY prest.NM_PRESTADOR ASC
+                                ";
+                $result_lista = oci_parse($conn_ora, $consulta_lista);																									
+
+                //EXECUTANDO A CONSULTA SQL (ORACLE)
+                oci_execute($result_lista);            
+
+            ?>
+
+            <script>
+
+                //LISTA
+                var countries = [     
                     <?php
-
-                        //CHAMANDO MENSAGENS
-                        include 'js/mensagens.php';
-
+                        while($row_lista = oci_fetch_array($result_lista)){	
+                            echo '"'. str_replace('"' , '', $row_lista['NOME']) .'",';                
+                        }
                     ?>
+                ];
 
-                    <form method="POST" action="estrutura_permissoes.php">
+                </script>
 
-                        <div class="row">
+                <?php
+                //AUTOCOMPLETE
+                include 'funcoes/permissoes/autocomplete_prestador.php';
 
-                            <div class='col-md-3' style='text-align:left'>
+            ?>
 
-                                Código Usuário:
-                                <div class="input-group">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <br>
     
-                                    <input class='form-control' name='frm_usuario' type="text" placeholder= 'Login MV' value='<?php echo @$var_cod; ?>'>
-                                    <div><button type='submit' class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button></div>
+    <div class="row" id="div_usuario">
 
-                                </div>
-       
-                            </div>
+        <div class='col-md-2'>
 
-                        </div>
+            Usuário:
+            <input class='form-control' type='text' readonly>
 
-                    </form>
-                    <br>
+        </div>
 
-                    <div class="row">
+        <div class='col-md-3'>
 
-                        <div class='col-md-2'>
+            Nome:
+            <input class='form-control' type='text' readonly>
 
-                            Usuário:
-                            <input class='form-control' type='text' value='<?php echo @$var_cod; ?>' readonly>
+        </div>
+        
+        <div class='col-md-2'>
 
-                        </div>
+            Função:
+            <input class='form-control' type='text' readonly>
 
-                        <div class='col-md-3'>
+        </div>
 
-                            Nome:
-                            <input class='form-control' type='text' value='<?php echo @$var_nome; ?>' readonly>
+    
+    
+    </div>
+    <div class="div_br"></div>
+    
+    <div id="div_permissoes">
+    </div>
 
-                        </div>
-                        
-                        <div class='col-md-2'>
-
-                            Função:
-                            <input class='form-control' type='text' value='<?php echo @$var_funcao; ?>' readonly>
-
-                        </div>
-
-                    </div>
-                    <br>
-                    <hr>
-
-                    <form method="POST" action="configuracao/adicionar_permissoes.php">
-
-                         <!-- DEPOIS SERA OCULTADO -->
-                         <input class='form-control' type='text' name="frm_cd_usuario" value='<?php echo @$var_cod; ?>' hidden>
-                    
-                        <div class='row'>
-
-                            <div class='col-md-3' style='text-align:left'>
-
-                                Unidade de Internação:
-                                
-                                <div class='input-group'>
-                                   
-                                    <select class='form-control' name='frm_unid_inter' required>
-                                        
-                                        <?php include 'configuracao/consulta_unid_int.php'; ?>
-
-                                    </select>
-
-                                    <div><button type='submit' class='btn btn-primary'><i class="fas fa-plus"></i></button></div>
-
-                                </div>
-
-                            </div>
-                            <br>
-                            <br>
-
-                            <br>
-
-                        </div>
-
-                    </form>
-                    </br>
-
-                    <?php include 'configuracao/exibir_permissoes_cadastradas.php'?>
+    <div id="tabela_permissoes">
+    </div>
 
 
-                </div>
+        <script>
 
-            </body>
+            function ajax_buscar_usuario(){
+
+                var usuario = document.getElementById('input').value
+                if(usuario != ''){
+                    $('#div_usuario').load('funcoes/permissoes/ajax_usuario.php?cd_usuario='+ usuario);
+                    $('#div_permissoes').load('funcoes/permissoes/ajax_permissoes.php?cd_usuario='+ usuario);
+                    $('#tabela_permissoes').load('funcoes/permissoes/ajax_tabela_permissoes.php?cd_usuario='+ usuario);
+
+                }else{
+                    document.getElementById('input').focus()
+                }
+
+
+            }
+
+            function ajax_adicionar_permissao(){
+                var setor = document.getElementById('frm_unid_inter').value;
+                var usuario = document.getElementById('input').value;
+                if(setor != ''){
+                    $('#div_permissoes').load('funcoes/permissoes/ajax_permissoes.php?cd_usuario='+ usuario);
+                    $.ajax({
+                        url: "funcoes/permissoes/ajax_cad_permissao.php",
+                        type: "POST",
+                        data: {
+                            cd_usuario: usuario,
+                            setor: setor
+                            },
+                        cache: false,
+                        success: function(dataResult){
+                            $('#div_permissoes').load('funcoes/permissoes/ajax_permissoes.php?cd_usuario='+ usuario);
+                            $('#tabela_permissoes').load('funcoes/permissoes/ajax_tabela_permissoes.php?cd_usuario='+ usuario);
+                        }
+                    });                    
+
+                }else{
+                    document.getElementById('frm_unid_inter').focus();
+                }
+            }
+
+            function ajax_deletar_permissao(cd_setor){
+                var usuario = document.getElementById('input').value;
+                    $.ajax({
+                        url: "funcoes/permissoes/ajax_deletar_permissao.php",
+                        type: "POST",
+                        data: {
+                            codigo: cd_setor
+                            },
+                        cache: false,
+                        success: function(dataResult){
+                            alert(dataResult);
+                            $('#div_permissoes').load('funcoes/permissoes/ajax_permissoes.php?cd_usuario='+ usuario);
+                            $('#tabela_permissoes').load('funcoes/permissoes/ajax_tabela_permissoes.php?cd_usuario='+ usuario);
+                        }
+                    });   
+            }
+
+
+        </script>        
 
 
 
-        </html>
 
+    <?php
 
+        include 'rodape.php';
 
-
-        <?php
-
-            include 'rodape.php';
-
-        ?>
+    ?>

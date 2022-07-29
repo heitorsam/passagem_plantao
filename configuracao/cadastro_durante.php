@@ -51,20 +51,6 @@ echo $cons_pp = "INSERT INTO passagem_plantao.durante
 $result_pp = oci_parse($conn_ora,$cons_pp);
 
 //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
-$valida = oci_execute($result_pp);
-
-
-if(!$valida){
-    
-    $erro =  oci_error($result_pp);
-    $_SESSION['msgerro'] = htmlentities($erro['message']);
-
-}else{
-
-    $_SESSION['msg'] = 'Salvo com Sucesso!';
-}
-
-
-header("Location:../estrutura_passagem_plantao.php");
+oci_execute($result_pp);
 
 ?>

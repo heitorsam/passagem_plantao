@@ -1,4 +1,5 @@
-    <?php
+
+<?php
 
         $id = $row_exibir_pac['CD_PACIENTE'];
         $var_atd =  $row_exibir_pac['CD_ATENDIMENTO'];

@@ -28,11 +28,8 @@
     //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
     oci_execute($result_unid_pp);
 
-    if($var_exibir_pp == 0){
 
-        echo "<option value=''>Selecione</option>";
-
-    }
+    echo "<option value=''>Selecione</option>";
 
     while($row_unid_pp = oci_fetch_array($result_unid_pp)){
 

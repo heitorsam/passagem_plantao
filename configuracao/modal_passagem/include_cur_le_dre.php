@@ -10,7 +10,7 @@ $consulta_curativos="SELECT DISTINCT resp.DS_RESPOSTA
                      ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                      WHERE sel.CD_PERGUNTA_HISTORICO IN (232, 342, 460, 336, 337)
                      AND she.CD_ATENDIMENTO = $var_atd 
-                     AND TO_DATE('$var_exibir_dt','DD/MM/YYYY') = TRUNC(she.DT_INICIO)";
+                     AND TO_DATE('$var_exibir_dt','YYYY-MM-DD') = TRUNC(she.DT_INICIO)";
 
 $result_consulta_curativos = oci_parse($conn_ora,$consulta_curativos);
 

@@ -820,6 +820,29 @@ h99{
   background-color: #f8f8f8;
   font-size: 16px;
   resize: none;
+} 
+
+.loader {
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border: 5px solid #46a5d4;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: none;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
 }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+
+
 
 </style>

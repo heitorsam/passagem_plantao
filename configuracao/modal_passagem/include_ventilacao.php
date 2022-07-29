@@ -11,9 +11,8 @@ $consulta_venti ="SELECT DISTINCT resp.DS_RESPOSTA
                   INNER JOIN dbamv.SAE_RESPOSTA_HISTORICO_ENFERMG resp
                   ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                   WHERE sel.CD_PERGUNTA_HISTORICO IN (467, 483, 348, 234, 346, 313)
-                  --AND resp.SN_ATIVO = 'S'
                   AND she.CD_ATENDIMENTO = $var_atd 
-                  AND TO_DATE('$var_exibir_dt','DD/MM/YYYY') = TRUNC(she.DT_INICIO)";
+                  AND TO_DATE('$var_exibir_dt','YYYY-MM-DD') = TRUNC(she.DT_INICIO)";
 
 $result_consulta_venti = oci_parse($conn_ora,$consulta_venti);
 

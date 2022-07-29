@@ -40,270 +40,320 @@
 
             <div class="modal-body" style='margin: 0 auto !important;'>
 
-                <form method='POST' action='configuracao/cadastro_durante.php'>
 
-                    <div class='row'>
 
-                        <input class='form-control' name='frm_dta' type='date' value='<?php echo $var_dt_sel; ?>' hidden>
+                  <div class='row'>
 
-                        <div class='col-md-3' style='text-align:left' hidden>
+                      <input class='form-control' id='frm_dta' type='date' value='<?php echo $var_exibir_dt; ?>' hidden>
 
-                          Descrição Unidade: </br>
-                          <input class="form-control" name='frm_unid' type="text" value="<?php echo $var_exibir_pp ?>" readonly>
+                      <div class='col-md-3' style='text-align:left' hidden>
 
-                        </div>
+                        Descrição Unidade: </br>
+                        <input class="form-control" id='frm_unid' type="text" value="<?php echo $var_exibir_pp ?>" readonly>
 
-                        <div class='col-md-3' style='text-align:left'>
+                      </div>
 
-                            Equip. com Problema? </br>
-                            <select class='form-control' name='frm_ep_sn' onchange="habilitar()" id='ep_sn'>
+                      <div class='col-md-3' style='text-align:left'>
 
-                                <!-- IF CONSULTA -->
-                                <?php if(isset($var_cod_dur)){ ?>
+                          Equip. com Problema? </br>
+                          <select class='form-control' onchange="habilitar()" id='ep_sn'>
 
-                                  <!-- IF SIM OU NAO -->
-                                  <?php if($row_dur['EQUIP_SN'] == 'S'){ ?>
+                              <!-- IF CONSULTA -->
+                              <?php if(isset($var_cod_dur)){ ?>
 
-                                    <option value="S"> Sim </option>
+                                <!-- IF SIM OU NAO -->
+                                <?php if($row_dur['EQUIP_SN'] == 'S'){ ?>
 
-                                  <?php }else{ ?>
-
-                                    <option value="N"> Não </option>
-
-                                  <?php } ?>
-                                  <!-- FIM IF SIM OU NAO -->                                 
-
-                                <?php }else{ ?>  
-
-                                  <option value=""> Selecione </option>
                                   <option value="S"> Sim </option>
+
+                                <?php }else{ ?>
+
                                   <option value="N"> Não </option>
 
-                                <?php } ?>  
-                                <!-- FIM IF CONSULTA -->
+                                <?php } ?>
+                                <!-- FIM IF SIM OU NAO -->                                 
 
-                            </select>
+                              <?php }else{ ?>  
+
+                                <option value=""> Selecione </option>
+                                <option value="S"> Sim </option>
+                                <option value="N"> Não </option>
+
+                              <?php } ?>  
+                              <!-- FIM IF CONSULTA -->
+
+                          </select>
 
 
-                        </div>
+                      </div>
 
-                        <div class='col-md-9' style='text-align:left'>
+                      <div class='col-md-9' style='text-align:left'>
 
-                          Qual?:</br>
-                          <input minlength='5' class="form-control" name='frm_equip_desc' id='qual' disabled value="<?php echo @$row_dur['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                        Qual?:</br>
+                        <input minlength='5' class="form-control" id='qual' disabled value="<?php echo @$row_dur['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
-                        </div>
-                        </br>
-                    </div>
-                    </br>
+                      </div>
+                      </br>
+                  </div>
+                  </br>
 
-                    <div class='row'>
+                  <div class='row'>
 
-                    
+                  
+                  <div class='col-md-3' style='text-align:left'>
+
+                    Utilizado Carrinho? </br>
+                    <select class='form-control' onchange="habilitar1()" id='ce_sn'>
+
+                      <!-- IF CONSULTA -->
+                      <?php if(isset($var_cod_dur)){ ?>
+
+                          <!-- IF SIM OU NAO -->
+                          <?php if($row_dur['CAR_SN'] == 'S'){ ?>
+
+                        <option value="S"> Sim </option>
+
+                        <?php }else{ ?>
+
+                        <option value="N"> Não </option>
+
+                        <?php } ?>
+                        <!-- FIM IF SIM OU NAO -->                                 
+
+                        <?php }else{ ?>  
+
+                      <option value=""> Selecione </option>
+                      <option value="S"> Sim </option>
+                      <option value="N"> Não </option>
+
+                      <?php } ?>  
+                      <!-- FIM IF CONSULTA -->
+
+                    </select>
+
+                  </div>
+
                     <div class='col-md-3' style='text-align:left'>
 
-                      Utilizado Carrinho? </br>
-                      <select class='form-control' name='frm_ce_sn' onchange="habilitar1()" id='ce_sn'>
+                      Reposto/Lacrado? </br>
+                      <select class='form-control' disabled onchange="habilitar2()" id='rl_sn'>
 
-                        <!-- IF CONSULTA -->
-                        <?php if(isset($var_cod_dur)){ ?>
+                      <!-- IF CONSULTA -->
+                      <?php if(isset($var_cod_dur)){ ?>
 
-                           <!-- IF SIM OU NAO -->
-                           <?php if($row_dur['CAR_SN'] == 'S'){ ?>
+                      <!-- IF SIM OU NAO -->
+                      <?php if($row_dur['REP_LAC_SN'] == 'S'){ ?>
 
-                          <option value="S"> Sim </option>
+                      <option value="S"> Sim </option>
 
-                          <?php }else{ ?>
+                      <?php }else{ ?>
 
-                          <option value="N"> Não </option>
+                      <option value="N"> Não </option>
 
-                          <?php } ?>
-                          <!-- FIM IF SIM OU NAO -->                                 
+                      <?php } ?>
+                      <!-- FIM IF SIM OU NAO -->                                 
 
-                          <?php }else{ ?>  
+                      <?php }else{ ?>  
 
                         <option value=""> Selecione </option>
                         <option value="S"> Sim </option>
                         <option value="N"> Não </option>
 
-                        <?php } ?>  
-                        <!-- FIM IF CONSULTA -->
+                      <?php } ?>  
 
                       </select>
 
                     </div>
 
-                      <div class='col-md-3' style='text-align:left'>
+                    <div class='col-md-3' style='text-align:left'>
 
-                        Reposto/Lacrado? </br>
-                        <select class='form-control' name='frm_rl_sn' disabled onchange="habilitar2()" id='rl_sn'>
-
-                        <!-- IF CONSULTA -->
-                        <?php if(isset($var_cod_dur)){ ?>
-
-                        <!-- IF SIM OU NAO -->
-                        <?php if($row_dur['REP_LAC_SN'] == 'S'){ ?>
-
-                        <option value="S"> Sim </option>
-
-                        <?php }else{ ?>
-
-                        <option value="N"> Não </option>
-
-                        <?php } ?>
-                        <!-- FIM IF SIM OU NAO -->                                 
-
-                        <?php }else{ ?>  
-
-                          <option value=""> Selecione </option>
-                          <option value="S"> Sim </option>
-                          <option value="N"> Não </option>
-
-                        <?php } ?>  
-
-                        </select>
-
-                      </div>
-
-                      <div class='col-md-3' style='text-align:left'>
-
-                        Informe o Lacre:</br>
-                        <input minlength='5' class="form-control" name='frm_lac_desc' id='lac_desc' disabled value="<?php echo @$row_dur['LACRE_DESC']; ?>" <?php echo $sn_readonly; ?>>
-
-                      </div>
-
-                      <div class='col-md-3' style='text-align:left'>
-
-                        Leito Bloqueado? </br>
-                        <select class='form-control' name='frm_lt_sn' onchange="habilitar3()" id='lt_sn'>
-
-                        <!-- IF CONSULTA -->
-                        <?php if(isset($var_cod_dur)){ ?>
-
-                        <!-- IF SIM OU NAO -->
-                        <?php if($row_dur['LT_BLOQ_SN'] == 'S'){ ?>
-
-                        <option value="S"> Sim </option>
-
-                        <?php }else{ ?>
-
-                        <option value="N"> Não </option>
-
-                        <?php } ?>
-                        <!-- FIM IF SIM OU NAO -->                                 
-
-                        <?php }else{ ?>  
-
-                          <option value=""> Selecione </option>
-                          <option value="S"> Sim </option>
-                          <option value="N"> Não </option>
-
-                        <?php } ?>  
-
-
-                        </select>
-
-                      </div>
+                      Informe o Lacre:</br>
+                      <input minlength='5' class="form-control" id='lac_desc' disabled value="<?php echo @$row_dur['LACRE_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                     </div>
 
-                    </br>
-                    <div class='row'>
+                    <div class='col-md-3' style='text-align:left'>
 
-                      <div class='col-md-3' style='text-align:left'>
+                      Leito Bloqueado? </br>
+                      <select class='form-control' onchange="habilitar3()" id='lt_sn'>
 
-                        Motivo:</br>
-                        <input minlength='5' class="form-control" name='frm_lt_motivo'id='lt_motivo' disabled value="<?php echo @$row_dur['LT_MOTIVO_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                      <!-- IF CONSULTA -->
+                      <?php if(isset($var_cod_dur)){ ?>
 
-                      </div>
+                      <!-- IF SIM OU NAO -->
+                      <?php if($row_dur['LT_BLOQ_SN'] == 'S'){ ?>
 
-                      <div class='col-md-3' style='text-align:left'>
+                      <option value="S"> Sim </option>
 
-                        Falta Medicamento? </br>
-                        <select class='form-control' name='frm_ft_mm' onchange="habilitar4(); habilitar5()" id='ft_mm'>
+                      <?php }else{ ?>
 
-                        <!-- IF CONSULTA -->
-                        <?php if(isset($var_cod_dur)){ ?>
+                      <option value="N"> Não </option>
 
-                        <!-- IF SIM OU NAO -->
-                        <?php if($row_dur['FT_MM_SN'] == 'S'){ ?>
+                      <?php } ?>
+                      <!-- FIM IF SIM OU NAO -->                                 
 
+                      <?php }else{ ?>  
+
+                        <option value=""> Selecione </option>
                         <option value="S"> Sim </option>
-
-                        <?php }else{ ?>
-
                         <option value="N"> Não </option>
 
-                        <?php } ?>
-                        <!-- FIM IF SIM OU NAO -->                                 
-
-                        <?php }else{ ?>  
-
-                          <option value=""> Selecione </option>
-                          <option value="S"> Sim </option>
-                          <option value="N"> Não </option>
-
-                        <?php } ?>  
-
-                        </select>
-
-                      </div>
-
-                      <div class='col-md-3' style='text-align:left'>
-
-                      Qual?:</br>
-                      <input minlength='5' class="form-control" name='frm_mm_motivo'id='mm_motivo' disabled value="<?php echo @$row_dur['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
-
-                      </div>
-
-                      <div class='col-md-3' style='text-align:left'>
-
-                        Farmácia Avisada? </br>
-                        <select class='form-control' name='frm_farm_sn' id='farm_sn' disabled>
-
-                        <!-- IF CONSULTA -->
-                        <?php if(isset($var_cod_dur)){ ?>
-
-                        <!-- IF SIM OU NAO -->
-                        <?php if($row_dur['FARM_SN'] == 'S'){ ?>
-
-                        <option value="S"> Sim </option>
-
-                        <?php }else{ ?>
-
-                        <option value="N"> Não </option>
-
-                        <?php } ?>
-                        <!-- FIM IF SIM OU NAO -->                                 
-
-                        <?php }else{ ?>  
-
-                          <option value=""> Selecione </option>
-                          <option value="S"> Sim </option>
-                          <option value="N"> Não </option>
-
-                        <?php } ?>  
+                      <?php } ?>  
 
 
-                        </select>
-
-                      </div>
+                      </select>
 
                     </div>
 
-                    </br>
-                    <div class='row'>
+                  </div>
 
-                      <div class='col-md-4' style='text-align:left'>
+                  </br>
+                  <div class='row'>
 
-                        Problemas com Paciente? </br>
-                        <select class='form-control' name='frm_pp_sn' onchange="habilitar6()" id='pp_sn'>
+                    <div class='col-md-3' style='text-align:left'>
+
+                      Motivo:</br>
+                      <input minlength='5' class="form-control" id='lt_motivo' disabled value="<?php echo @$row_dur['LT_MOTIVO_DESC']; ?>" <?php echo $sn_readonly; ?>>
+
+                    </div>
+
+                    <div class='col-md-3' style='text-align:left'>
+
+                      Falta Medicamento? </br>
+                      <select class='form-control' onchange="habilitar4(); habilitar5()" id='ft_mm'>
+
+                      <!-- IF CONSULTA -->
+                      <?php if(isset($var_cod_dur)){ ?>
+
+                      <!-- IF SIM OU NAO -->
+                      <?php if($row_dur['FT_MM_SN'] == 'S'){ ?>
+
+                      <option value="S"> Sim </option>
+
+                      <?php }else{ ?>
+
+                      <option value="N"> Não </option>
+
+                      <?php } ?>
+                      <!-- FIM IF SIM OU NAO -->                                 
+
+                      <?php }else{ ?>  
+
+                        <option value=""> Selecione </option>
+                        <option value="S"> Sim </option>
+                        <option value="N"> Não </option>
+
+                      <?php } ?>  
+
+                      </select>
+
+                    </div>
+
+                    <div class='col-md-3' style='text-align:left'>
+
+                    Qual?:</br>
+                    <input minlength='5' class="form-control" id='mm_motivo' disabled value="<?php echo @$row_dur['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
+
+                    </div>
+
+                    <div class='col-md-3' style='text-align:left'>
+
+                      Farmácia Avisada? </br>
+                      <select class='form-control' id='farm_sn' disabled>
+
+                      <!-- IF CONSULTA -->
+                      <?php if(isset($var_cod_dur)){ ?>
+
+                      <!-- IF SIM OU NAO -->
+                      <?php if($row_dur['FARM_SN'] == 'S'){ ?>
+
+                      <option value="S"> Sim </option>
+
+                      <?php }else{ ?>
+
+                      <option value="N"> Não </option>
+
+                      <?php } ?>
+                      <!-- FIM IF SIM OU NAO -->                                 
+
+                      <?php }else{ ?>  
+
+                        <option value=""> Selecione </option>
+                        <option value="S"> Sim </option>
+                        <option value="N"> Não </option>
+
+                      <?php } ?>  
+
+
+                      </select>
+
+                    </div>
+
+                  </div>
+
+                  </br>
+                  <div class='row'>
+
+                    <div class='col-md-4' style='text-align:left'>
+
+                      Problemas com Paciente? </br>
+                      <select class='form-control' onchange="habilitar6()" id='pp_sn'>
+
+                      <!-- IF CONSULTA -->
+                      <?php if(isset($var_cod_dur)){ ?>
+
+                      <!-- IF SIM OU NAO -->
+                      <?php if($row_dur['PPF_SN'] == 'S'){ ?>
+
+                      <option value="S"> Sim </option>
+
+                      <?php }else{ ?>
+
+                      <option value="N"> Não </option>
+
+                      <?php } ?>
+                      <!-- FIM IF SIM OU NAO -->                                 
+
+                      <?php }else{ ?>  
+
+                        <option value=""> Selecione </option>
+                        <option value="S"> Sim </option>
+                        <option value="N"> Não </option>
+
+                      <?php } ?>
+
+                      </select>
+
+                    </div>
+
+                  </div>
+                  <br>
+
+                  <div class='row'>
+
+                    <div class='col-md-12' style='text-align:left'>
+
+                    Conduta:</br>
+
+                    <textarea minlength='5' class='textarea' style="width: 100%;" id='con_desc' disabled value="<?php echo $row_dur ['CONDUTA_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
+
+                    </div>
+
+                  </div>
+
+                  </br>
+                  <div class='row'>
+
+                    <div class='col-md-3' style='text-align:left'>
+
+                        Intercorrência? </br>
+                        <select class='form-control' onchange="habilitar7()" id='ip_sn'>
 
                         <!-- IF CONSULTA -->
                         <?php if(isset($var_cod_dur)){ ?>
 
                         <!-- IF SIM OU NAO -->
-                        <?php if($row_dur['PPF_SN'] == 'S'){ ?>
+                        <?php if($row_dur['IP_SN'] == 'S'){ ?>
 
                         <option value="S"> Sim </option>
 
@@ -320,86 +370,31 @@
                           <option value="S"> Sim </option>
                           <option value="N"> Não </option>
 
-                        <?php } ?>
+                          <?php } ?>
 
                         </select>
 
                       </div>
-
-                    </div>
-                    <br>
-
-                    <div class='row'>
-
+                      
                       <div class='col-md-12' style='text-align:left'>
+                      <br>
 
-                      Conduta:</br>
-
-                      <textarea minlength='5' class='textarea' style="width: 100%;" name='frm_con_desc' id='con_desc' disabled value="<?php echo $row_dur ['CONDUTA_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
-
+                      Desfecho:</br>
+                      <textarea minlength='5' class='textarea' style="width: 100%;" id='ip_desc' disabled value="<?php echo $row_dur ['IP_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
                       </div>
 
-                    </div>
+                  </div>
 
                     </br>
-                    <div class='row'>
-
-                      <div class='col-md-3' style='text-align:left'>
-
-                          Intercorrência? </br>
-                          <select class='form-control' name='frm_ip_sn' onchange="habilitar7()" id='ip_sn'>
-
-                          <!-- IF CONSULTA -->
-                          <?php if(isset($var_cod_dur)){ ?>
-
-                          <!-- IF SIM OU NAO -->
-                          <?php if($row_dur['IP_SN'] == 'S'){ ?>
-
-                          <option value="S"> Sim </option>
-
-                          <?php }else{ ?>
-
-                          <option value="N"> Não </option>
-
-                          <?php } ?>
-                          <!-- FIM IF SIM OU NAO -->                                 
-
-                          <?php }else{ ?>  
-
-                            <option value=""> Selecione </option>
-                            <option value="S"> Sim </option>
-                            <option value="N"> Não </option>
-
-                            <?php } ?>
-
-                          </select>
-
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
                         
-                        <div class='col-md-12' style='text-align:left'>
-                        <br>
-
-                        Desfecho:</br>
-                        <textarea minlength='5' class='textarea' style="width: 100%;" name='frm_ip_desc' id='ip_desc' disabled value="<?php echo $row_dur ['IP_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
-                        </div>
-
-                    </div>
-
-                      </br>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
-                          
-                          
-                          <?php if(!isset($var_cod_dur)){ ?>
-                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
-                          <?php } ?>
-                          
-                        </div>
-            
-    
-                </form>
-
-
+                        
+                        <?php if(!isset($var_cod_dur)){ ?>
+                          <button onclick="ajax_cadastrar_anotacao()" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
+                        <?php } ?>
+                        
+                      </div>
             </div>
         </div>
     </div>
@@ -586,4 +581,6 @@ if(input15 == 'S'){
 
 
 };
+
+
 </script>
