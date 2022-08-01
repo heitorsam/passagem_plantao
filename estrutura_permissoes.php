@@ -151,7 +151,6 @@
                             },
                         cache: false,
                         success: function(dataResult){
-                            alert(dataResult);
                             $('#div_permissoes').load('funcoes/permissoes/ajax_permissoes.php?cd_usuario='+ usuario);
                             $('#tabela_permissoes').load('funcoes/permissoes/ajax_tabela_permissoes.php?cd_usuario='+ usuario);
                         }

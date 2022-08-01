@@ -9,7 +9,6 @@
                         INNER JOIN dbamv.SAE_RESPOSTA_HISTORICO_ENFERMG resp
                         ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                         WHERE sel.CD_PERGUNTA_HISTORICO IN (2695, 341, 338, 342, 340)
-                        --AND resp.SN_ATIVO = 'S'
                         AND she.CD_ATENDIMENTO = $var_atd
                         AND TO_DATE('$var_exibir_dt','YYYY-MM-DD') = TRUNC(she.DT_INICIO)";
 

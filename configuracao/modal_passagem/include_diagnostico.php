@@ -4,7 +4,7 @@
                      FROM dbamv.ATENDIME atd
                      INNER JOIN dbamv.CID cid
                      ON cid.CD_CID = atd.CD_CID
-                     WHERE atd.CD_ATENDIMENTO = " . $row_exibir_pac['CD_ATENDIMENTO'];
+                     WHERE atd.CD_ATENDIMENTO = " . $var_atd;
 
 
 

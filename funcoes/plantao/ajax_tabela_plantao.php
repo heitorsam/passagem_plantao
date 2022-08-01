@@ -99,18 +99,20 @@
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_LEITO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_RESUMO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_UNID_INT'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">';
+                echo '<td class="align-middle" style="text-align: center;">'; ?>
+                <button type="button" class="btn btn-primary" onclick="modal_paciente('<?php echo $row_exibir_pac['CD_PACIENTE'] ?>', '<?php echo $row_exibir_pac['CD_ATENDIMENTO'] ?>', '<?php echo $var_exibir_dt ?>')" data-toggle="modal" data-target="#modal_paciente">
+                <i class="fa-solid fa-eye"></i>
+                </button>
+                    
 
-                    include '../../configuracao/modal_paciente.php';
-
-                 echo '</td>';
+                <?php echo '</td>';
              
 
                     
 
                 echo'</tr>';
                 }
-                            
+                include '../../configuracao/modal_paciente.php';    
             ?>
 
         </tbody>
@@ -123,5 +125,9 @@
     $(document).ready(function() {
         carregamento(1);
     });
+
+    function modal_paciente(id, atd, dt) {
+        $('#div_modal_paciente').load('funcoes/plantao/ajax_modal_paciente.php?id='+ id +'&atd='+ atd +'&dt='+ dt);
+    }
 </script>
 
