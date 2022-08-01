@@ -3,9 +3,13 @@
 
 include '../../conexao.php';
 
+session_start();
+
 $id = $_GET['id'];
 $var_atd =  $_GET['atd'];
 $var_exibir_dt = $_GET['dt'];
+
+$_SESSION['data'] = $var_exibir_dt;
 
 ?>
 

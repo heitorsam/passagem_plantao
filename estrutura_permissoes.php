@@ -143,6 +143,8 @@
 
             function ajax_deletar_permissao(cd_setor){
                 var usuario = document.getElementById('input').value;
+                resultado = confirm("Deseja excluir a observação?");
+                if(resultado == true){
                     $.ajax({
                         url: "funcoes/permissoes/ajax_deletar_permissao.php",
                         type: "POST",
@@ -155,6 +157,7 @@
                             $('#tabela_permissoes').load('funcoes/permissoes/ajax_tabela_permissoes.php?cd_usuario='+ usuario);
                         }
                     });   
+                }
             }
 
 
