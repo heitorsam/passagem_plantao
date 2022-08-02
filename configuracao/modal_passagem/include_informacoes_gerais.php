@@ -13,8 +13,7 @@
     ON pac.CD_PACIENTE = atd.CD_PACIENTE
     INNER JOIN dbamv.CONVENIO conv
     ON conv.CD_CONVENIO = atd.CD_CONVENIO
-    WHERE atd.TP_ATENDIMENTO = 'I'
-    AND atd.CD_ATENDIMENTO = $var_atd ";
+    WHERE atd.CD_ATENDIMENTO = $var_atd ";
 
     $result_consulta_info = oci_parse($conn_ora,$consulta_info_ger);
 

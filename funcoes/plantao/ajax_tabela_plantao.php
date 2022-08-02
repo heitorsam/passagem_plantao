@@ -18,7 +18,7 @@
                         pac.TP_SEXO, 
                         FLOOR((SYSDATE - pac.DT_NASCIMENTO) / 365.242199) AS IDADE,
                         pac.NM_MAE,
-                        atd.CD_LEITO, 
+                        lt_set.CD_LEITO, 
                         lt_set.DS_RESUMO,
                         lt_set.CD_UNID_INT, 
                         uni.DS_UNID_INT
