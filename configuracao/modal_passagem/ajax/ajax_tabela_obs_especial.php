@@ -101,7 +101,7 @@
                         <?php }
                         if($adm == 'S'){
                             echo '<td class="align-middle" style="text-align: center;">'; ?> 
-                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur_dt['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur_td['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
                             <?php echo'</td>';
                         }
                     echo'</tr>';
