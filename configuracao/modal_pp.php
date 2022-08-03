@@ -103,7 +103,7 @@
                   <div class='col-md-3' style='text-align:left'>
 
                     Utilizado Carrinho? </br>
-                    <select class='form-control' onchange="habilitar1()" id='ce_sn'>
+                    <select class='form-control' onchange="habilitar('ce_sn','rl_sn')" id='ce_sn'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -136,7 +136,7 @@
                     <div class='col-md-3' style='text-align:left'>
 
                       Reposto/Lacrado? </br>
-                      <select class='form-control' disabled onchange="habilitar2()" id='rl_sn'>
+                      <select class='form-control' disabled onchange="habilitar('rl_sn','lac_desc')" id='rl_sn'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -175,7 +175,7 @@
                     <div class='col-md-3' style='text-align:left'>
 
                       Leito Bloqueado? </br>
-                      <select class='form-control' onchange="habilitar3()" id='lt_sn'>
+                      <select class='form-control' onchange="habilitar('lt_sn','lt_motivo')" id='lt_sn'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -220,7 +220,7 @@
                     <div class='col-md-3' style='text-align:left'>
 
                       Falta Medicamento? </br>
-                      <select class='form-control' onchange="habilitar4(); habilitar5()" id='ft_mm'>
+                      <select class='form-control' onchange="habilitar('ft_mm','mm_motivo'); habilitar('ft_mm','farm_sn')" id='ft_mm'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -297,7 +297,7 @@
                     <div class='col-md-4' style='text-align:left'>
 
                       Problemas com Paciente? </br>
-                      <select class='form-control' onchange="habilitar6()" id='pp_sn'>
+                      <select class='form-control' onchange="habilitar('pp_sn','con_desc')" id='pp_sn'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -347,7 +347,7 @@
                     <div class='col-md-3' style='text-align:left'>
 
                         Intercorrência? </br>
-                        <select class='form-control' onchange="habilitar7()" id='ip_sn'>
+                        <select class='form-control' onchange="habilitar('ip_sn','ip_desc')" id='ip_sn'>
 
                         <!-- IF CONSULTA -->
                         <?php if(isset($var_cod_dur)){ ?>
@@ -405,21 +405,23 @@
 
 
   function habilitar(input, input2){
-
+   
     var var_input = document.getElementById(input).value;
     var var_input2 = document.getElementById(input2);
 
-    if(input == ''){
-      input2.disabled = true;
+    if(var_input == ''){
+      var_input2.disabled = true;
+      var_input2.value = '';
     }
 
-    if(input == 'N'){
-      input2.disabled = true;
-
+    if(var_input == 'N'){
+      var_input2.disabled = true;
+      var_input2.value = '';
     }
 
-    if(input == 'S'){
-      input2.disabled = false;
+    if(var_input == 'S'){
+      var_input2.disabled = false;
+
     }
 
   };
