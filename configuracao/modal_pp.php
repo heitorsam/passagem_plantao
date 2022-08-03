@@ -56,7 +56,7 @@
                       <div class='col-md-3' style='text-align:left'>
 
                           Equip. com Problema? </br>
-                          <select class='form-control' onchange="habilitar()" id='ep_sn'>
+                          <select class='form-control' onchange="habilitar('ep_sn','qual')" id='ep_sn'>
 
                               <!-- IF CONSULTA -->
                               <?php if(isset($var_cod_dur)){ ?>
@@ -391,7 +391,7 @@
                         
                         
                         <?php if(!isset($var_cod_dur)){ ?>
-                          <button onclick="ajax_cadastrar_anotacao()" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
+                          <button onclick="ajax_cadastrar_anotacao()" data-dismiss="modal" aria-label="Close" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
                         <?php } ?>
                         
                       </div>
@@ -402,185 +402,29 @@
 
 <script>
 
-//HABILITAR CAMPO 'QUAL' DO EQUIPAMENTO COM PROBLEMA//
-
-function habilitar(){
-
- 
-	var input = document.getElementById("ep_sn").value;
-  var input2 = document.getElementById("qual");
-
-  if(input == ''){
-    input2.disabled = true;
-  }
-
-  if(input == 'N'){
-    input2.disabled = true;
-  }
-
-  if(input == 'S'){
-    input2.disabled = false;
-  }
 
 
-};
+  function habilitar(input, input2){
 
-//HABILITAR CAMPO 'REPOSTO /LACRADO' DO EQUIPAMENTO COM PROBLEMA//
+    var var_input = document.getElementById(input).value;
+    var var_input2 = document.getElementById(input2);
 
-function habilitar1(){
+    if(input == ''){
+      input2.disabled = true;
+    }
 
- 
-var input3 = document.getElementById("ce_sn").value;
-var input4 = document.getElementById("rl_sn");
+    if(input == 'N'){
+      input2.disabled = true;
 
-if(input3 == ''){
-  input4.disabled = true;
-}
+    }
 
-if(input3 == 'N'){
-  input4.disabled = true;
-}
+    if(input == 'S'){
+      input2.disabled = false;
+    }
 
-if(input3 == 'S'){
-  input4.disabled = false;
-}
+  };
 
 
-};
-
-
-//HABILITAR CAMPO 'INFORME O LACRE' DO EQUIPAMENTO COM PROBLEMA//
-
-function habilitar2(){
-
- 
-var input5 = document.getElementById("rl_sn").value;
-var input6 = document.getElementById("lac_desc");
-
-if(input5 == ''){
-  input6.disabled = true;
-}
-
-if(input5 == 'N'){
-  input6.disabled = true;
-}
-
-if(input5 == 'S'){
-  input6.disabled = false;
-}
-
-
-};
-
-//HABILITAR CAMPO 'LEITO' DO EQUIPAMENTO COM PROBLEMA//
-
-
-function habilitar3(){
-
- 
-var input7 = document.getElementById("lt_sn").value;
-var input8 = document.getElementById("lt_motivo");
-
-if(input7 == ''){
-  input8.disabled = true;
-}
-
-if(input7 == 'N'){
-  input8.disabled = true;
-}
-
-if(input7 == 'S'){
-  input8.disabled = false;
-}
-
-
-};
-
-//HABILITAR CAMPO 'FALTA DE MEDICAMENTO' DO EQUIPAMENTO COM PROBLEMA//
-
-function habilitar4(){
-
- 
-var input9 = document.getElementById("ft_mm").value;
-var input10 = document.getElementById("mm_motivo");
-
-if(input9 == ''){
-  input10.disabled = true;
-}
-
-if(input9 == 'N'){
-  input10.disabled = true;
-}
-
-if(input9 == 'S'){
-  input10.disabled = false;
-}
-
-
-};
-
-function habilitar5(){
-
- 
-var input11 = document.getElementById("ft_mm").value;
-var input12 = document.getElementById("farm_sn");
-
-if(input11 == ''){
-  input12.disabled = true;
-}
-
-if(input11 == 'N'){
-  input12.disabled = true;
-}
-
-if(input11 == 'S'){
-  input12.disabled = false;
-}
-
-
-};
-
-function habilitar6(){
-
- 
-var input13 = document.getElementById("pp_sn").value;
-var input14 = document.getElementById("con_desc");
-
-if(input13 == ''){
-  input14.disabled = true;
-}
-
-if(input13 == 'N'){
-  input14.disabled = true;
-}
-
-if(input13 == 'S'){
-  input14.disabled = false;
-}
-
-
-};
-
-function habilitar7(){
-
- 
-var input15 = document.getElementById("ip_sn").value;
-var input16 = document.getElementById("ip_desc");
-
-if(input15 == ''){
-  input16.disabled = true;
-}
-
-if(input15 == 'N'){
-  input16.disabled = true;
-}
-
-if(input15 == 'S'){
-  input16.disabled = false;
-}
-
-
-};
 
 
 </script>

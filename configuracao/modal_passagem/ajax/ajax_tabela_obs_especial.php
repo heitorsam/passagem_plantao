@@ -35,7 +35,7 @@
     FROM passagem_plantao.OBSERVACAO_ESPECIAL obs
     INNER JOIN dbamv.paciente pc
     ON pc.cd_paciente = obs.cd_paciente
-    WHERE obs.CD_PACIENTE = '192101'
+    WHERE obs.CD_PACIENTE = '$id'
     AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') < TO_CHAR(TO_DATE('$dt', 'YYYY-MM-DD'), 'DD-MM-YYYY')
     AND obs.sn_solucionado = 'N'";
 

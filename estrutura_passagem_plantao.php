@@ -177,6 +177,7 @@
     }
 
     function ajax_cadastrar_anotacao(){
+        
         $('#edit_modal').modal('hide');
         var data = document.getElementById('data').value;
         var unid_int = document.getElementById('unid_int').value;

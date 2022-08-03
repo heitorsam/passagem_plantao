@@ -15,7 +15,8 @@
                         INNER JOIN dbasgu.USUARIOS usu
                             ON usu.CD_USUARIO = dur.CD_USUARIO_CADASTRO
                         WHERE TO_DATE('$var_exibir_dt','YYYY-MM-DD') = TRUNC(dur.DT_PLANTAO)
-                        AND dur.CD_UNID_INT = $var_exibir_pp";
+                        AND dur.CD_UNID_INT = $var_exibir_pp
+                        ORDER BY 1 DESC";
 
     @$result_exibir_dur = oci_parse($conn_ora,$con_exibir_durante);
 

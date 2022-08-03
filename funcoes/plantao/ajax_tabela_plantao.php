@@ -51,7 +51,8 @@
                         INNER JOIN dbamv.UNID_INT uni
                         ON uni.CD_UNID_INT = lt_set.CD_UNID_INT
                         WHERE lt_set.CD_UNID_INT = $var_exibir_pp
-                        AND TO_DATE('$var_exibir_dt','YYYY-MM-DD')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA";
+                        AND TO_DATE('$var_exibir_dt','YYYY-MM-DD')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA
+                        ORDER BY lt_set.DS_RESUMO DESC";
 
     @$result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
 
