@@ -80,8 +80,6 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
 
                         <!--MENU-->
-                                                    <a class="dropdown-item" href="passagem_plantao.php"><i class="far fa-clipboard"></i> Passagem</a>  
-
                             <a class="dropdown-item" href="passagem_plantao.php"><i class="far fa-clipboard"></i> Passagem</a>  
                             <a class="dropdown-item" href="historico_pp.php"><i class="fa-solid fa-list"></i> Histórico</a>
                             <?php if($_SESSION['sn_administrador'] == 'S'){ ?>  
