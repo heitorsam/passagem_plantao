@@ -29,6 +29,11 @@
                         WHERE lt.CD_UNID_INT = $var_exibir_pp
                         AND atd.DT_ALTA IS NULL
                         AND atd.DT_ALTA_MEDICA IS NULL
+                        AND atd.CD_PACIENTE IN (SELECT obs.CD_PACIENTE
+                                                FROM passagem_plantao.OBSERVACAO_ESPECIAL obs
+                                                INNER JOIN dbamv.paciente pc
+                                                ON pc.cd_paciente = obs.cd_paciente
+                                                WHERE obs.CD_PACIENTE = pac.CD_PACIENTE)
                         ORDER BY lt.DS_RESUMO ASC";
 
     $result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
@@ -47,11 +52,9 @@
             <div class="col-md-12 fnd_azul" id="div_<?php echo $row_exibir_pac['CD_PACIENTE']; ?>">
                 <?php echo '<div style="display: block" id="seta-'. $row_exibir_pac['CD_PACIENTE'].'" onclick="abrir_div('. $row_exibir_pac['CD_PACIENTE'] .')">
                         '. $row_exibir_pac['CD_ATENDIMENTO'].' - '. $row_exibir_pac['NM_PACIENTE'].'    
-                        <h5><i class="fas fa-chevron-right" ></i></h5>
                         </div>
                         <div style="display: none" id="baixo-'. $row_exibir_pac['CD_PACIENTE'].'" onclick="abrir_div('. $row_exibir_pac['CD_PACIENTE'] .')">
                         '. $row_exibir_pac['CD_ATENDIMENTO'].' - '. $row_exibir_pac['NM_PACIENTE'].'   
-                            <h5><i class="fas fa-chevron-down"></i></h5>
                         </div>';
                 ;?>
             </div>
@@ -73,7 +76,7 @@
             document.getElementById('seta-'+id).style.display = 'none';
             document.getElementById('baixo-'+id).style.display = 'block';
             document.getElementById('div_h_'+id).style.display = 'block';
-            $('#div_h_'+id).load('funcoes/historico/modal_passagem/ajax/ajax_tabela_obs_especial.php?id='+ id);
+            $('#div_h_'+id).load('funcoes/historico/ajax_tabela_obs_especial_hist.php?id='+ id);
 
         }else{
             document.getElementById('seta-'+id).style.display = 'block';

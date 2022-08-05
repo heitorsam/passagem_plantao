@@ -1,11 +1,12 @@
 <?php 
-    include '../../../../conexao.php';
+    include '../../conexao.php';
 
     session_start();
 
     $id = $_GET['id'];
 
     $adm = $_SESSION['sn_administrador'];
+
     
     $consulta_obs = "SELECT obs.cd_observacao,
     obs.cd_paciente,
@@ -34,8 +35,7 @@
     INNER JOIN dbamv.paciente pc
     ON pc.cd_paciente = obs.cd_paciente
     WHERE obs.CD_PACIENTE = '$id'
-    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') < TO_CHAR(SYSDATE, 'DD-MM-YYYY')
-    AND obs.sn_solucionado = 'N'";
+    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') < TO_CHAR(SYSDATE, 'DD-MM-YYYY')";
 
     $result_obs_dt = oci_parse($conn_ora, $consulta_obs_dt);
     oci_execute($result_obs_dt);

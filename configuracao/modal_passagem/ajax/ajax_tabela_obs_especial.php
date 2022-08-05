@@ -9,6 +9,8 @@
 
     $adm = $_SESSION['sn_administrador'];
     
+    $date = date('d/m/Y', time());
+
     $consulta_obs = "SELECT obs.cd_observacao,
     obs.cd_paciente,
     pc.cd_paciente,
@@ -56,7 +58,7 @@
                 <th style="text-align: center;">Usuário</th>
                 <th style="text-align: center;">Hora da Criação</th>
                 <th style="text-align: center;">Solucionado</th>
-                <?php if($adm == 'S'){ ?>
+                <?php if($adm == 'S' && $date == $dt){ ?>
                 <th style="text-align: center;">Opções</th>
                 <?php } ?>
             </tr>
@@ -74,15 +76,30 @@
                     echo '<td class="align-middle" style="text-align: center;">' . $row_dur['OBSERVACAO'] . '</td>';
                     echo '<td class="align-middle" style="text-align: center;">' . $row_dur['CD_USUARIO_CRIACAO'] . ' </td>';
                     echo '<td class="align-middle" style="text-align: center;">' . $row_dur['HR_CRIACAO'] . ' </td>';
-                    if($row_dur['SN_SOLUCIONADO'] == 'S'){ ?>
-                        <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>', 'N')" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
-                    <?php }else{ ?>
-                        <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>', 'S')" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
-                    <?php }
-                    if($adm == 'S'){
-                        echo '<td class="align-middle" style="text-align: center;">'; ?> 
-                        <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
-                        <?php echo'</td>';
+                    if($row_dur['SN_SOLUCIONADO'] == 'S'){ 
+                        if($date == $dt){?>
+                    
+                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>', 'N')" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
+                        <?php }else{ ?>
+                            <td class="align-middle" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
+                        <?php } 
+                    }else{
+                        if($date == $dt){?>
+                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>', 'S')" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
+                        <?php }else{ ?>
+                            <td class="align-middle" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
+
+                        <?php } 
+                    }
+                    if($adm == 'S' && $date == $dt){
+                        
+                        echo '<td class="align-middle" style="text-align: center;">'; 
+                        if($date == $dt){
+                    ?> 
+                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
+                        <?php }else{ ?>
+                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
+                        <?php }echo'</td>';
                     }
                 echo'</tr>';
                 }
@@ -99,7 +116,7 @@
                         <?php }else{ ?>
                             <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur_dt['CD_OBSERVACAO'] ?>', 'S')" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
                         <?php }
-                        if($adm == 'S'){
+                        if($adm == 'S'&& $date == $dt){
                             echo '<td class="align-middle" style="text-align: center;">'; ?> 
                             <button type="button" onclick="apagar_observacao('<?php echo $row_dur_td['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
                             <?php echo'</td>';

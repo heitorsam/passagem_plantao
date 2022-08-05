@@ -24,11 +24,11 @@
 ?>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-adm" data-toggle="modal" data-target="#edit_modal">
+<button type="button" class="btn btn-adm" data-toggle="modal" data-target="#id_criar_dur">
 <i class="fa-solid fa-pencil"></i> Durante o Plantão
 </button>
 
-<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="id_criar_dur" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

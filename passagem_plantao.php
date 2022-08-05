@@ -244,8 +244,9 @@
                                                         },
                                                     cache: false,
                                                     success: function(dataResult){
-                                                        alert(dataResult);
-                                                        //$('#edit_modal').modal('hide');
+
+                                                        $('#id_criar_dur').modal('hide');
+                                                        $('.modal-backdrop').remove();
                                                         $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int);
                                                     }
                                                 });
@@ -275,33 +276,71 @@
         var frm_mm_motivo = document.getElementById('mm_motivo_e').value;
         var frm_farm_sn = document.getElementById('farm_sn_e').value;
 
-        
-        $.ajax({
-            url: "configuracao/editar_durante.php",
-            type: "POST",
-            data: {
-                
-                cd_dur: cd_dur,
-                frm_ep_sn: frm_ep_sn,
-                frm_equip_desc: frm_equip_desc,
-                frm_ce_sn: frm_ce_sn,
-                frm_rl_sn: frm_rl_sn,
-                frm_lac_desc: frm_lac_desc,
-                frm_lt_sn: frm_lt_sn,
-                frm_lt_motivo: frm_lt_motivo,
-                frm_ft_mm: frm_ft_mm,
-                frm_mm_motivo: frm_mm_motivo,
-                frm_farm_sn: frm_farm_sn
+        if(frm_ep_sn == ''){
+            document.getElementById('ep_sn_e').focus();
+        }else{
+            if(frm_ep_sn == 'S' && frm_equip_desc == ''){
+                document.getElementById('qual_e').focus();
+            }else{
+                if(frm_ce_sn == ''){
+                    document.getElementById('ce_sn_e').focus();
+                }else{
+                    if(frm_ce_sn == 'S' && frm_rl_sn == ''){
+                        document.getElementById('rl_sn_e').focus();
+                    }else{
+                        if(frm_ce_sn == 'S' && frm_rl_sn == 'S' && frm_lac_desc == ''){
+                            document.getElementById('lac_desc_e').focus();
+                        }else{
+                            if(frm_lt_sn == ''){
+                                document.getElementById('lt_sn_e').focus();
+                            }else{
+                                if(frm_lt_sn == 'S' && frm_lt_motivo == ''){
+                                    document.getElementById('lt_motivo_e').focus();
+                                }else{
+                                    if(frm_ft_mm == ''){
+                                        document.getElementById('ft_mm_e').focus();
+                                    }else{
+                                        if(frm_ft_mm == 'S' && frm_mm_motivo == ''){
+                                            document.getElementById('mm_motivo_e').focus();
+                                        }else{
+                                            if(frm_ft_mm == 'S' && frm_farm_sn == ''){
+                                                document.getElementById('farm_sn_e').focus();
+                                            }else{
+                                                $.ajax({
+                                                    url: "configuracao/editar_durante.php",
+                                                    type: "POST",
+                                                    data: {
+                                                        
+                                                        cd_dur: cd_dur,
+                                                        frm_ep_sn: frm_ep_sn,
+                                                        frm_equip_desc: frm_equip_desc,
+                                                        frm_ce_sn: frm_ce_sn,
+                                                        frm_rl_sn: frm_rl_sn,
+                                                        frm_lac_desc: frm_lac_desc,
+                                                        frm_lt_sn: frm_lt_sn,
+                                                        frm_lt_motivo: frm_lt_motivo,
+                                                        frm_ft_mm: frm_ft_mm,
+                                                        frm_mm_motivo: frm_mm_motivo,
+                                                        frm_farm_sn: frm_farm_sn
 
-                },
-            cache: false,
-            success: function(dataResult){
-                console.log(dataResult);
-                alert('Editado com sucesso!');
-                $('#id_editar_dur').modal('hide');
-                $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int);
+                                                        },
+                                                    cache: false,
+                                                    success: function(dataResult){
+                                                        alert('Editado com sucesso!');
+                                                        $('#id_editar_dur').modal('hide');
+                                                        $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int);
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        });
+        }
             
         
     }
