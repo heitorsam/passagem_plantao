@@ -6,7 +6,7 @@
 
 </div>
 <div class="col-md-12 input-group">
-    <input type="text" class="form-control" style="border-radius: 5px 0px 0px 5px !important" maxlength="100" id="input_observacao">
+    <input type="text" class="form-control" style="border-radius: 5px 0px 0px 5px !important" maxlength="200" id="input_observacao">
     <button type="button" class="btn btn-primary" style="border-radius: 0px 5px 5px 0px !important" onclick="salvar_observacao('<?php echo $id ?>')" ><i class="fa-solid fa-floppy-disk"></i></button>
 </div>
 

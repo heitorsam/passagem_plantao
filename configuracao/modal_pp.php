@@ -38,105 +38,111 @@
                 </button>
             </div>
 
-            <div class="modal-body" style='margin: 0 auto !important;'>
+            <div class="modal-body" >
 
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-equip-tab" data-toggle="tab" data-target="#nav-equip" type="button" role="tab" aria-controls="nav-equip" aria-selected="true" style="color: #fff; background-color: #3185c1;">Equipamentos</button>
+                  <button class="nav-link" id="nav-farm-tab" data-toggle="tab" data-target="#nav-farm" type="button" role="tab" aria-controls="nav-farm" aria-selected="false" style="color: #fff; background-color: #3185c1;">Farmácia</button>
+                  <button class="nav-link" id="nav-paci-tab" data-toggle="tab" onclick="ajax_paciente()" data-target="#nav-paci" type="button" role="tab" aria-controls="nav-paci" aria-selected="false" style="color: #fff; background-color: #3185c1;">Paciente</button>
+                  <button class="nav-link" id="nav-inter-tab" data-toggle="tab" onclick="ajax_intercorrencia()" data-target="#nav-inter" type="button" role="tab" aria-controls="nav-inter" aria-selected="false" style="color: #fff; background-color: #3185c1;">Intercorrência</button>
+                </div>
+              </nav>
+              </br>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-equip" role="tabpanel" aria-labelledby="nav-equip-tab">
+                  <div class="row">
+                    <input class='form-control' id='frm_dta' type='date' value='<?php echo $var_exibir_dt; ?>' hidden>
+                    <div class='col-md-3' style='text-align:left' hidden>
 
+                      Descrição Unidade: </br>
+                      <input class="form-control" id='frm_unid' type="text" value="<?php echo $var_exibir_pp ?>" readonly>
 
-                  <div class='row'>
+                    </div>
 
-                      <input class='form-control' id='frm_dta' type='date' value='<?php echo $var_exibir_dt; ?>' hidden>
+                    <div class='col-md-3' style='text-align:left'>
 
-                      <div class='col-md-3' style='text-align:left' hidden>
+                      Equip. com Problema? </br>
+                      <select class='form-control' onchange="habilitar_campo('ep_sn','qual','')" id='ep_sn'>
 
-                        Descrição Unidade: </br>
-                        <input class="form-control" id='frm_unid' type="text" value="<?php echo $var_exibir_pp ?>" readonly>
+                          <!-- IF CONSULTA -->
+                          <?php if(isset($var_cod_dur)){ ?>
 
-                      </div>
+                            <!-- IF SIM OU NAO -->
+                            <?php if($row_dur['EQUIP_SN'] == 'S'){ ?>
 
-                      <div class='col-md-3' style='text-align:left'>
+                              <option value="S"> Sim </option>
 
-                          Equip. com Problema? </br>
-                          <select class='form-control' onchange="habilitar('ep_sn','qual')" id='ep_sn'>
+                            <?php }else{ ?>
 
-                              <!-- IF CONSULTA -->
-                              <?php if(isset($var_cod_dur)){ ?>
+                              <option value="N"> Não </option>
 
-                                <!-- IF SIM OU NAO -->
-                                <?php if($row_dur['EQUIP_SN'] == 'S'){ ?>
+                            <?php } ?>
+                            <!-- FIM IF SIM OU NAO -->                                 
 
-                                  <option value="S"> Sim </option>
+                          <?php }else{ ?>  
 
-                                <?php }else{ ?>
+                            <option value=""> Selecione </option>
+                            <option value="S"> Sim </option>
+                            <option value="N"> Não </option>
 
-                                  <option value="N"> Não </option>
+                          <?php } ?>  
+                          <!-- FIM IF CONSULTA -->
 
-                                <?php } ?>
-                                <!-- FIM IF SIM OU NAO -->                                 
+                      </select>
+                    </div>
 
-                              <?php }else{ ?>  
+                    <div class='col-md-9' style='text-align:left'>
 
-                                <option value=""> Selecione </option>
-                                <option value="S"> Sim </option>
-                                <option value="N"> Não </option>
+                      Qual?:</br>
+                      <input minlength='5' class="form-control" id='qual' disabled value="<?php echo @$row_dur['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
-                              <?php } ?>  
-                              <!-- FIM IF CONSULTA -->
-
-                          </select>
-
-
-                      </div>
-
-                      <div class='col-md-9' style='text-align:left'>
-
-                        Qual?:</br>
-                        <input minlength='5' class="form-control" id='qual' disabled value="<?php echo @$row_dur['EQUIP_DESC']; ?>" <?php echo $sn_readonly; ?>>
-
-                      </div>
-                      </br>
+                    </div>
+                    
                   </div>
                   </br>
-
+                </div>
+                <div class="tab-pane fade" id="nav-farm" role="tabpanel" aria-labelledby="nav-farm-tab">
+                
                   <div class='row'>
 
-                  
-                  <div class='col-md-3' style='text-align:left'>
+                    <div class='col-md-3' style='text-align:left'>
 
-                    Utilizado Carrinho? </br>
-                    <select class='form-control' onchange="habilitar('ce_sn','rl_sn')" id='ce_sn'>
+                      Utilizado Carrinho? </br>
+                      <select class='form-control' onchange="habilitar_campo('ce_sn','rl_sn','lac_desc')" id='ce_sn'>
 
-                      <!-- IF CONSULTA -->
-                      <?php if(isset($var_cod_dur)){ ?>
+                        <!-- IF CONSULTA -->
+                        <?php if(isset($var_cod_dur)){ ?>
 
-                          <!-- IF SIM OU NAO -->
-                          <?php if($row_dur['CAR_SN'] == 'S'){ ?>
+                            <!-- IF SIM OU NAO -->
+                            <?php if($row_dur['CAR_SN'] == 'S'){ ?>
 
+                          <option value="S"> Sim </option>
+
+                          <?php }else{ ?>
+
+                          <option value="N"> Não </option>
+
+                          <?php } ?>
+                          <!-- FIM IF SIM OU NAO -->                                 
+
+                          <?php }else{ ?>  
+
+                        <option value=""> Selecione </option>
                         <option value="S"> Sim </option>
-
-                        <?php }else{ ?>
-
                         <option value="N"> Não </option>
 
-                        <?php } ?>
-                        <!-- FIM IF SIM OU NAO -->                                 
+                        <?php } ?>  
+                        <!-- FIM IF CONSULTA -->
 
-                        <?php }else{ ?>  
+                      </select>
 
-                      <option value=""> Selecione </option>
-                      <option value="S"> Sim </option>
-                      <option value="N"> Não </option>
-
-                      <?php } ?>  
-                      <!-- FIM IF CONSULTA -->
-
-                    </select>
-
-                  </div>
+                    </div>
 
                     <div class='col-md-3' style='text-align:left'>
 
                       Reposto/Lacrado? </br>
-                      <select class='form-control' disabled onchange="habilitar('rl_sn','lac_desc')" id='rl_sn'>
+                      <select class='form-control' disabled onchange="habilitar_campo('rl_sn','lac_desc','')" id='rl_sn'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -175,7 +181,7 @@
                     <div class='col-md-3' style='text-align:left'>
 
                       Leito Bloqueado? </br>
-                      <select class='form-control' onchange="habilitar('lt_sn','lt_motivo')" id='lt_sn'>
+                      <select class='form-control' onchange="habilitar_campo('lt_sn','lt_motivo','')" id='lt_sn'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -204,7 +210,7 @@
                       </select>
 
                     </div>
-
+                    
                   </div>
 
                   </br>
@@ -220,7 +226,7 @@
                     <div class='col-md-3' style='text-align:left'>
 
                       Falta Medicamento? </br>
-                      <select class='form-control' onchange="habilitar('ft_mm','mm_motivo'); habilitar('ft_mm','farm_sn')" id='ft_mm'>
+                      <select class='form-control' onchange="habilitar_campo('ft_mm','mm_motivo','farm_sn');habilitar_campo('ft_mm','farm_sn','')" id='ft_mm'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -251,8 +257,8 @@
 
                     <div class='col-md-3' style='text-align:left'>
 
-                    Qual?:</br>
-                    <input minlength='5' class="form-control" id='mm_motivo' disabled value="<?php echo @$row_dur['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
+                      Qual?:</br>
+                      <input minlength='5' class="form-control" id='mm_motivo' disabled value="<?php echo @$row_dur['MM_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                     </div>
 
@@ -261,108 +267,20 @@
                       Farmácia Avisada? </br>
                       <select class='form-control' id='farm_sn' disabled>
 
-                      <!-- IF CONSULTA -->
-                      <?php if(isset($var_cod_dur)){ ?>
-
-                      <!-- IF SIM OU NAO -->
-                      <?php if($row_dur['FARM_SN'] == 'S'){ ?>
-
-                      <option value="S"> Sim </option>
-
-                      <?php }else{ ?>
-
-                      <option value="N"> Não </option>
-
-                      <?php } ?>
-                      <!-- FIM IF SIM OU NAO -->                                 
-
-                      <?php }else{ ?>  
-
-                        <option value=""> Selecione </option>
-                        <option value="S"> Sim </option>
-                        <option value="N"> Não </option>
-
-                      <?php } ?>  
-
-
-                      </select>
-
-                    </div>
-
-                  </div>
-
-                  </br>
-                  <div class='row'>
-
-                    <div class='col-md-4' style='text-align:left'>
-
-                      Problemas com Paciente? </br>
-                      <select class='form-control' onchange="habilitar('pp_sn','con_desc')" id='pp_sn'>
-
-                      <!-- IF CONSULTA -->
-                      <?php if(isset($var_cod_dur)){ ?>
-
-                      <!-- IF SIM OU NAO -->
-                      <?php if($row_dur['PPF_SN'] == 'S'){ ?>
-
-                      <option value="S"> Sim </option>
-
-                      <?php }else{ ?>
-
-                      <option value="N"> Não </option>
-
-                      <?php } ?>
-                      <!-- FIM IF SIM OU NAO -->                                 
-
-                      <?php }else{ ?>  
-
-                        <option value=""> Selecione </option>
-                        <option value="S"> Sim </option>
-                        <option value="N"> Não </option>
-
-                      <?php } ?>
-
-                      </select>
-
-                    </div>
-
-                  </div>
-                  <br>
-
-                  <div class='row'>
-
-                    <div class='col-md-12' style='text-align:left'>
-
-                    Conduta:</br>
-
-                    <textarea minlength='5' class='textarea' style="width: 100%;" id='con_desc' disabled value="<?php echo $row_dur ['CONDUTA_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
-
-                    </div>
-
-                  </div>
-
-                  </br>
-                  <div class='row'>
-
-                    <div class='col-md-3' style='text-align:left'>
-
-                        Intercorrência? </br>
-                        <select class='form-control' onchange="habilitar('ip_sn','ip_desc')" id='ip_sn'>
-
                         <!-- IF CONSULTA -->
                         <?php if(isset($var_cod_dur)){ ?>
 
-                        <!-- IF SIM OU NAO -->
-                        <?php if($row_dur['IP_SN'] == 'S'){ ?>
+                          <!-- IF SIM OU NAO -->
+                          <?php if($row_dur['FARM_SN'] == 'S'){ ?>
 
-                        <option value="S"> Sim </option>
+                            <option value="S"> Sim </option>
 
-                        <?php }else{ ?>
+                          <?php }else{ ?>
 
-                        <option value="N"> Não </option>
+                            <option value="N"> Não </option>
 
-                        <?php } ?>
-                        <!-- FIM IF SIM OU NAO -->                                 
+                          <?php } ?>
+                          <!-- FIM IF SIM OU NAO -->                                 
 
                         <?php }else{ ?>  
 
@@ -370,63 +288,192 @@
                           <option value="S"> Sim </option>
                           <option value="N"> Não </option>
 
-                          <?php } ?>
+                        <?php } ?>  
 
-                        </select>
 
-                      </div>
-                      
-                      <div class='col-md-12' style='text-align:left'>
-                      <br>
+                      </select>
 
-                      Desfecho:</br>
-                      <textarea minlength='5' class='textarea' style="width: 100%;" id='ip_desc' disabled value="<?php echo $row_dur ['IP_DESC']; ?>" <?php echo $sn_readonly; ?>></textarea>
-                      </div>
+                    </div>
 
                   </div>
-
-                    </br>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
-                        
-                        
-                        <?php if(!isset($var_cod_dur)){ ?>
-                          <button onclick="ajax_cadastrar_anotacao()" data-dismiss="modal" aria-label="Close" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
-                        <?php } ?>
-                        
-                      </div>
+                  </br>
+                </div>
+                <div class="tab-pane fade" id="nav-paci" role="tabpanel" aria-labelledby="nav-paci-tab">
+                  <div class='col-md-12' style='text-align:left'>  
+                    <div id="div-paci"></div>
+                  </div>
+                  <div class="col-md-12 input-group">
+                    <input type="text" class="form-control" style="border-radius: 5px 0px 0px 5px !important" maxlength="200" id="input_observacao_paci">
+                    <button type="button" class="btn btn-primary" style="border-radius: 0px 5px 5px 0px !important" onclick="salvar_observacao_paci()" ><i class="fa-solid fa-floppy-disk"></i></button>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-inter" role="tabpanel" aria-labelledby="nav-inter-tab">
+                  <div class='col-md-12' style='text-align:left'>  
+                    <div id="div-inter"></div>
+                  </div>
+                  <div class="col-md-12 input-group">
+                    <input type="text" class="form-control" style="border-radius: 5px 0px 0px 5px !important" maxlength="200" id="input_observacao_inter">
+                    <button type="button" class="btn btn-primary" style="border-radius: 0px 5px 5px 0px !important" onclick="salvar_observacao_inter()" ><i class="fa-solid fa-floppy-disk"></i></button>
+                  </div>
+                  </br>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
+                  
+                <?php if(!isset($var_cod_dur)){ ?>
+                  <button onclick="ajax_cadastrar_anotacao()" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button> 
+                <?php } ?>
+                  
+              </div>
             </div>
+            </br>
         </div>
     </div>
 </div>
 
 <script>
 
+  function habilitar_campo(input1, input2, input3){
 
-
-  function habilitar(input, input2){
-   
-    var var_input = document.getElementById(input).value;
+    var var_input = document.getElementById(input1).value;
     var var_input2 = document.getElementById(input2);
+    if(input3 != ''){
+      var var_input3 = document.getElementById(input3);
+    }
 
     if(var_input == ''){
+      if(input3 != ''){
+        var_input3.disabled = true;
+      }
       var_input2.disabled = true;
       var_input2.value = '';
     }
 
     if(var_input == 'N'){
+      if(input3 != ''){
+        var_input3.disabled = true;
+        var_input3.value = '';
+      }
       var_input2.disabled = true;
       var_input2.value = '';
     }
 
     if(var_input == 'S'){
+
       var_input2.disabled = false;
 
     }
 
   };
 
+  function ajax_paciente(){
+    var setor = document.getElementById('frm_unid').value;
+    var data = document.getElementById('frm_dta').value;
+
+    $('#div-paci').load('configuracao/modal_passagem/ajax/ajax_paciente.php?setor='+ setor+'&data='+data);
+
+  };
+
+  function ajax_intercorrencia(){
+    var setor = document.getElementById('frm_unid').value;
+    var data = document.getElementById('frm_dta').value;
+
+    $('#div-inter').load('configuracao/modal_passagem/ajax/ajax_inter.php?setor='+ setor+'&data='+data);
+
+  };
 
 
+  function salvar_observacao_paci(){
+        
+    var obs = document.getElementById('input_observacao_paci').value;
+    var setor = document.getElementById('frm_unid').value;
+    var data = document.getElementById('frm_dta').value;
+
+    
+    if(obs != ''){
+        $.ajax({
+            url: "configuracao/modal_passagem/ajax/ajax_salvar_observacao_paci.php",
+            type: "POST",
+            data: {
+                setor: setor,
+                obs: obs
+                },
+            cache: false,
+            success: function(dataResult){
+                document.getElementById('input_observacao_paci').value = '';
+                $('#div-paci').load('configuracao/modal_passagem/ajax/ajax_paciente.php?setor='+ setor +'&data='+data);
+            }
+        });   
+    }else{
+        document.getElementById('input_observacao_paci').focus();
+    }
+  };
+
+  function apagar_observacao_paci(cd_obs){
+    resultado = confirm("Deseja excluir a observação?");
+    if(resultado == true){
+      $.ajax({
+        url: "configuracao/modal_passagem/ajax/ajax_apagar_observacao_paci.php",
+        type: "POST",
+        data: {
+            cd_obs
+            },
+        cache: false,
+        success: function(dataResult){
+          var setor = document.getElementById('frm_unid').value;
+          var data = document.getElementById('frm_dta').value;
+
+          $('#div-paci').load('configuracao/modal_passagem/ajax/ajax_paciente.php?setor='+ setor +'&data='+data);
+        }
+      });  
+    }
+  };
+
+  function salvar_observacao_inter(){
+        
+      var obs = document.getElementById('input_observacao_inter').value;
+      var setor = document.getElementById('frm_unid').value;
+      var data = document.getElementById('frm_dta').value;
+  
+      
+      if(obs != ''){
+          $.ajax({
+              url: "configuracao/modal_passagem/ajax/ajax_salvar_observacao_inter.php",
+              type: "POST",
+              data: {
+                  setor: setor,
+                  obs: obs
+                  },
+              cache: false,
+              success: function(dataResult){
+                
+                  document.getElementById('input_observacao_inter').value = '';
+                  $('#div-inter').load('configuracao/modal_passagem/ajax/ajax_inter.php?setor='+ setor+'&data='+data);
+              }
+          });   
+      }else{
+          document.getElementById('input_observacao_paci').focus();
+      }
+    };
+    
+    function apagar_observacao_inter(cd_obs){
+      resultado = confirm("Deseja excluir a observação?");
+      if(resultado == true){
+        $.ajax({
+          url: "configuracao/modal_passagem/ajax/ajax_apagar_observacao_inter.php",
+          type: "POST",
+          data: {
+              cd_obs
+              },
+          cache: false,
+          success: function(dataResult){
+            var setor = document.getElementById('frm_unid').value;
+            var data = document.getElementById('frm_dta').value;
+            $('#div-inter').load('configuracao/modal_passagem/ajax/ajax_inter.php?setor='+ setor+'&data='+data);
+          }
+        });  
+      }
+    };
 
 </script>

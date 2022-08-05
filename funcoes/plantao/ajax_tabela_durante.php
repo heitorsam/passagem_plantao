@@ -96,9 +96,6 @@
                     echo '<td class="align-middle" style="text-align: center;">';
 
                     $var_cod_dur = $row_dur['CD_DURANTE'];
-
-                    include '../../configuracao/modal_passagem/visualizar_dur.php';
-
                     
                     $aux_sel = date('d/m/Y', strtotime($var_exibir_dt));
                     $hoje = date('d/m/Y'); 
@@ -106,9 +103,10 @@
                     $usu_session = $_SESSION['usuarioLogin'];
                     
                     if($aux_sel == $hoje AND $usuario_log == $usu_session ){?>
-
-                       <a class="btn btn-adm" onclick="ajax_apagar_anotacao('<?php echo $row_dur['CD_DURANTE'] ?>')">
-                       <i class="fas fa-trash"></i></a>
+                        <a class="btn btn-primary" onclick="ajax_editar_anotacao('<?php echo $row_dur['CD_DURANTE'] ?>')" >
+                        <i class="fa-solid fa-pen"></i></a>
+                        <a class="btn btn-adm" onclick="ajax_apagar_anotacao('<?php echo $row_dur['CD_DURANTE'] ?>')">
+                        <i class="fas fa-trash"></i></a>
 
                     <?php }else{
 
@@ -128,8 +126,21 @@
 
 </div>
 
+
+<?php 
+
+    include '../../configuracao/modal_passagem/editar_dur.php';
+
+?>
+
 <script>
     $(document).ready(function() {
         carregamento(1);
     });
+
+    function ajax_editar_anotacao(cd_dur){
+        $('#id_editar_dur').modal('show')
+        $('#div_editar').load('configuracao/modal_passagem/ajax/ajax_modal_editar.php?cd_dur='+ cd_dur);
+
+    }
 </script>
