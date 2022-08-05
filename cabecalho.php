@@ -73,7 +73,6 @@
                         <h10><a class="nav-link" href="#"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Faq</a></h10>
                     </li>
                 </div>
-                <?php if($_SESSION['sn_administrador'] == 'S'){?>
                 <div class="menu_preto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,16 +80,18 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
 
                         <!--MENU-->
-                            <a class="dropdown-item" href="exame.php"><i class="far fa-clipboard"></i> Exame</a>  
-                            <a class="dropdown-item" href="setor.php"><i class="fa fa-building"></i> Setor</a>  
-                            <a class="dropdown-item" href="escala.php"><i class="far fa-calendar-alt"></i> Escala</a>   
-                            <a class="dropdown-item" href="escala_diaria.php"><i class="far fa-calendar-alt"></i> Escala Diaria</a>   
+                                                    <a class="dropdown-item" href="passagem_plantao.php"><i class="far fa-clipboard"></i> Passagem</a>  
+
+                            <a class="dropdown-item" href="passagem_plantao.php"><i class="far fa-clipboard"></i> Passagem</a>  
+                            <a class="dropdown-item" href="historico_pp.php"><i class="fa-solid fa-list"></i> Histórico</a>
+                            <?php if($_SESSION['sn_administrador'] == 'S'){ ?>  
+                                <a class="dropdown-item" href="permissoes.php"><i class="fa-solid fa-chart-bar"></i> Premissões</a>   
+                            <?php } ?>
                             <div class="div_br"> </div>
 
                         </div>
                     </li>
                 </div>
-                <?php } ?>
                 </li>
                 <div class="menu_perfil">
                     <li class="nav-item dropdown">

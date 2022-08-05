@@ -23,10 +23,10 @@
 
                 <div class="div_br"> </div>
 
-                    <a href="passagem_plantao.php" class="botao_home" type="submit"><i class="far fa-clipboard"></i> Passagem Plantão</a>
+                    <a href="passagem_plantao.php" class="botao_home" type="submit"><i class="far fa-clipboard"></i> Passagem De Plantão</a>
                     <span class="espaco_pequeno"></span> 
                     
-                    <a href="historico_pp.php" class="botao_home" type="submit"><i class="fa-solid fa-list"></i> Histórico de plantão</a>
+                    <a href="historico_pp.php" class="botao_home" type="submit"><i class="fa-solid fa-list"></i> Histórico De Plantão</a>
                     <span class="espaco_pequeno"></span> 
 
                 <?php 
