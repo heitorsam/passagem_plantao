@@ -32,19 +32,23 @@
 
     </div>
 
-    <div class='col-md-2' style='text-align:left'>
+    <div class='col-md-3' style='text-align:left'>
 
         Nascimento:
         <input class='form-control' name='frm_nascimento' type='text' value="<?php echo $row_info['NASCIMENTO']; ?>" readonly> 
 
     </div>
 
-    <div class='col-md-1' style='text-align:left'>
+
+    <div class='col-md-2' style='text-align:left'>
 
         Idade:
         <input class='form-control' name='frm_idade' type='text' value="<?php echo $row_info['IDADE']; ?>" readonly> 
 
     </div>
+
+</div>
+<div class='row'>
 
     <div class='col-md-4' style='text-align:left'>
 
