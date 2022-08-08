@@ -177,7 +177,9 @@
                       <input minlength='5' class="form-control" id='lac_desc' disabled value="<?php echo @$row_dur['LACRE_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                     </div>
-
+                  </div>
+                  </br>
+                  <div class="row">
                     <div class='col-md-3' style='text-align:left'>
 
                       Leito Bloqueado? </br>
@@ -210,11 +212,6 @@
                       </select>
 
                     </div>
-                    
-                  </div>
-
-                  </br>
-                  <div class='row'>
 
                     <div class='col-md-3' style='text-align:left'>
 
@@ -222,7 +219,9 @@
                       <input minlength='5' class="form-control" id='lt_motivo' disabled value="<?php echo @$row_dur['LT_MOTIVO_DESC']; ?>" <?php echo $sn_readonly; ?>>
 
                     </div>
-
+                  </div>
+                  </br>
+                  <div class="row">
                     <div class='col-md-3' style='text-align:left'>
 
                       Falta Medicamento? </br>
