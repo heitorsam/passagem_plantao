@@ -9,7 +9,7 @@
 
     $adm = $_SESSION['sn_administrador'];
     
-    $date = date('d/m/Y', time());
+    $date = date('Y-m-d', time());
 
     $consulta_obs = "SELECT obs.cd_observacao,
     obs.cd_paciente,
@@ -91,6 +91,7 @@
 
                         <?php } 
                     }
+           
                     if($adm == 'S' && $date == $dt){
                         
                         echo '<td class="align-middle" style="text-align: center;">'; 
