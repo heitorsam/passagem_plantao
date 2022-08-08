@@ -11,7 +11,7 @@
 
     
 
-    @$con_exibir_paciente="SELECT 
+    $con_exibir_paciente="SELECT 
                         lt_set.CD_ATENDIMENTO, 
                         lt_set.CD_PACIENTE, 
                         pac.NM_PACIENTE, 
@@ -54,9 +54,9 @@
                         AND TO_DATE('$var_exibir_dt','YYYY-MM-DD')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA
                         ORDER BY lt_set.DS_RESUMO ASC";
 
-    @$result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
+    $result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
 
-    @oci_execute($result_exibir_pac);
+    oci_execute($result_exibir_pac);
 
 ?>
 
