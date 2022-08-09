@@ -8,6 +8,8 @@
     $dt = $_SESSION['data'];
 
     $adm = $_SESSION['sn_administrador'];
+
+    $usuario = $_SESSION['usuarioLogin'];
     
     $date = date('Y-m-d', time());
 
@@ -58,7 +60,7 @@
                 <th style="text-align: center;">Usuário</th>
                 <th style="text-align: center;">Hora da Criação</th>
                 <th style="text-align: center;">Solucionado</th>
-                <?php if($adm == 'S' && $date == $dt){ ?>
+                <?php if($date == $dt){ ?>
                 <th style="text-align: center;">Opções</th>
                 <?php } ?>
             </tr>
@@ -92,14 +94,14 @@
                         <?php } 
                     }
            
-                    if($adm == 'S' && $date == $dt){
+                    if($date == $dt){
                         
                         echo '<td class="align-middle" style="text-align: center;">'; 
-                        if($date == $dt){
+                        if($usuario == $row_dur['CD_USUARIO_CRIACAO']){
                     ?> 
                             <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
                         <?php }else{ ?>
-                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" disabled><i class="fa-solid fa-trash"></i></button>
                         <?php }echo'</td>';
                     }
                 echo'</tr>';

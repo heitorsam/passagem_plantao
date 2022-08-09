@@ -142,7 +142,7 @@
                     <div class='col-md-3' style='text-align:left'>
 
                       Reposto/Lacrado? </br>
-                      <select class='form-control' disabled onchange="habilitar_campo('rl_sn','lac_desc','')" id='rl_sn'>
+                      <select class='form-control' disabled onchange="habilitar_campo_lacre('rl_sn','lac_desc','')" id='rl_sn'>
 
                       <!-- IF CONSULTA -->
                       <?php if(isset($var_cod_dur)){ ?>
@@ -359,6 +359,38 @@
     }
 
     if(var_input == 'S'){
+
+      var_input2.disabled = false;
+
+    }
+
+  };
+  function habilitar_campo_lacre(input1, input2, input3){
+
+    var var_input = document.getElementById(input1).value;
+    var var_input2 = document.getElementById(input2);
+    if(input3 != ''){
+      var var_input3 = document.getElementById(input3);
+    }
+
+    if(var_input == ''){
+      if(input3 != ''){
+        var_input3.disabled = true;
+      }
+      var_input2.disabled = true;
+      var_input2.value = '';
+    }
+
+    if(var_input == 'S'){
+      if(input3 != ''){
+        var_input3.disabled = true;
+        var_input3.value = '';
+      }
+      var_input2.disabled = true;
+      var_input2.value = '';
+    }
+
+    if(var_input == 'N'){
 
       var_input2.disabled = false;
 
