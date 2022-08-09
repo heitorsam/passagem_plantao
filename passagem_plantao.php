@@ -206,7 +206,7 @@
                     if(frm_ce_sn == 'S' && frm_rl_sn == ''){
                         document.getElementById('rl_sn').focus();
                     }else{
-                        if(frm_ce_sn == 'S' && frm_rl_sn == 'S' && frm_lac_desc == ''){
+                        if(frm_ce_sn == 'S' && frm_rl_sn == 'N' && frm_lac_desc == ''){
                             document.getElementById('lac_desc').focus();
                         }else{
                             if(frm_lt_sn == ''){
@@ -288,7 +288,7 @@
                     if(frm_ce_sn == 'S' && frm_rl_sn == ''){
                         document.getElementById('rl_sn_e').focus();
                     }else{
-                        if(frm_ce_sn == 'S' && frm_rl_sn == 'S' && frm_lac_desc == ''){
+                        if(frm_ce_sn == 'S' && frm_rl_sn == 'N' && frm_lac_desc == ''){
                             document.getElementById('lac_desc_e').focus();
                         }else{
                             if(frm_lt_sn == ''){

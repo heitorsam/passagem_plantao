@@ -102,7 +102,7 @@
         <div class='col-md-3' style='text-align:left'>
 
           Reposto/Lacrado? </br>
-          <select class='form-control' onchange="habilitar_campo('rl_sn_e','lac_desc_e','')" id='rl_sn_e'>
+          <select class='form-control' onchange="habilitar_campo_lacre('rl_sn_e','lac_desc_e','')" id='rl_sn_e'>
 
             <?php }else{ ?>
 
@@ -116,7 +116,7 @@
         <div class='col-md-3' style='text-align:left'>
 
           Reposto/Lacrado? </br>
-          <select class='form-control' disabled onchange="habilitar_campo('rl_sn_e','lac_desc_e','')" id='rl_sn_e'>
+          <select class='form-control' disabled onchange="habilitar_campo_lacre('rl_sn_e','lac_desc_e','')" id='rl_sn_e'>
 
             <?php } ?>
       
@@ -143,7 +143,7 @@
         <div class='col-md-3' style='text-align:left'>
 
           Informe o Lacre:</br>
-          <?php if($row_dur['REP_LAC_SN'] == 'S'){ ?> 
+          <?php if($row_dur['REP_LAC_SN'] == 'N'){ ?> 
             <input minlength='5' class="form-control" id='lac_desc_e'  value="<?php echo @$row_dur['LACRE_DESC']; ?>">
           <?php }else{ ?>
             <input minlength='5' class="form-control" id='lac_desc_e' disabled >
@@ -308,6 +308,39 @@
     }
 
     if(var_input == 'S'){
+
+      var_input2.disabled = false;
+
+    }
+
+  };
+
+  function habilitar_campo_lacre(input1, input2, input3){
+
+    var var_input = document.getElementById(input1).value;
+    var var_input2 = document.getElementById(input2);
+    if(input3 != ''){
+      var var_input3 = document.getElementById(input3);
+    }
+
+    if(var_input == ''){
+      if(input3 != ''){
+        var_input3.disabled = true;
+      }
+      var_input2.disabled = true;
+      var_input2.value = '';
+    }
+
+    if(var_input == 'S'){
+      if(input3 != ''){
+        var_input3.disabled = true;
+        var_input3.value = '';
+      }
+      var_input2.disabled = true;
+      var_input2.value = '';
+    }
+
+    if(var_input == 'N'){
 
       var_input2.disabled = false;
 
