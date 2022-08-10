@@ -19,7 +19,8 @@
     INNER JOIN dbamv.paciente pc
     ON pc.cd_paciente = obs.cd_paciente
     WHERE obs.CD_PACIENTE = '$id'
-    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') = TO_CHAR(SYSDATE, 'DD-MM-YYYY')";
+    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') = TO_CHAR(SYSDATE, 'DD-MM-YYYY')
+    ORDER BY hr_criacao ASC";
 
     $result_obs = oci_parse($conn_ora, $consulta_obs);
     oci_execute($result_obs);
@@ -35,7 +36,8 @@
     INNER JOIN dbamv.paciente pc
     ON pc.cd_paciente = obs.cd_paciente
     WHERE obs.CD_PACIENTE = '$id'
-    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') < TO_CHAR(SYSDATE, 'DD-MM-YYYY')";
+    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') < TO_CHAR(SYSDATE, 'DD-MM-YYYY')
+    ORDER BY hr_criacao ASC";
 
     $result_obs_dt = oci_parse($conn_ora, $consulta_obs_dt);
     oci_execute($result_obs_dt);

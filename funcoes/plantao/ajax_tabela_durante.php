@@ -108,13 +108,14 @@
                         <a class="btn btn-adm" onclick="ajax_apagar_anotacao('<?php echo $row_dur['CD_DURANTE'] ?>')">
                         <i class="fas fa-trash"></i></a>
 
-                    <?php }else{
-
-                        //echo 'Não é Igual';
+                    <?php
                     
                     }
-
-
+                    ?>
+                    <button type="button" class="btn btn-primary" onclick="modal_durante('<?php echo  $row_dur['CD_DURANTE'] ?>')">
+                    <i class="fa-solid fa-eye"></i>
+                    </button>
+                <?php 
                 echo'</tr>';
                 }
                             
@@ -141,6 +142,12 @@
     function ajax_editar_anotacao(cd_dur){
         $('#id_editar_dur').modal('show')
         $('#div_editar').load('configuracao/modal_passagem/ajax/ajax_modal_editar.php?cd_dur='+ cd_dur);
+
+    }
+
+    function modal_durante(cd_dur){
+        $('#id_editar_dur').modal('show')
+        $('#div_editar').load('configuracao/modal_passagem/ajax/ajax_modal_visu.php?cd_dur='+ cd_dur);
 
     }
 </script>
