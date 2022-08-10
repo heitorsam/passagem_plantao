@@ -19,28 +19,11 @@
     INNER JOIN dbamv.paciente pc
     ON pc.cd_paciente = obs.cd_paciente
     WHERE obs.CD_PACIENTE = '$id'
-    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') = TO_CHAR(SYSDATE, 'DD-MM-YYYY')
-    ORDER BY hr_criacao ASC";
+    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') <= TO_CHAR(SYSDATE, 'DD-MM-YYYY')
+    ORDER BY hr_criacao DESC";
 
     $result_obs = oci_parse($conn_ora, $consulta_obs);
     oci_execute($result_obs);
-
-    $consulta_obs_dt = "SELECT obs.cd_observacao,
-        obs.cd_paciente,
-        pc.cd_paciente,
-        obs.observacao,
-        obs.cd_usuario_criacao,
-        TO_CHAR(obs.hr_criacao, 'DD/MM/YYYY HH24:MI') AS hr_criacao,
-        obs.sn_solucionado
-    FROM passagem_plantao.OBSERVACAO_ESPECIAL obs
-    INNER JOIN dbamv.paciente pc
-    ON pc.cd_paciente = obs.cd_paciente
-    WHERE obs.CD_PACIENTE = '$id'
-    AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') < TO_CHAR(SYSDATE, 'DD-MM-YYYY')
-    ORDER BY hr_criacao ASC";
-
-    $result_obs_dt = oci_parse($conn_ora, $consulta_obs_dt);
-    oci_execute($result_obs_dt);
 
 ?>
 
@@ -79,21 +62,6 @@
                 echo'</tr>';
                 }
 
-                while(@$row_dur_dt = oci_fetch_array($result_obs_dt)){
-
-                    echo'</tr>';
-    
-                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_dt['OBSERVACAO'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_dt['CD_USUARIO_CRIACAO'] . ' </td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_dt['HR_CRIACAO'] . ' </td>';
-                        if($row_dur_dt['SN_SOLUCIONADO'] == 'S'){ ?>
-                            <td class="align-middle"  style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
-                        <?php }else{ ?>
-                            <td class="align-middle"  style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
-                        <?php }
-                    echo'</tr>';
-                }
-                            
             ?>
 
         </tbody>
