@@ -112,9 +112,8 @@
                     
                     }
                     ?>
-                    <button type="button" class="btn btn-primary" onclick="modal_durante('<?php echo  $row_dur['CD_DURANTE'] ?>')">
-                    <i class="fa-solid fa-eye"></i>
-                    </button>
+                    <a class="btn btn-primary" onclick="ajax_visu_durante('<?php echo  $row_dur['CD_DURANTE'] ?>')">
+                    <i class="fa-solid fa-eye"></i></a>
                 <?php 
                 echo'</tr>';
                 }
@@ -129,8 +128,12 @@
 
 
 <?php 
-
+    include '../../configuracao/modal_passagem/visu_durante.php';
+    
     include '../../configuracao/modal_passagem/editar_dur.php';
+
+    
+
 
 ?>
 
@@ -140,14 +143,14 @@
     });
 
     function ajax_editar_anotacao(cd_dur){
-        $('#id_editar_dur').modal('show')
+        $('#id_editar_dur').modal('show');
         $('#div_editar').load('configuracao/modal_passagem/ajax/ajax_modal_editar.php?cd_dur='+ cd_dur);
 
     }
 
-    function modal_durante(cd_dur){
-        $('#id_editar_dur').modal('show')
-        $('#div_editar').load('configuracao/modal_passagem/ajax/ajax_modal_visu.php?cd_dur='+ cd_dur);
+    function ajax_visu_durante(cd_dur){
+        $('#div_visu_dur').load('configuracao/modal_passagem/ajax/ajax_modal_visu.php?cd_dur='+ cd_dur);
+        $('#id_visu_dur').modal('show');
 
     }
 </script>
