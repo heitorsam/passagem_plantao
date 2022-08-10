@@ -5,7 +5,7 @@
                     INNER JOIN dbamv.SUBSTANCIA sub
                     ON sub.CD_SUBSTANCIA = hsp.CD_SUBSTANCIA
                     WHERE hsp.TP_ALERGIA = 'S'
-                    AND hsp.CD_PACIENTE = ". $var_atd;
+                    AND hsp.CD_PACIENTE = ". $id;
 
                     
                     $result_consulta_alerg = oci_parse($conn_ora,$consulta_alerg);
