@@ -37,13 +37,13 @@
                                     AND pm.DS_SITUACAO = 'Cancelado'
                                     ORDER BY pm.DT_SOLICITACAO desc";
     }else if($tipo =='exa'){
-        $consulta_obs = "SELECT TO_CHAR(pm.DT_PRE_MED, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
                                 tp.DS_TIP_PRESC as ds,
                                 CASE
                                 WHEN itrx.CD_LAUDO IS NOT NULL THEN
-                                'Concluido'
+                                'Laudado'
                                 else
-                                'Aguardando'
+                                'Aguardando laudo'
                             end as Status
                             FROM dbamv.PRE_MED pm
                             INNER JOIN dbamv.ITPRE_MED itpm
@@ -57,15 +57,16 @@
                             WHERE itpm.CD_TIP_ESQ IN ('EXA')
                             AND pm.CD_ATENDIMENTO = $var_atd
                             AND itrx.CD_LAUDO IS NOT NULL
-                            ORDER BY status ,pm.DT_PRE_MED desc";
+                            and itrx.Sn_Realizado = 'S'
+                            ORDER BY status ,itrx.dt_entrega desc";
 
-        $consulta_obs_null = "SELECT TO_CHAR(pm.DT_PRE_MED, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs_null = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
                                     tp.DS_TIP_PRESC as ds,
                                     CASE
                                     WHEN itrx.CD_LAUDO IS NOT NULL THEN
-                                    'Concluido'
+                                    'Laudado'
                                     else
-                                    'Aguardando'
+                                    'Aguardando laudo'
                                 end as Status
                                 FROM dbamv.PRE_MED pm
                                 INNER JOIN dbamv.ITPRE_MED itpm
@@ -79,7 +80,31 @@
                                 WHERE itpm.CD_TIP_ESQ IN ('EXA')
                                 AND pm.CD_ATENDIMENTO = $var_atd
                                 AND itrx.CD_LAUDO IS NULL
-                                ORDER BY status ,pm.DT_PRE_MED desc";
+                                and itrx.Sn_Realizado = 'S'
+                                ORDER BY status ,itrx.dt_entrega desc";
+
+        $consulta_obs_ag = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
+                                    tp.DS_TIP_PRESC as ds,
+                                    CASE
+                                        WHEN itrx.sn_realizado = 'N' then
+                                        'Agendado'
+                                        else
+                                        'Realizado'
+                                    end as Status
+                                FROM dbamv.PRE_MED pm
+                                INNER JOIN dbamv.ITPRE_MED itpm
+                                ON itpm.CD_PRE_MED = pm.CD_PRE_MED 
+                                INNER JOIN dbamv.TIP_PRESC tp
+                                ON tp.CD_TIP_PRESC = itpm.CD_TIP_PRESC
+                                INNER JOIN dbamv.ITPED_RX itrx
+                                ON itrx.CD_ITPRE_MED = itpm.CD_ITPRE_MED
+                                LEFT JOIN dbamv.LAUDO_RX ld
+                                ON ld.CD_LAUDO = itrx.CD_LAUDO
+                                WHERE itpm.CD_TIP_ESQ IN ('EXA')
+                                AND pm.CD_ATENDIMENTO = $var_atd
+                                AND itrx.CD_LAUDO IS NULL
+                                AND itrx.sn_realizado = 'N'
+                                ORDER BY status ,itrx.dt_entrega desc";
 
         
         
@@ -191,6 +216,7 @@
     if($tipo <> 'lab'){
         $result_obs_null = oci_parse($conn_ora, $consulta_obs_null);
         oci_execute($result_obs_null);
+        
     }
     if($tipo == 'par'){
         $result_obs_cancelado = oci_parse($conn_ora, $consulta_obs_cancelado);
@@ -206,14 +232,58 @@
         $result_obs_P = oci_parse($conn_ora, $consulta_obs_P);
         oci_execute($result_obs_P);
     }
+    if($tipo == 'exa'){
+        $result_obs_ag = oci_parse($conn_ora, $consulta_obs_ag);
+        oci_execute($result_obs_ag);
+    }
 
 
 ?>
 </br>
+<?php if($tipo == 'exa'){ ?>
+    <h11>Agendado</h11>
+    <span class="espaco_pequeno" style="width: 6px"></span>
+    <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">   
+    
+            <table class="table table-striped"  cellspacing="0" cellpadding="0">
+                
+            <thead>
+
+                <tr>
+                    <th style="text-align: center;">Data</th>
+                    <th style="text-align: center;">Descrição</th>
+                    <th style="text-align: center;">Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <?php
+
+                    while($row_dur_ag = oci_fetch_array($result_obs_ag)){
+
+                    echo'<tr>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_ag['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_ag['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_ag['STATUS'] . '</td>';
+                    echo'</tr>';
+                    }
+                                
+                ?>
+
+            </tbody>
+
+
+
+            </table>
+    
+    </div>
+<?php } ?>
 <?php if($tipo <> 'lab'){ ?>
     <?php if($tipo <> 'par'){ 
             if($tipo <> 'cir'){?>
-            <h11>Aguardando</h11>
+            <h11>Aguardando Laudo</h11>
             <?php }else{ ?>
             <h11>Agendada</h11>
             <?php }
@@ -259,7 +329,7 @@
     </div>
     </br> 
     <?php if($tipo <> 'par' && $tipo <> 'cir'){ ?> 
-        <h11>Concluido</h11>
+        <h11>Laudado</h11>
     <?php }else{ ?>
         <h11>Realizado</h11>
     <?php } ?>

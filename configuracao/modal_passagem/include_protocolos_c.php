@@ -1,10 +1,10 @@
 <?php
 
-$consulta_pc="SELECT ap.DS_ALERTA_PROTOCOLO
+$consulta_pc="SELECT DISTINCT ap.DS_ALERTA_PROTOCOLO
               FROM dbamv.PW_CASO_PROTOCOLO cp
               INNER JOIN dbamv.PW_ALERTA_PROTOCOLO ap
               ON ap.CD_ALERTA_PROTOCOLO = cp.CD_ALERTA_PROTOCOLO
-              AND cp.TP_ETAPA IN (1,2,3)
+
               WHERE CD_PACIENTE = $id ";
 
 

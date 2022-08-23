@@ -20,11 +20,7 @@
 
     @$result_exibir_dur = oci_parse($conn_ora,$con_exibir_durante);
 
-    @oci_execute($result_exibir_dur);
-
-?>
-
-<?php          
+    @oci_execute($result_exibir_dur);         
 
     @$var_bloq_cad_dur = "SELECT COUNT (dur.dt_plantao) AS QTD
                         FROM passagem_plantao.durante dur
