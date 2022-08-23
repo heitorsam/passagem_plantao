@@ -1,5 +1,43 @@
 <?php
-
+/*BACKUP SELECT DIETA
+SELECT DISTINCT tp.DS_TIP_PRESC
+FROM dbamv.PRE_MED pm
+INNER JOIN dbamv.ITPRE_MED itpm
+  ON itpm.CD_PRE_MED = pm.CD_PRE_MED
+INNER JOIN dbamv.TIP_PRESC tp
+  ON tp.CD_TIP_PRESC = itpm.CD_TIP_PRESC
+WHERE itpm.CD_TIP_ESQ IN ('DIE',
+                         'DET',
+                         'FOR',
+                         'DEP',
+                         'DPM',
+                         'PNT',
+                         'HID',
+                         'MOD',
+                         'SSR',
+                         'DLS',
+                         'LM',
+                         'JEJ')
+ AND pm.CD_ATENDIMENTO = 4599148
+ AND pm.CD_PRE_MED IN
+     (SELECT MAX(aux_pm.CD_PRE_MED) AS MAX_CD_PRE_MED
+        FROM dbamv.PRE_MED aux_pm
+       INNER JOIN dbamv.ITPRE_MED aux_itpm
+          ON aux_itpm.CD_PRE_MED = aux_pm.CD_PRE_MED
+       WHERE aux_itpm.CD_TIP_ESQ IN ('DIE',
+                                     'DET',
+                                     'FOR',
+                                     'DEP',
+                                     'DPM',
+                                     'PNT',
+                                     'HID',
+                                     'MOD',
+                                     'SSR',
+                                     'DLS',
+                                     'LM',
+                                     'JEJ')
+         AND aux_pm.CD_ATENDIMENTO = 4599148)
+*/
 $consulta_dieta ="SELECT DISTINCT tp.DS_TIP_PRESC
                   FROM dbamv.PRE_MED pm
                   INNER JOIN dbamv.ITPRE_MED itpm
