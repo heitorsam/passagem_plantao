@@ -6,7 +6,30 @@
     $var_adc_frm_cd_usuario = $_POST['cd_usuario'];
     $var_adc_frm_unid_inter = $_POST['setor'];
     $var_adc_user_log = $_SESSION['usuarioLogin'];
-    if($var_adc_frm_cd_usuario != ''){
+
+    $qtd_lista = "SELECT COUNT(*) AS QTD
+                                    FROM dbamv.PRESTADOR prest
+                                INNER JOIN dbamv.TIP_PRESTA tp
+                                    ON tp.CD_TIP_PRESTA = prest.CD_TIP_PRESTA
+                                INNER JOIN dbasgu.USUARIOS usu
+                                    ON usu.CD_PRESTADOR = prest.CD_PRESTADOR
+                                WHERE prest.TP_SITUACAO = 'A'
+                                    AND prest.CD_TIP_PRESTA = 4
+                                    AND CD_USUARIO = '$var_adc_frm_cd_usuario'
+                                ORDER BY prest.NM_PRESTADOR ASC
+                                ";
+                $result_lista = oci_parse($conn_ora, $qtd_lista);																									
+
+                //EXECUTANDO A CONSULTA SQL (ORACLE)
+                oci_execute($result_lista);   
+                $QTD = oci_fetch_array($result_lista);       
+
+
+
+
+
+
+    if($var_adc_frm_cd_usuario != '' && $QTD['QTD'] != 0){
         $consulta_unid_inter = "INSERT INTO passagem_plantao.PERMISSOES
                                 SELECT passagem_plantao.Seq_Permissoes.NEXTVAL CD_PERMISSAO,
                                 '$var_adc_frm_cd_usuario' AS CD_USUARIO,
