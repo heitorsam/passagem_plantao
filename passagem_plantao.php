@@ -79,7 +79,7 @@
         <input class='form-control' id='data' type='date'>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-1" style="text-align: center">
         Agora:
         <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_temp_real" onclick="btn_reserva('ck_temp_real', 'ck_reserva')">
     </div>
