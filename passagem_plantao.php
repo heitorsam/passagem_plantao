@@ -79,8 +79,8 @@
         <input class='form-control' id='data' type='date'>
     </div>
 
-    <div class="col-md-2">
-        Tempo real:
+    <div class="col-md-1">
+        Agora:
         <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_temp_real">
     </div>
 

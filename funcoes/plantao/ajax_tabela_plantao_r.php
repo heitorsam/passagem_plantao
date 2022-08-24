@@ -52,8 +52,6 @@
         <thead>
 
             <tr>
-
-                <th style="text-align: center;">Atendimento</th>
                 <th style="text-align: center;">Prontuario</th>
                 <th style="text-align: center;">Paciente</th>
                 <th style="text-align: center;">Sexo</th>
