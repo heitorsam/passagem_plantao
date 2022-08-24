@@ -84,6 +84,11 @@
         <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_temp_real">
     </div>
 
+    <div class="col-md-1">
+        Reservas:
+        <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_reserva">
+    </div>
+
     <div class="col-md-3">  
         <br>
         <button type="submit" class="btn btn-primary" onclick="ajax_buscar_plantao()" >
@@ -141,6 +146,7 @@
         var data = document.getElementById('data').value;
         var unid_int = document.getElementById('unid_int').value;
         var ck_temp = document.getElementById('ck_temp_real').checked;
+        var ck_reserva = document.getElementById('ck_reserva').checked;
         
         switch (ck_temp) {
             case true:
@@ -150,6 +156,14 @@
                 ck_temp = 'N';
         }
 
+        switch (ck_reserva) {
+            case true:
+                ck_reserva = 'S';
+                break;
+            case false:
+                ck_reserva = 'N';
+        }
+
         if(data == ''){
             document.getElementById('data').focus();
         }else if(unid_int == ''){
@@ -157,9 +171,14 @@
         }else{
             document.getElementById('div_durante').style.display = "none";
             document.getElementById('div_plantao').style.display = "none";
-            $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int );
             document.getElementById('loader').style.display = "inline-block";
-            $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao.php?data='+ data +'&unid_int='+ unid_int+'&sn_temp='+ ck_temp);
+            if(ck_reserva == 'S'){
+                $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao_r.php?data='+ data +'&unid_int='+ unid_int+'&sn_reserva='+ ck_reserva);
+            }else{
+                $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int );
+                
+                $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao.php?data='+ data +'&unid_int='+ unid_int+'&sn_temp='+ ck_temp);
+            }
         }
     }
 
