@@ -74,7 +74,6 @@
                 <th style="text-align: center;">Sexo</th>
                 <th style="text-align: center;">Idade</th>
                 <th style="text-align: center;">Mãe</th>
-                <th style="text-align: center;">Leito</th>
                 <th style="text-align: center;">Resumo</th>
                 <th style="text-align: center;">Unidade de Internação</th>
                 <th style="text-align: center;">Ações</th>
@@ -97,7 +96,6 @@
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['TP_SEXO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['IDADE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['NM_MAE'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_LEITO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_RESUMO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_UNID_INT'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">'; ?>

@@ -75,7 +75,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <br>
 
-                    <div class='fnd_azul'><i class="fas fa-comment-medical"></i> Eliminações/Banho</div>
+                    <div class='fnd_azul'><i class="fas fa-comment-medical"></i> Eliminações</div>
 
                     <div class='row'>
 

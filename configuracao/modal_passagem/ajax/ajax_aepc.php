@@ -250,7 +250,6 @@
             <thead>
 
                 <tr>
-                    <th style="text-align: center;">Data</th>
                     <th style="text-align: center;">Descrição</th>
                     <th style="text-align: center;">Status</th>
                 </tr>
@@ -264,7 +263,6 @@
                     while($row_dur_ag = oci_fetch_array($result_obs_ag)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_ag['DT'] . '</td>';
                         echo '<td class="align-middle" style="text-align: center;">' . $row_dur_ag['DS'] . '</td>';
                         echo '<td class="align-middle" style="text-align: center;">' . $row_dur_ag['STATUS'] . '</td>';
                     echo'</tr>';
