@@ -35,7 +35,7 @@
 
                             WHERE lt.tp_situacao <> 'I'
                             AND lt.tp_ocupacao = 'R'
-                            AND lt.cd_unid_int = 1
+                            AND lt.cd_unid_int = $var_exibir_pp
                             AND TO_CHAR(mi.hr_mov_int, 'YYYY-MM-DD') = '$var_exibir_dt'
                         ORDER BY lt.DS_RESUMO ASC";
 
