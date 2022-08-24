@@ -9,7 +9,7 @@
 
     $var_exibir_pp = $_GET['unid_int'];
 
-    
+    $ck_temp = $_GET['sn_temp'];
 
     $con_exibir_paciente="SELECT 
                         lt_set.CD_ATENDIMENTO, 
@@ -51,8 +51,14 @@
                         INNER JOIN dbamv.UNID_INT uni
                         ON uni.CD_UNID_INT = lt_set.CD_UNID_INT
                         WHERE lt_set.CD_UNID_INT = $var_exibir_pp
-                        AND TO_DATE('$var_exibir_dt','YYYY-MM-DD')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA
-                        ORDER BY lt_set.DS_RESUMO ASC";
+                        AND TO_DATE('$var_exibir_dt','YYYY-MM-DD')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA ";
+
+    if($ck_temp == 'S'){
+        $con_exibir_paciente .= "AND atd.dt_alta is null ";
+    }    
+
+
+    $con_exibir_paciente .= "ORDER BY lt_set.DS_RESUMO ASC";
 
     $result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
 

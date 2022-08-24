@@ -65,34 +65,31 @@
 <div class='row'>
 
     <div class='col-md-3' style='text-align:left'>
-
         Unidade de Internação
         <select class='form-control' id='unid_int'>
             
             <?php include 'configuracao/consulta_unid_int_pp.php'; ?>
 
         </select>
-        </br>   
-                                
-        </div>
+        </br>                          
+    </div>
 
-        <div class='col-md-2'>
-
-
+    <div class='col-md-2'>
         Data
         <input class='form-control' id='data' type='date'>
+    </div>
 
-        </div>
+    <div class="col-md-2">
+        Tempo real:
+        <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_temp_real">
+    </div>
 
-        <div class="col-md-3">  
-
+    <div class="col-md-3">  
         <br>
         <button type="submit" class="btn btn-primary" onclick="ajax_buscar_plantao()" >
         <i class="fa-solid fa-magnifying-glass"></i>
         </button> 
-
         </br>                                
-
     </div>
 
 </div>
@@ -143,6 +140,16 @@
         count_carregamento = 0;
         var data = document.getElementById('data').value;
         var unid_int = document.getElementById('unid_int').value;
+        var ck_temp = document.getElementById('ck_temp_real').checked;
+        
+        switch (ck_temp) {
+            case true:
+                ck_temp = 'S';
+                break;
+            case false:
+                ck_temp = 'N';
+        }
+
         if(data == ''){
             document.getElementById('data').focus();
         }else if(unid_int == ''){
@@ -150,9 +157,9 @@
         }else{
             document.getElementById('div_durante').style.display = "none";
             document.getElementById('div_plantao').style.display = "none";
-            $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int);
+            $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int );
             document.getElementById('loader').style.display = "inline-block";
-            $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao.php?data='+ data +'&unid_int='+ unid_int);
+            $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao.php?data='+ data +'&unid_int='+ unid_int+'&sn_temp='+ ck_temp);
         }
     }
 
@@ -341,8 +348,6 @@
                 }
             }
         }
-            
-        
     }
 
 </script>
