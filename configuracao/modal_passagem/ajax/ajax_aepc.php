@@ -7,7 +7,7 @@
     $var_atd = $_GET['atend'];
 
     if($tipo == 'par'){
-        $consulta_obs = "SELECT TO_CHAR(pm.DT_SOLICITACAO, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs = "SELECT TO_CHAR(pm.dt_parecer, 'DD/MM/YYYY HH24:MI') as dt,
                                 esp.DS_ESPECIALID as ds,
                                 pm.DS_SITUACAO as status
                             FROM dbamv.PAR_MED pm
@@ -15,7 +15,7 @@
                             ON esp.CD_ESPECIALID = pm.CD_ESPECIALID
                             WHERE pm.CD_ATENDIMENTO = $var_atd
                             AND pm.DS_SITUACAO = 'Realizado'
-                            ORDER BY pm.DT_SOLICITACAO desc";
+                            ORDER BY dt desc";
 
         $consulta_obs_null = "SELECT TO_CHAR(pm.DT_SOLICITACAO, 'DD/MM/YYYY HH24:MI') as dt,
                                 esp.DS_ESPECIALID as ds,
@@ -25,9 +25,9 @@
                             ON esp.CD_ESPECIALID = pm.CD_ESPECIALID
                             WHERE pm.CD_ATENDIMENTO = $var_atd
                             AND pm.DS_SITUACAO = 'Solicitado'
-                            ORDER BY pm.DT_SOLICITACAO desc";
+                            ORDER BY dt desc";
 
-        $consulta_obs_cancelado = "SELECT TO_CHAR(pm.DT_SOLICITACAO, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs_cancelado = "SELECT TO_CHAR(pm.dt_cancelamento, 'DD/MM/YYYY HH24:MI') as dt,
                                         esp.DS_ESPECIALID as ds,
                                         pm.DS_SITUACAO as status
                                     FROM dbamv.PAR_MED pm
@@ -35,7 +35,7 @@
                                     ON esp.CD_ESPECIALID = pm.CD_ESPECIALID
                                     WHERE pm.CD_ATENDIMENTO = $var_atd
                                     AND pm.DS_SITUACAO = 'Cancelado'
-                                    ORDER BY pm.DT_SOLICITACAO desc";
+                                    ORDER BY dt desc";
     }else if($tipo =='exa'){
         $consulta_obs = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
                                 tp.DS_TIP_PRESC as ds,
@@ -109,7 +109,7 @@
         
         
     }else if($tipo == 'lab'){
-        $consulta_obs = "SELECT TO_CHAR(pm.DT_PRE_MED, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs = "SELECT TO_CHAR(pm.hr_pre_med, 'DD/MM/YYYY HH24:MI') as dt,
                                 tp.DS_TIP_PRESC as ds, 
                                 tf.DS_TIP_FRE
                             FROM dbamv.PRE_MED pm
@@ -121,7 +121,7 @@
                             ON tf.CD_TIP_FRE = itpm.CD_TIP_FRE
                             WHERE itpm.CD_TIP_ESQ IN ('LAB')
                             AND pm.CD_ATENDIMENTO = $var_atd
-                            ORDER BY pm.DT_PRE_MED desc, tf.DS_TIP_FRE asc";
+                            ORDER BY dt desc, tf.DS_TIP_FRE asc";
         
     }else if($tipo == 'cir'){
         //A - Em Aviso / R - Realizada / C - Cancelada / G - Agendada / T - Controle de Checagem / P - Pre Agendamento
@@ -138,8 +138,8 @@
                             ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                             WHERE ac.TP_SITUACAO = 'R'
                             AND ac.CD_ATENDIMENTO = $var_atd
-                            ORDER BY ac.DT_INICIO_CIRURGIA desc";
-        $consulta_obs_null = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') as dt,
+                            ORDER BY dt desc";
+        $consulta_obs_null = "SELECT TO_CHAR(ac.dt_aviso_cirurgia, 'DD/MM/YYYY HH24:MI') as dt,
                                 cir.DS_CIRURGIA as ds,
                                 CASE
                                     WHEN ac.TP_SITUACAO = 'G' THEN
@@ -152,8 +152,8 @@
                             ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                             WHERE ac.TP_SITUACAO = 'G'
                             AND ac.CD_ATENDIMENTO = $var_atd
-                            ORDER BY ac.DT_INICIO_CIRURGIA desc";
-        $consulta_obs_cancelado = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') as dt,
+                            ORDER BY dt desc";
+        $consulta_obs_cancelado = "SELECT TO_CHAR(ac.dt_cancelamento, 'DD/MM/YYYY HH24:MI') as dt,
                                 cir.DS_CIRURGIA as ds,
                                 CASE
                                     WHEN ac.TP_SITUACAO = 'C' THEN
@@ -166,8 +166,8 @@
                             ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                             WHERE ac.TP_SITUACAO = 'C'
                             AND ac.CD_ATENDIMENTO = $var_atd
-                            ORDER BY ac.DT_INICIO_CIRURGIA desc";
-        $consulta_obs_g = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') as dt,
+                            ORDER BY dt desc";
+        $consulta_obs_g = "SELECT TO_CHAR(ac.dt_aviso_cirurgia, 'DD/MM/YYYY HH24:MI') as dt,
                                 cir.DS_CIRURGIA as ds,
                                 CASE
                                     WHEN ac.TP_SITUACAO = 'A' THEN
@@ -180,7 +180,7 @@
                             ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                             WHERE ac.TP_SITUACAO = 'A'
                             AND ac.CD_ATENDIMENTO = $var_atd
-                            ORDER BY ac.DT_INICIO_CIRURGIA desc";
+                            ORDER BY dt desc";
         $consulta_obs_T = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') as dt,
                                 cir.DS_CIRURGIA as ds,
                                 CASE
@@ -195,7 +195,7 @@
                             WHERE ac.TP_SITUACAO = 'T'
                             AND ac.CD_ATENDIMENTO = $var_atd
                             ORDER BY ac.DT_INICIO_CIRURGIA desc";
-        $consulta_obs_P = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs_P = "SELECT TO_CHAR(ac.Dt_Pre_Agendamento, 'DD/MM/YYYY HH24:MI') as dt,
                                 cir.DS_CIRURGIA as ds,
                                 CASE
                                     WHEN ac.TP_SITUACAO = 'P' THEN
@@ -208,7 +208,7 @@
                             ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                             WHERE ac.TP_SITUACAO = 'P'
                             AND ac.CD_ATENDIMENTO = $var_atd
-                            ORDER BY ac.DT_INICIO_CIRURGIA desc";
+                            ORDER BY dt desc";
     }
 
     $result_obs = oci_parse($conn_ora, $consulta_obs);
