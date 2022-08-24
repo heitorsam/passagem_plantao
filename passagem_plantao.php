@@ -81,12 +81,12 @@
 
     <div class="col-md-1">
         Agora:
-        <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_temp_real">
+        <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_temp_real" onclick="btn_reserva('ck_temp_real', 'ck_reserva')">
     </div>
 
     <div class="col-md-1">
         Reservas:
-        <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_reserva">
+        <input type="checkbox" style="height: 30px !important" class="form-control" id="ck_reserva" onclick="btn_reserva('ck_reserva', 'ck_temp_real')">
     </div>
 
     <div class="col-md-3">  
@@ -129,6 +129,13 @@
 ?>
 
 <script>
+
+    function btn_reserva(id1, id2){
+        var x = document.getElementById(id1).checked
+        if (x == true){
+            document.getElementById(id2).checked = false
+        }
+    }
 
     var count_carregamento = 0;
         
