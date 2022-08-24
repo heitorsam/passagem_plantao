@@ -45,10 +45,6 @@
 
 ?>
 
-
-
-
-
 <h11><i class="far fa-calendar-alt"></i> Passagem Plantão</h11>
 <span class="espaco_pequeno" style="width: 6px"></span>
 <h27><a href="home.php" style="color: #444444; text-decoration: none;"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</a></h27>
@@ -60,7 +56,6 @@
     include 'js/mensagens.php';
 
 ?>
-
 
 <div class='row'>
 
@@ -99,13 +94,7 @@
 
 </div>
 
-
-
 <!--FORM DURANTE-->
-
-
-
-
 
     <!--LISTA DURANTE-->
     <div id="div_durante" style="display: none"></div>
@@ -115,11 +104,9 @@
     <div style="align-items: center; display: flex;">
         <span class="loader" id="loader"></span>
     </div>
-<!--TABELA PASSAGEM-->
+    
+    <!--TABELA PASSAGEM-->
     <div id="div_plantao" style="display: none"></div>
-
-
-
 
 
 <?php

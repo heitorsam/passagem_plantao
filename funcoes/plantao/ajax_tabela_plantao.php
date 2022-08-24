@@ -51,7 +51,7 @@
                         INNER JOIN dbamv.UNID_INT uni
                         ON uni.CD_UNID_INT = lt_set.CD_UNID_INT
                         WHERE lt_set.CD_UNID_INT = $var_exibir_pp
-                        AND TO_DATE('$var_exibir_dt','YYYY-MM-DD')  BETWEEN lt_set.DT_ENTRADA AND lt_set.DT_SAIDA ";
+                        AND TRUNC(TO_DATE('$var_exibir_dt','YYYY-MM-DD')) BETWEEN TRUNC(lt_set.DT_ENTRADA) AND TRUNC(lt_set.DT_SAIDA)";
 
     if($ck_temp == 'S'){
         $con_exibir_paciente .= "AND atd.dt_alta is null ";
