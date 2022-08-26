@@ -11,7 +11,7 @@
 
     $ck_temp = $_GET['sn_reserva'];
 
-    $con_exibir_paciente="SELECT lt.ds_leito,
+    echo $con_exibir_paciente="SELECT lt.ds_leito,
                                 TO_CHAR(mi.hr_mov_int, 'DD/MM/YYYY'),
                                 pc.nm_paciente,
                                 pc.NM_PACIENTE,
@@ -33,7 +33,7 @@
                             INNER JOIN dbamv.UNID_INT unid
                             ON unid.CD_UNID_INT = lt.CD_UNID_INT
 
-                            WHERE lt.tp_situacao <> 'I'
+                            WHERE lt.tp_situacao = 'A'
                             AND lt.tp_ocupacao = 'R'
                             AND lt.cd_unid_int = $var_exibir_pp
                             AND TO_CHAR(mi.hr_mov_int, 'YYYY-MM-DD') = '$var_exibir_dt'
@@ -47,11 +47,13 @@
 
 <div class="table-responsive col-md-12" onload="carregamento()" style="padding: 0px !important;">
 
-    <table class="table table-striped"  cellspacing="0" cellpadding="0">
+<table class="table table-striped"  cellspacing="0" cellpadding="0">
         
         <thead>
 
             <tr>
+
+                <th style="text-align: center;">Atendimento</th>
                 <th style="text-align: center;">Prontuario</th>
                 <th style="text-align: center;">Paciente</th>
                 <th style="text-align: center;">Sexo</th>
@@ -59,6 +61,8 @@
                 <th style="text-align: center;">Mãe</th>
                 <th style="text-align: center;">Resumo</th>
                 <th style="text-align: center;">Unidade de Internação</th>
+                <th style="text-align: center;">Ações</th>
+
             </tr>
 
         </thead>
@@ -71,6 +75,7 @@
 
                 echo'</tr>';
 
+                echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_ATENDIMENTO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_PACIENTE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['NM_PACIENTE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['TP_SEXO'] . '</td>';
@@ -78,6 +83,13 @@
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['NM_MAE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_RESUMO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_UNID_INT'] . '</td>';
+                echo '<td class="align-middle" style="text-align: center;">'; ?>
+                <button type="button" class="btn btn-primary" onclick="modal_paciente('<?php echo $row_exibir_pac['CD_PACIENTE'] ?>', '<?php echo $row_exibir_pac['CD_ATENDIMENTO'] ?>', '<?php echo $var_exibir_dt ?>')" data-toggle="modal" data-target="#modal_paciente">
+                <i class="fa-solid fa-eye"></i>
+                </button>
+                    
+
+                <?php echo '</td>';
              
 
                     
@@ -88,6 +100,8 @@
             ?>
 
         </tbody>
+
+    </table>
 
     </table>
 

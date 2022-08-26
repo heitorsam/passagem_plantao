@@ -198,7 +198,6 @@
 
     function ajax_cadastrar_anotacao(){
         
-        
         var data = document.getElementById('data').value;
         var unid_int = document.getElementById('unid_int').value;
         var frm_dta = document.getElementById('frm_dta').value;

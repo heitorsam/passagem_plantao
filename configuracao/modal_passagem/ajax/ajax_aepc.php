@@ -139,7 +139,7 @@
                             WHERE ac.TP_SITUACAO = 'R'
                             AND ac.CD_ATENDIMENTO = $var_atd
                             ORDER BY dt desc";
-        $consulta_obs_null = "SELECT TO_CHAR(ac.dt_aviso_cirurgia, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs_null = "SELECT TO_CHAR(ac.dt_agendamento, 'DD/MM/YYYY HH24:MI') as dt,
                                 cir.DS_CIRURGIA as ds,
                                 CASE
                                     WHEN ac.TP_SITUACAO = 'G' THEN

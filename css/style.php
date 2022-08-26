@@ -843,6 +843,13 @@ h99{
     }
     }
 
+.tp_quadro {
+    color: #fff;
+}
 
+.tp_quadro:hover {
+  background-color: #fff !important;
+  color: #000000 !important;
+}
 
 </style>

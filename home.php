@@ -29,6 +29,9 @@
                     <a href="historico_pp.php" class="botao_home" type="submit"><i class="fa-solid fa-list"></i> Histórico Plantão</a>
                     <span class="espaco_pequeno"></span> 
 
+                    <a href="quadros.php" class="botao_home" type="submit"><i class="fa-solid fa-table"></i> Quadros</a>
+                    <span class="espaco_pequeno"></span> 
+
                 <?php 
 
                 

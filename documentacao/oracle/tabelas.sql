@@ -302,6 +302,31 @@ INCREMENT BY 1
 NOCACHE 
 NOCYCLE;
 
+-----CRIANDO TABELA QUADRO ENFERMAGEM-----
+DROP TABLE passagem_plantao.quadro_enf;
+
+create table quadro_enf (
+       cd_anotacao int,
+       cd_leito int,
+       cd_paciente int,
+       CD_UNID_INT int,
+       obs VARCHAR2(200),
+       dt_anotacao timestamp,
+       TP_ANOTACAO VARCHAR(3),
+       CD_USUARIO_CADASTRO VARCHAR(20) NOT NULL,
+       HR_CADASTRO         TIMESTAMP NOT NULL,
+       CD_USUARIO_ULT_ALT  VARCHAR(20),
+       HR_ULT_ALT          TIMESTAMP
+       );
+
+DROP SEQUENCE passagem_plantao.SEQ_OBS_QUADRO;
+
+CREATE SEQUENCE passagem_plantao.SEQ_OBS_QUADRO
+START WITH 1
+INCREMENT BY 1
+NOCACHE 
+NOCYCLE;
+
 
 
 

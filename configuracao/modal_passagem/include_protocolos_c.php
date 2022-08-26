@@ -5,7 +5,8 @@ $consulta_pc="SELECT DISTINCT ap.DS_ALERTA_PROTOCOLO
               INNER JOIN dbamv.PW_ALERTA_PROTOCOLO ap
               ON ap.CD_ALERTA_PROTOCOLO = cp.CD_ALERTA_PROTOCOLO
 
-              WHERE CD_PACIENTE = $id ";
+              WHERE CD_PACIENTE = $id 
+              and cp.dt_fim is null";
 
 
 
