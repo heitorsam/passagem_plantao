@@ -62,31 +62,48 @@
 
     oci_execute($result_t);
 
-    oci_execute($result_e);
-    
+    oci_execute($result_e);    
+
     oci_execute($result_p);
-    ;
     
 ?>
-<div class="row">
-    <div class="row col-md-5" style="padding: 0px !important; border-color: #ccbd9d; border: solid 5px #ccbd9d;background-color: #927151;font-size: 12px">
-        <div class="col-md-12" style="text-align: center !important; border-color: #ccbd9d; border: solid 5px #ccbd9d;background-color: #ccbd9d; font-size: 15px !important">Hemodialise</div>
 
-        <?php
-            while($row_h = oci_fetch_array($result_h)){
+<div class="row" style="width: 100%; margin: 0 auto;">
 
-                echo '<div class="align-middle col-md-3" style="background-color:'. $row_h['COR'] .';color: #fff;border: solid 5px #927151  !important"></br>' . $row_h['DATA'];
-                ?>
-                <a class="btn" style="background-color: <?php echo $row_h['COR'] ?> !important;color: #fff !important;border-color:<?php echo $row_h['COR'] ?> !important" onclick="ajax_apagar_anotacao('<?php echo $row_h['CD'] ?>')">
-                <i class="fas fa-trash"></i></a> 
-                <?php
-                echo $row_h['CD_LEITO'] .' - '. $row_h['NM_PACIENTE'] .'</br>';
-                echo $row_h['OBS'] .'</br>';
-                echo '</br>';
-                echo '</div>';
-            }
-                        
-        ?>
+    <div class="col-md-5 quadro_categorias">   
+
+    <div style="font-size: 20px; border-bottom: solid 1px #3185c1; border-bottom-style: dashed; text-align: center; color: #3d3d3d;"> Hemodinâmica </div>
+
+        <div class="row">
+            
+            </br></br></br>
+</br></br></br>
+
+            <?php
+
+                while($row_h = oci_fetch_array($result_h)){
+
+                    echo '<div class="align-middle col-md-4 quadro_post_it" style="background-color:'. $row_h['COR'] .'">';
+                    
+                        echo "<div class='quadro_pin'> <i class='fas fa-map-pin'></i> </div>";
+            ?>
+
+                        <a class="btn" style="color: #fff; font-size: 10px;" onclick="ajax_apagar_anotacao('<?php echo $row_h['CD'] ?>')">
+                            <i class="fas fa-times"></i>
+                        </a> 
+
+            <?php
+                        echo '</br>' . $row_h['DATA'];
+                        echo $row_h['CD_LEITO'] .' - '. $row_h['NM_PACIENTE'] .'</br>';
+                        echo $row_h['OBS'] .'</br>';
+                        echo '</br>';                    
+
+                    echo '</div>';
+                }
+                            
+            ?>
+
+        </div>
 
             
     </div>

@@ -17,12 +17,12 @@ include 'conexao.php';
 
     <div class='col-md-3'>
 
-            Unidade de Internação
-            <select class='form-control' id="unid_int">
-                
-                <?php include 'configuracao/consulta_unid_int_hs.php'; ?>
+        Unidade de Internação
+        <select class='form-control' id="unid_int">
+            
+            <?php include 'configuracao/consulta_unid_int_hs.php'; ?>
 
-            </select>
+        </select>
                     
     </div>
 
@@ -34,15 +34,19 @@ include 'conexao.php';
     </div>
 
 </div>
+
 </br>
 
 <div id="div_input"></div>
+
 </br>
+
 <div id="div_tabela"></div>
-</div>
+
+
 <?php
 
-include 'rodape.php';
+    include 'rodape.php';
 
 ?>
 

@@ -852,4 +852,37 @@ h99{
   color: #000000 !important;
 }
 
+.quadro_categorias{
+    
+    border-radius: 2px; 
+    padding: 6px 20px 6px 20px !important; 
+    border-color: #ccbd9d; 
+    border: solid 2px #3185c1; 
+    font-size: 12px;
+    background-color: #ffffff;
+
+} 
+
+.quadro_post_it {
+    
+    color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0px 6px 0px 0px;
+    -ms-transform: rotate(-2deg); /* IE 9 */
+    transform: rotate(-2deg);
+
+
+} 
+
+.quadro_pin {
+
+    font-size: 14px;
+    text-align: center;
+    -ms-transform: rotate(30deg); /* IE 9 */
+    transform: rotate(30deg);
+
+
+} 
+
 </style>
