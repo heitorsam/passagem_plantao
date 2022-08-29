@@ -68,14 +68,15 @@
         Cor:
         <select class="form-control tp_quadro" id="slct_cor" onchange="fnc_cor()">
             <option style="background-color: #fff; color: #000" value="#fff"></option>
-            <option style="background-color: #0074c1; color: #fff" value="#0074c1"></option>
-            <option style="background-color: #03d006; color: #fff" value="#03d006"></option>
-            <option style="background-color: #becb0c; color: #fff" value="#becb0c"></option>
-            <option style="background-color: #e00353; color: #fff" value="#e00353"></option>
-            <option style="background-color: #f83905; color: #fff" value="#f83905"></option>
-            <option style="background-color: #0174a0; color: #fff" value="#0174a0"></option>
-            <option style="background-color: #da4c68; color: #fff" value="#da4c68"></option>
-            <option style="background-color: #8c3067; color: #fff" value="#8c3067"></option>
+            <option style="background-color: #dae0fc;" value="#dae0fc"></option>
+            <option style="background-color: #dbedfb;" value="#dbedfb"></option>
+            <option style="background-color: #aae4ff;" value="#aae4ff"></option>
+            <option style="background-color: #c5f0e6;" value="#c5f0e6"></option>
+            <option style="background-color: #fbf994;" value="#fbf994"></option>
+            <option style="background-color: #ffd92d;" value="#ffd92d"></option>
+            <option style="background-color: #facde2;" value="#facde2"></option>
+            <option style="background-color: #ffd9ac;" value="#ffd9ac"></option>
+            <option style="background-color: #f4a9a4;" value="#f4a9a4"></option>
         </select>
     </div>
 </div>
@@ -118,7 +119,6 @@
                     document.getElementById('inpt_paciente').value = dataResult;
                     document.getElementById('inpt_cd_paciente').value = dataResult;
                     
-
                 },
                 
             })

@@ -98,23 +98,27 @@ include 'conexao.php';
     }
 
     function ajax_apagar_tipo(cd){
-        $.ajax({
-            url: "funcoes/tipo/ajax_apagar_tipo.php",
-            type: "POST",
-            data: {
-                cd: cd
-                },
-            cache: false,
-            success: function(dataResult){   
-                console.log(dataResult)
-                if(dataResult == '0'){
-                    alert('Existe uma anotação vinculada a esse tipo!')
-                }
-                ajax_tabela()
+        var resultado = confirm("Deseja apagar esse tipo?");
 
-            },
-            
-        })
+        if(resultado == true){
+            $.ajax({
+                url: "funcoes/tipo/ajax_apagar_tipo.php",
+                type: "POST",
+                data: {
+                    cd: cd
+                    },
+                cache: false,
+                success: function(dataResult){   
+                    console.log(dataResult)
+                    if(dataResult == '0'){
+                        alert('Existe uma anotação vinculada a esse tipo!')
+                    }
+                    ajax_tabela()
+
+                },
+                
+            })
+        }
     }
 
 </script>

@@ -134,20 +134,25 @@ include 'conexao.php';
     }
 
     function ajax_apagar_anotacao(cd){
-        $.ajax({
-            url: "funcoes/quadros/ajax_apagar_anotacao.php",
-            type: "POST",
-            data: {
-                cd: cd
-                },
-            cache: false,
-            success: function(dataResult){   
-                console.log(dataResult);
-                ajax_tabela(unid_int)
 
-            },
-            
-        })
+        var resultado = confirm("Deseja apagar essa anotação?");
+
+        if(resultado == true){
+            $.ajax({
+                url: "funcoes/quadros/ajax_apagar_anotacao.php",
+                type: "POST",
+                data: {
+                    cd: cd
+                    },
+                cache: false,
+                success: function(dataResult){   
+                    console.log(dataResult);
+                    ajax_tabela(unid_int)
+
+                },
+                
+            })
+        }
     }
 
 

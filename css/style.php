@@ -865,12 +865,13 @@ h99{
 
 .quadro_post_it {
     
-    color: #fff;
+    color: #000;
     border-radius: 2px;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 0px 6px 0px 0px;
     -ms-transform: rotate(-2deg); /* IE 9 */
     transform: rotate(-2deg);
+    margin: 10px !important;
 
 
 } 
