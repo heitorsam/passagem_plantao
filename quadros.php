@@ -79,6 +79,7 @@ include 'conexao.php';
     function ajax_tabela_t_h(){
         var var_leito = document.getElementById('input_valor_leito')
         var var_paciente = document.getElementById('inpt_paciente')
+        var var_cd_paciente = document.getElementById('inpt_cd_paciente')
         var var_tipo = document.getElementById('slct_tipo')
         var var_cor = document.getElementById('slct_cor')
         var var_observacao = document.getElementById('inpt_observacao')
@@ -97,7 +98,8 @@ include 'conexao.php';
                                     tipo: var_tipo.value,
                                     cor: var_cor.value,
                                     obs: var_observacao.value,
-                                    dia: var_dia.value.replace('T',' ')
+                                    dia: var_dia.value.replace('T',' '),
+                                    cd_paciente: var_cd_paciente.value
                                     },
                                 cache: false,
                                 success: function(dataResult){   

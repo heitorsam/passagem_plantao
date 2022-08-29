@@ -44,6 +44,7 @@
                                     ON st.CD_SETOR = unid.CD_SETOR
                                     WHERE mi.CD_ATENDIMENTO IS NOT NULL
                                     AND mi.TP_MOV IN ('I','O')
+                                    
                         ) lt_set
                         ON atd.CD_ATENDIMENTO = lt_set.CD_ATENDIMENTO
                         INNER JOIN dbamv.PACIENTE pac

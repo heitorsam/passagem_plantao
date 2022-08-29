@@ -16,6 +16,8 @@
 
     $dia = $_POST['dia'];
 
+    $cd_paciente = $_POST['cd_paciente'];
+
     $nextval="SELECT passagem_plantao.seq_obs_quadro.NEXTVAL AS CD_ANOTACAO
                         FROM DUAL";
     $result_nextval = oci_parse($conn_ora,$nextval);
@@ -27,19 +29,10 @@
 
     $nextval = $row_nextval['CD_ANOTACAO'];
 
-    $consulta = "INSERT INTO passagem_plantao.QUADRO_ENF (CD_ANOTACAO, CD_LEITO, CD_PACIENTE, CD_UNID_INT, OBS, COR, DT_ANOTACAO, TP_ANOTACAO, CD_USUARIO_CADASTRO, HR_CADASTRO, CD_USUARIO_ULT_ALT, HR_ULT_ALT)
+    echo $consulta = "INSERT INTO passagem_plantao.QUADRO_ENF (CD_ANOTACAO, CD_LEITO, CD_PACIENTE, CD_UNID_INT, OBS, COR, DT_ANOTACAO, TP_ANOTACAO, CD_USUARIO_CADASTRO, HR_CADASTRO, CD_USUARIO_ULT_ALT, HR_ULT_ALT)
                     (SELECT $nextval AS CD_ANOTACAO,
                     '$leito' AS CD_LEITO,
-                    (SELECT DISTINCT pc.Cd_Paciente FROM dbamv.PACIENTE pc
-                    INNER JOIN dbamv.atendime at
-                        ON at.cd_paciente = pc.cd_paciente
-                    INNER JOIN dbamv.mov_int mov
-                        ON mov.cd_atendimento = at.cd_atendimento
-                    INNER JOIN dbamv.leito lt
-                    ON lt.cd_leito = mov.cd_leito
-                    WHERE at.dt_alta is null
-                    AND lt.ds_enfermaria = '$leito'
-                    AND lt.tp_ocupacao in ('I','O')) AS CD_PACIENTE,
+                    (SELECT pc.cd_paciente FROM dbamv.paciente pc where pc.nm_paciente = '$cd_paciente') AS CD_PACIENTE,
                     (SELECT lt.cd_unid_int FROM dbamv.LEITO lt
                         WHERE lt.ds_enfermaria = '$leito') AS CD_UNID_INT,
                     '$observacao' AS OBS,

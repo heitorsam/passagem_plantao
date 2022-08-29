@@ -43,6 +43,7 @@
     <div class="col-md-3">
         Paciente:
         <input type="text" id="inpt_paciente" disabled class="form-control">
+        <input type="hidden" id="inpt_cd_paciente" class="form-control">
     </div>
     <div class="col-md-2">
         Tipo:
@@ -115,6 +116,7 @@
                 success: function(dataResult){   
                     //alert(dataResult);
                     document.getElementById('inpt_paciente').value = dataResult;
+                    document.getElementById('inpt_cd_paciente').value = dataResult;
                     
 
                 },
