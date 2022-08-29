@@ -50,9 +50,8 @@
                         <?php 
                         echo '</br>' . $row['DATA'] . '</br>';
                         echo $row['CD_LEITO'] .' - '. $row['NM_PACIENTE'] .'</br>';
-                        echo $row['NM'] .'</br>';
-                        echo '<div class="row justify-content-center"><div class="col-md-6">'. $row['OBS'] .'</div>';                   
-                        echo '</div>';
+                        echo $row['NM'] .'</br></br>';
+                        echo $row['OBS']. '</br></br>';
  
                     echo '</div>';
                 }

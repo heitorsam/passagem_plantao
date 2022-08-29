@@ -11,7 +11,7 @@
 
     $ck_temp = $_GET['sn_reserva'];
 
-    echo $con_exibir_paciente="SELECT lt.ds_leito,
+    $con_exibir_paciente="SELECT lt.ds_leito,
                                 TO_CHAR(mi.hr_mov_int, 'DD/MM/YYYY'),
                                 pc.nm_paciente,
                                 pc.NM_PACIENTE,
@@ -75,7 +75,7 @@
 
                 echo'</tr>';
 
-                echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_ATENDIMENTO'] . '</td>';
+                echo '<td class="align-middle" style="text-align: center;">' . @$row_exibir_pac['CD_ATENDIMENTO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_PACIENTE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['NM_PACIENTE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['TP_SEXO'] . '</td>';
