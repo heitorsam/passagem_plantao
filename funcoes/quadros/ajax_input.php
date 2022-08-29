@@ -48,10 +48,19 @@
         Tipo:
         <select class="form-control tp_quadro" id="slct_tipo">
             <option value="">Selecione</option>
-            <option value="H">Hemodinanica</option>
-            <option value="T">Transporte</option>
-            <option value="E">Exames</option>
-            <option value="P">Procedimento</option>
+            <?php 
+                $consulta = "SELECT CD_TIPO AS CD, NM_TIPO AS NM FROM passagem_plantao.TIPOS_QUADRO";
+
+                $resultado = oci_parse($conn_ora, $consulta);               
+            
+                oci_execute($resultado);
+
+                while($row = oci_fetch_array($resultado)){
+                    echo '<option value='. $row['CD'] .'>'. $row['NM'] .'</option>';
+
+                }
+
+            ?>
         </select>
     </div>
     <div class="col-md-1">

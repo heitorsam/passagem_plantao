@@ -9,7 +9,8 @@ $consulta_iso ="SELECT resp.DS_RESPOSTA
                 INNER JOIN dbamv.SAE_RESPOSTA_HISTORICO_ENFERMG resp
                 ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                 WHERE sel.CD_PERGUNTA_HISTORICO IN (475, 419, 289, 343)
-                AND she.CD_ATENDIMENTO = $var_atd";
+                AND she.CD_ATENDIMENTO = $var_atd
+                ";
 
 
 

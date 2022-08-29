@@ -327,6 +327,26 @@ INCREMENT BY 1
 NOCACHE 
 NOCYCLE;
 
+-----CRIANDO TABELA TIPO QUADRO-----
+
+DROP TABLE passagem_plantao.tipos_quadros;
+
+create table tipos_quadros (
+       cd_tipo int,
+       nm_tipo varchar2(20),
+       CD_USUARIO_CADASTRO VARCHAR(20) NOT NULL,
+       HR_CADASTRO         TIMESTAMP NOT NULL,
+       CD_USUARIO_ULT_ALT  VARCHAR(20),
+       HR_ULT_ALT          TIMESTAMP
+       );
+
+DROP SEQUENCE passagem_plantao.SEQ_TIPO_QUADRO;
+
+CREATE SEQUENCE passagem_plantao.SEQ_TIPO_QUADRO
+START WITH 1
+INCREMENT BY 1
+NOCACHE 
+NOCYCLE;
 
 
 

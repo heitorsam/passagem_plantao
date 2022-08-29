@@ -51,7 +51,8 @@ $consulta_dieta ="SELECT DISTINCT tp.DS_TIP_PRESC
                                            INNER JOIN dbamv.ITPRE_MED aux_itpm
                                                ON aux_itpm.CD_PRE_MED = aux_pm.CD_PRE_MED
                                            WHERE aux_itpm.CD_TIP_ESQ IN ('DIE', 'JEJ')
-                                           AND aux_pm.CD_ATENDIMENTO = $var_atd)";
+                                           AND aux_pm.CD_ATENDIMENTO = $var_atd)
+                                           ";
 
 $result_consulta_dieta = oci_parse($conn_ora,$consulta_dieta);
 

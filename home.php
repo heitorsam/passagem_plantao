@@ -50,6 +50,9 @@
                     <a href="permissoes.php" class="botao_home btn-adm" type="submit"><i class="fa-solid fa-chart-bar"></i> Permissões</a>
                     <span class="espaco_pequeno"></span> 
 
+                    <a href="tipos.php" class="botao_home btn-adm" type="submit"><i class="fa-solid fa-note-sticky"></i> Tipos</a>
+                    <span class="espaco_pequeno"></span> 
+
                 <?php } ?>
 
             <div class="div_br"> </div>
