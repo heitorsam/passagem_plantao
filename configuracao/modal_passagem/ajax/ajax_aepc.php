@@ -125,7 +125,7 @@
         
     }else if($tipo == 'cir'){
         //A - Em Aviso / R - Realizada / C - Cancelada / G - Agendada / T - Controle de Checagem / P - Pre Agendamento
-        $consulta_obs = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') as dt,
+        $consulta_obs = "SELECT TO_CHAR(ac.dt_realizacao, 'DD/MM/YYYY HH24:MI') as dt,
                                 cir.DS_CIRURGIA as ds,
                                 CASE
                                     WHEN ac.TP_SITUACAO = 'R' THEN
@@ -139,17 +139,19 @@
                             WHERE ac.TP_SITUACAO = 'R'
                             AND ac.CD_ATENDIMENTO = $var_atd
                             ORDER BY dt desc";
-        $consulta_obs_null = "SELECT TO_CHAR(ac.dt_agendamento, 'DD/MM/YYYY HH24:MI') as dt,
-                                cir.DS_CIRURGIA as ds,
-                                CASE
+        $consulta_obs_null = "SELECT TO_CHAR(ag.dt_inicio_age_cir, 'DD/MM/YYYY HH24:MI') as dt,
+                                    cir.DS_CIRURGIA as ds,
+                                    CASE
                                     WHEN ac.TP_SITUACAO = 'G' THEN
                                     'Agendado'
-                                end as status
+                                    end as status
                             FROM dbamv.AVISO_CIRURGIA ac
                             INNER JOIN dbamv.CIRURGIA_AVISO ca
-                            ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
+                                ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
                             INNER JOIN dbamv.CIRURGIA cir
-                            ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
+                                ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
+                                INNER JOIN dbamv.age_cir ag
+                                ON ag.Cd_Aviso_Cirurgia = AC.CD_AVISO_CIRURGIA
                             WHERE ac.TP_SITUACAO = 'G'
                             AND ac.CD_ATENDIMENTO = $var_atd
                             ORDER BY dt desc";
