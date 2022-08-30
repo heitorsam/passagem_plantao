@@ -48,9 +48,9 @@
                     <div class="align-middle col-md-2 quadro_post_it" style="background-color: <?php echo $row['COR'] ?>">
                         <div class='quadro_pin' style='height: 24px; width: 24px; margin: 0 auto;'><img src='img/outros/pin_santa_casa_sjc.png'> </div>
                         <?php 
-                        echo '</br>' . $row['DATA'] . '</br>';
+                        echo '</br><b>' . $row['NM'] . '</b></br>';
+                        echo $row['DATA'] . '</br>';
                         echo $row['CD_LEITO'] .' - '. $row['NM_PACIENTE'] .'</br>';
-                        echo $row['NM'] .'</br></br>';
                         echo $row['OBS']. '</br></br>';
  
                     echo '</div>';
