@@ -14,9 +14,9 @@ $consulta_curativos="SELECT DISTINCT resp.DS_RESPOSTA
                      ";
 
 $result_consulta_curativos = oci_parse($conn_ora,$consulta_curativos);
-
-oci_execute($result_consulta_curativos);
-
+if(@$var_atd != ''){
+    oci_execute(@$result_consulta_curativos);
+}
 $contdor_while = 0;
 
 ?>
@@ -25,22 +25,28 @@ $contdor_while = 0;
 <div class='col-md-12' style='text-align:left'>
 
     Curativos/Lesões/Banhos:
-    <textarea class='textarea' style="width: 100%;" name='frm_cur_le_dre' readonly><?php while (@$row_curativos = oci_fetch_array($result_consulta_curativos)){
+    <textarea class='textarea' style="width: 100%;" name='frm_cur_le_dre' readonly><?php 
+    if($var_atd == null){  
+        echo 'Paciente sem atendimento'; 
+    }else{
+    
+        while (@$row_curativos = oci_fetch_array($result_consulta_curativos)){
 
 
-        if ($contdor_while == 0){
+            if ($contdor_while == 0){
 
-            echo $row_curativos['DS_RESPOSTA'];
+                echo @$row_curativos['DS_RESPOSTA'];
 
-        }else{
+            }else{
 
-            echo ' || ' . $row_curativos['DS_RESPOSTA'];
+                echo ' || ' . @$row_curativos['DS_RESPOSTA'];
+            }
+
+            $contdor_while = $contdor_while + 1;
+
+
+
         }
-
-        $contdor_while = $contdor_while + 1;
-
-
-
     }
     ?>
     </textarea>

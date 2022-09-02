@@ -14,9 +14,9 @@
                                                  AND hr_aux.CD_ATENDIMENTO = $var_atd)";
 
     $result_consulta_comorbi = oci_parse($conn_ora,$consulta_comorbi);
-
-    oci_execute($result_consulta_comorbi);
-
+    if(@$var_atd != ''){
+    oci_execute(@$result_consulta_comorbi);
+    }
     $contador_while = 0;
 
 ?>
@@ -25,20 +25,26 @@
 <div class='col-md-12' style='text-align:left'>
 
     Comorbidades:
-    <textarea class='textarea' rows="4" style="width: 100%;" name='frm_comorbidades' readonly><?php while (@$row_comorbi = oci_fetch_array($result_consulta_comorbi)){
+    <textarea class='textarea' rows="4" style="width: 100%;" name='frm_comorbidades' readonly><?php 
+    if($var_atd == null){ 
+        echo 'Paciente sem atendimento';
+    }else{
+    
+        while (@$row_comorbi = oci_fetch_array($result_consulta_comorbi)){
 
 
-        if ($contador_while == 0){
+            if ($contador_while == 0){
 
-            echo $row_comorbi['DS_RESPOSTA'];
+                echo @$row_comorbi['DS_RESPOSTA'];
 
-        }else{
+            }else{
 
-            echo '||' . $row_comorbi['DS_RESPOSTA'];
+                echo '||' . @$row_comorbi['DS_RESPOSTA'];
+            }
+
+            $contador_while = $contador_while + 1;
+
         }
-
-        $contador_while = $contador_while + 1;
-
     }
 
     ?>

@@ -11,10 +11,11 @@
 
 
     $result_consulta_diag = oci_parse($conn_ora,$consulta_diag);
+    if(@$var_atd != ''){
+        oci_execute(@$result_consulta_diag);
 
-    oci_execute($result_consulta_diag);
-
-    $row_diag = oci_fetch_array($result_consulta_diag);
+        $row_diag = oci_fetch_array($result_consulta_diag);
+    }
 
 ?>
 
@@ -24,7 +25,12 @@
     <div class='col-md-12' style='text-align:left'>
 
         Diagnostico:
-        <textarea class='textarea' style="width: 100%;" name='frm_diagnostico' readonly><?php echo $row_diag ['DS_DIAGNOSTICO']; ?></textarea>
+        <textarea class='textarea' style="width: 100%;" name='frm_diagnostico' readonly><?php 
+        if($var_atd == null){ 
+            echo 'Paciente sem atendimento'; 
+        }else{
+            echo @$row_diag ['DS_DIAGNOSTICO']; 
+        }?></textarea>
 
     </div>
 

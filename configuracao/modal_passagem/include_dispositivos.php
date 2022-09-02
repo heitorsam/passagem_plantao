@@ -14,9 +14,9 @@
                         ";
 
 $result_consulta_dispo = oci_parse($conn_ora,$consulta_dispo);
-
-oci_execute($result_consulta_dispo );
-
+if(@$var_atd != ''){
+    oci_execute(@$result_consulta_dispo );
+}
 $contad_while = 0;
 
 
@@ -26,20 +26,26 @@ $contad_while = 0;
     <div class='col-md-12' style='text-align:left'>
 
         Dispositivos
-        <textarea class='textarea' style="width: 100%;" name='frm_dispositivos' readonly><?php while (@$row_dispo = oci_fetch_array($result_consulta_dispo)){
+        <textarea class='textarea' style="width: 100%;" name='frm_dispositivos' readonly><?php 
+        if($var_atd == null){  
+            echo 'Paciente sem atendimento'; 
+        }else{
+        
+            while (@$row_dispo = oci_fetch_array($result_consulta_dispo)){
 
 
-            if ($contad_while == 0){
+                if ($contad_while == 0){
 
-                echo $row_dispo['DS_RESPOSTA'];
+                    echo @$row_dispo['DS_RESPOSTA'];
 
-            }else{
+                }else{
 
-                echo ' || ' . $row_dispo['DS_RESPOSTA'];
+                    echo ' || ' . @$row_dispo['DS_RESPOSTA'];
+                }
+
+                $contad_while = $contad_while + 1;
+
             }
-
-            $contad_while = $contad_while + 1;
-
         }
         ?>
         </textarea>

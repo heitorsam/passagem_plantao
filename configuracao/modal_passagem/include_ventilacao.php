@@ -16,9 +16,9 @@ $consulta_venti ="SELECT DISTINCT resp.DS_RESPOSTA
                   ";
 
 $result_consulta_venti = oci_parse($conn_ora,$consulta_venti);
-
-oci_execute($result_consulta_venti);
-
+if(@$var_atd != ''){
+    oci_execute(@$result_consulta_venti);
+}
 $con_while = 0;
 
 
@@ -28,20 +28,26 @@ $con_while = 0;
 <div class='col-md-12' style='text-align:left'>
 
     Ventilação:
-    <textarea class='textarea' style="width: 100%;" name='frm_ventilacao' readonly><?php while (@$row_venti = oci_fetch_array($result_consulta_venti)){
-
-    if ($con_while == 0){
-
-        echo $row_venti['DS_RESPOSTA'];
-
+    <textarea class='textarea' style="width: 100%;" name='frm_ventilacao' readonly><?php 
+    if($var_atd == null){ 
+         echo 'Paciente sem atendimento'; 
     }else{
 
-        echo ' || ' . $row_venti['DS_RESPOSTA'];
-    }
+        while (@$row_venti = oci_fetch_array($result_consulta_venti)){
 
-    $con_while = $con_while + 1;
+        if ($con_while == 0){
+
+            echo @$row_venti['DS_RESPOSTA'];
+
+        }else{
+
+            echo ' || ' . @$row_venti['DS_RESPOSTA'];
+        }
+
+        $con_while = $con_while + 1;
 
 
+        }
     }
 
     ?>

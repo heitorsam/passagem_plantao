@@ -15,9 +15,9 @@ $consulta_banho="SELECT DISTINCT resp.DS_RESPOSTA
 
 
 $result_consulta_banho = oci_parse($conn_ora,$consulta_banho);
-
-oci_execute($result_consulta_banho);
-
+if(@$var_atd != ''){
+    oci_execute(@$result_consulta_banho);
+}
 $contado_while = 0;
 
 
@@ -27,20 +27,24 @@ $contado_while = 0;
 <div class='col-md-12' style='text-align:left'>
 
     Eliminação:
-    <textarea class='textarea' style="width: 100%;" name='frm_eli_banho' readonly><?php while (@$row_ban = oci_fetch_array($result_consulta_banho)){
-
-    if ($contado_while == 0){
-
-        echo $row_ban['DS_RESPOSTA'];
-
+    <textarea class='textarea' style="width: 100%;" name='frm_eli_banho' readonly><?php 
+    if($var_atd == null){ 
+        echo 'Paciente sem atendimento'; 
     }else{
+        while (@$row_ban = oci_fetch_array($result_consulta_banho)){
+        
+            if ($contado_while == 0){
 
-        echo ' || ' . $row_ban['DS_RESPOSTA'];
-    }
+                echo @$row_ban['DS_RESPOSTA'];
 
-    $contado_while = $contado_while + 1;
+            }else{
 
+                echo ' || ' . @$row_ban['DS_RESPOSTA'];
+            }
 
+            $contado_while = $contado_while + 1;
+
+        }
     }
     ?>
     </textarea>

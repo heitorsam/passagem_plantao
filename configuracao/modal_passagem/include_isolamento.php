@@ -16,16 +16,15 @@ $consulta_iso ="SELECT resp.DS_RESPOSTA
 
 
                 $result_consulta_iso = oci_parse($conn_ora,$consulta_iso);
-
-                oci_execute($result_consulta_iso);
-
-                $row_iso = oci_fetch_array($result_consulta_iso);
-
+                if(@$var_atd != ''){
+                    oci_execute(@$result_consulta_iso);
+                    $row_iso = oci_fetch_array($result_consulta_iso);
+                }
 ?>
 
 <div class='col-md-12' style='text-align:left'>
 
     Isolamento:
-    <textarea class='textarea' rows="4" style="width: 100%;" name='frm_isolamento' readonly><?php echo @$row_iso ['DS_RESPOSTA']; ?></textarea>
+    <textarea class='textarea' rows="4" style="width: 100%;" name='frm_isolamento' readonly><?php if($var_atd == null){  echo 'Paciente sem atendimento'; }else{ echo @$row_iso ['DS_RESPOSTA']; }?></textarea>
 
 </div>
