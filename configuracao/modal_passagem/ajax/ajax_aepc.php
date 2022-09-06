@@ -212,9 +212,7 @@
                             AND ac.CD_ATENDIMENTO = $var_atd
                             ORDER BY dt desc";
     }
-
     if($var_atd != ''){
-
         $result_obs = oci_parse($conn_ora, @$consulta_obs);
         oci_execute(@$result_obs);
         if($tipo <> 'lab'){
