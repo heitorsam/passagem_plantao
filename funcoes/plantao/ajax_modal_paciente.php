@@ -17,7 +17,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
 <div class='fnd_azul'><i class="fas fa-book-medical"></i> Informações</div>
 
-                    <?php include '../../configuracao/modal_passagem/include_informacoes_gerais.php'; ?>
+                    <?php include '../../configuracao/modal_passagem/includes/include_informacoes_gerais.php'; ?>
 
                     <br>
 
@@ -25,9 +25,9 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_diagnostico.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_diagnostico.php'; ?>
 
-                        <?php include '../../configuracao/modal_passagem/include_isolamento.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_isolamento.php'; ?>
 
                     </div>
 
@@ -37,9 +37,9 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_alergias.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_alergias.php'; ?>
 
-                        <?php include '../../configuracao/modal_passagem/include_comorbidades.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_comorbidades.php'; ?>
 
                     </div>
 
@@ -49,7 +49,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_ventilacao.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_ventilacao.php'; ?>
 
                     </div>
 
@@ -59,7 +59,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_dieta_jejum.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_dieta_jejum.php'; ?>
 
                     </div>
 
@@ -69,7 +69,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_dispositivos.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_dispositivos.php'; ?>
 
                     </div>
 
@@ -79,7 +79,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_eli_banho.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_eli_banho.php'; ?>
 
                     </div>
 
@@ -90,7 +90,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_cur_le_dre.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_cur_le_dre.php'; ?>
 
                     </div>
 
@@ -100,7 +100,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_aepc.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_aepc.php'; ?>
 
                     </div>
 
@@ -110,7 +110,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_protocolos_c.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_protocolos_c.php'; ?>
 
                     </div>
 
@@ -120,7 +120,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <div class='row'>
 
-                        <?php include '../../configuracao/modal_passagem/include_obs_especiais.php'; ?>
+                        <?php include '../../configuracao/modal_passagem/includes/include_obs_especiais.php'; ?>
 
                     </div>
 

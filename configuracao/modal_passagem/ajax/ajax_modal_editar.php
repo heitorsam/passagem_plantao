@@ -352,7 +352,7 @@
 
     var cd_dur = '<?php echo $var_cod_dur ?>';
 
-    $('#div-paci-edit').load('configuracao/modal_passagem/ajax/ajax_paciente_e.php?cd_dur='+ cd_dur);
+    $('#div-paci-edit').load('configuracao/modal_passagem/ajax/obs_pac/ajax_paciente_e.php?cd_dur='+ cd_dur);
 
   };
 
@@ -360,7 +360,7 @@
 
     var cd_dur = '<?php echo $var_cod_dur ?>';
 
-    $('#div-inter-edit').load('configuracao/modal_passagem/ajax/ajax_inter_e.php?cd_dur='+ cd_dur);
+    $('#div-inter-edit').load('configuracao/modal_passagem/ajax/obs_inter/ajax_inter_e.php?cd_dur='+ cd_dur);
 
   };
 
@@ -374,7 +374,7 @@
 
     if(obs != ''){
         $.ajax({
-            url: "configuracao/modal_passagem/ajax/ajax_salvar_observacao_paci_e.php",
+            url: "configuracao/modal_passagem/ajax/obs_pac/ajax_salvar_observacao_paci_e.php",
             type: "POST",
             data: {
                 obs: obs,
@@ -383,7 +383,7 @@
             cache: false,
             success: function(dataResult){
                 document.getElementById('input_observacao_paci_e').value = '';
-                $('#div-paci-edit').load('configuracao/modal_passagem/ajax/ajax_paciente_e.php?cd_dur='+ cd_dur);
+                $('#div-paci-edit').load('configuracao/modal_passagem/ajax/obs_pac/ajax_paciente_e.php?cd_dur='+ cd_dur);
             }
         });   
     }else{
@@ -396,7 +396,7 @@
     resultado = confirm("Deseja excluir a observação?");
     if(resultado == true){
       $.ajax({
-        url: "configuracao/modal_passagem/ajax/ajax_apagar_observacao_paci.php",
+        url: "configuracao/modal_passagem/ajax/obs_pac/ajax_apagar_observacao_paci.php",
         type: "POST",
         data: {
             cd_obs
@@ -406,7 +406,7 @@
           var setor = document.getElementById('frm_unid').value;
           var data = document.getElementById('frm_dta').value;
         
-          $('#div-paci-edit').load('configuracao/modal_passagem/ajax/ajax_paciente_e.php?cd_dur='+ cd_dur);
+          $('#div-paci-edit').load('configuracao/modal_passagem/ajax/obs_pac/ajax_paciente_e.php?cd_dur='+ cd_dur);
         }
       });  
     }
@@ -419,7 +419,7 @@
 
     if(obs != ''){
         $.ajax({
-            url: "configuracao/modal_passagem/ajax/ajax_salvar_observacao_inter_e.php",
+            url: "configuracao/modal_passagem/ajax/obs_inter/ajax_salvar_observacao_inter_e.php",
             type: "POST",
             data: {
                 obs: obs,
@@ -428,7 +428,7 @@
             cache: false,
             success: function(dataResult){
                 document.getElementById('input_observacao_inter_e').value = '';
-                $('#div-inter-edit').load('configuracao/modal_passagem/ajax/ajax_inter_e.php?cd_dur='+ cd_dur);
+                $('#div-inter-edit').load('configuracao/modal_passagem/ajax/obs_inter/ajax_inter_e.php?cd_dur='+ cd_dur);
             }
         });   
     }else{
@@ -441,7 +441,7 @@
     resultado = confirm("Deseja excluir a observação?");
     if(resultado == true){
       $.ajax({
-        url: "configuracao/modal_passagem/ajax/ajax_apagar_observacao_inter.php",
+        url: "configuracao/modal_passagem/ajax/obs_inter/ajax_apagar_observacao_inter.php",
         type: "POST",
         data: {
             cd_obs
@@ -450,7 +450,7 @@
         success: function(dataResult){
           var setor = document.getElementById('frm_unid').value;
           var data = document.getElementById('frm_dta').value;
-          $('#div-inter-edit').load('configuracao/modal_passagem/ajax/ajax_inter_e.php?cd_dur='+ cd_dur);
+          $('#div-inter-edit').load('configuracao/modal_passagem/ajax/obs_inter/ajax_inter_e.php?cd_dur='+ cd_dur);
         }
       });  
     }

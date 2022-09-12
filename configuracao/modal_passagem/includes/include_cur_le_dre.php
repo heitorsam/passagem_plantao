@@ -10,7 +10,9 @@ $consulta_curativos="SELECT DISTINCT resp.DS_RESPOSTA
                      ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                      WHERE sel.CD_PERGUNTA_HISTORICO IN (232, 342, 460, 336, 337)
                      AND she.CD_ATENDIMENTO = $var_atd 
-                     AND TO_DATE('$var_exibir_dt','YYYY-MM-DD') BETWEEN TRUNC(she.DT_INICIO) and sysdate
+                     AND she.DT_INICIO = (SELECT MAX(sh.DT_INICIO)
+                          FROM dbamv.SAE_HISTORICO_ENFERMAGEM sh
+                         WHERE sh.cd_atendimento = $var_atd)
                      ";
 
 $result_consulta_curativos = oci_parse($conn_ora,$consulta_curativos);
@@ -24,7 +26,7 @@ $contdor_while = 0;
 
 <div class='col-md-12' style='text-align:left'>
 
-    Curativos/Lesões/Banhos:
+    Curativos/Lesões/Drenos:
     <textarea class='textarea' style="width: 100%;" name='frm_cur_le_dre' readonly><?php 
     if($var_atd == null){  
         echo 'Paciente sem atendimento'; 

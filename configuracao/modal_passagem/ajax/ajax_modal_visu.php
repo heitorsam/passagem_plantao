@@ -278,7 +278,7 @@
 
     var cd_dur = '<?php echo $var_cod_dur ?>';
 
-    $('#div-paci-edit').load('configuracao/modal_passagem/ajax/ajax_paciente_v.php?cd_dur='+ cd_dur);
+    $('#div-paci-edit').load('configuracao/modal_passagem/ajax/obs_pac/ajax_paciente_v.php?cd_dur='+ cd_dur);
 
   };
 
@@ -286,7 +286,7 @@
 
     var cd_dur = '<?php echo $var_cod_dur ?>';
 
-    $('#div-inter-edit').load('configuracao/modal_passagem/ajax/ajax_inter_v.php?cd_dur='+ cd_dur);
+    $('#div-inter-edit').load('configuracao/modal_passagem/ajax/obs_inter/ajax_inter_v.php?cd_dur='+ cd_dur);
 
   };
 

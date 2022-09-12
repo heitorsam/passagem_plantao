@@ -1,12 +1,12 @@
 <?php 
-    include '../../../conexao.php';
+    include '../../../../conexao.php';
 
     session_start();
 
     $cd_obs = $_POST['cd_obs'];
 
 
-    echo $cons_pp = "DELETE FROM passagem_plantao.OBSERVACAO_INTERCORRENCIA oe WHERE oe.CD_OBSERVACAO = $cd_obs";
+    echo $cons_pp = "DELETE FROM passagem_plantao.OBSERVACAO_ESPECIAL oe WHERE oe.CD_OBSERVACAO = $cd_obs";
 
     //UNIFICANDO CONSULTA COM A CONEXAO
     $result_pp = oci_parse($conn_ora,$cons_pp);

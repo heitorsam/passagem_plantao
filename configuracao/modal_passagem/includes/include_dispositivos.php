@@ -10,7 +10,9 @@
                         ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                         WHERE sel.CD_PERGUNTA_HISTORICO IN (2695, 341, 338, 342, 340)
                         AND she.CD_ATENDIMENTO = $var_atd
-                        AND TO_DATE('$var_exibir_dt','YYYY-MM-DD') BETWEEN TRUNC(she.DT_INICIO) and sysdate
+                        AND she.DT_INICIO = (SELECT MAX(sh.DT_INICIO)
+                          FROM dbamv.SAE_HISTORICO_ENFERMAGEM sh
+                         WHERE sh.cd_atendimento = $var_atd)
                         ";
 
 $result_consulta_dispo = oci_parse($conn_ora,$consulta_dispo);

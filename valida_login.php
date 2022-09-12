@@ -33,6 +33,12 @@
 																			FROM dbasgu.PAPEL_USUARIOS puia
 																			WHERE puia.CD_PAPEL = 383) THEN 'S' --ENFERMAGEM
 														ELSE 'N'
+													END SN_CALL_CENTER,
+													CASE
+														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
+																			FROM dbasgu.PAPEL_USUARIOS puia
+																			WHERE puia.CD_PAPEL = 388) THEN 'S' --PASSAGEM
+														ELSE 'N'
 													END SN_CALL_CENTER
 												FROM DUAL");																															
 												
@@ -54,6 +60,7 @@
 				echo $_SESSION['usuarioNome'] = $resultado[1];
 				echo $_SESSION['sn_administrador'] = $resultado[2];
 				echo $_SESSION['sn_enfermagem'] = $resultado[3];
+				echo $_SESSION['sn_passagem'] = $resultado[4];
 				header("Location: $pag_apos");
 			} else { 
 				$_SESSION['msgerro'] = $resultado[0] . '!';

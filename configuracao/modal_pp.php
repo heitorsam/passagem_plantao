@@ -402,7 +402,7 @@
     var setor = document.getElementById('frm_unid').value;
     var data = document.getElementById('frm_dta').value;
 
-    $('#div-paci').load('configuracao/modal_passagem/ajax/ajax_paciente.php?setor='+ setor+'&data='+data);
+    $('#div-paci').load('configuracao/modal_passagem/ajax/obs_pac/ajax_paciente.php?setor='+ setor+'&data='+data);
 
   };
 
@@ -410,7 +410,7 @@
     var setor = document.getElementById('frm_unid').value;
     var data = document.getElementById('frm_dta').value;
 
-    $('#div-inter').load('configuracao/modal_passagem/ajax/ajax_inter.php?setor='+ setor+'&data='+data);
+    $('#div-inter').load('configuracao/modal_passagem/ajax/obs_inter/ajax_inter.php?setor='+ setor+'&data='+data);
 
   };
 
@@ -424,7 +424,7 @@
     
     if(obs != ''){
         $.ajax({
-            url: "configuracao/modal_passagem/ajax/ajax_salvar_observacao_paci.php",
+            url: "configuracao/modal_passagem/ajax/obs_pac/ajax_salvar_observacao_paci.php",
             type: "POST",
             data: {
                 setor: setor,
@@ -433,7 +433,7 @@
             cache: false,
             success: function(dataResult){
                 document.getElementById('input_observacao_paci').value = '';
-                $('#div-paci').load('configuracao/modal_passagem/ajax/ajax_paciente.php?setor='+ setor +'&data='+data);
+                $('#div-paci').load('configuracao/modal_passagem/ajax/obs_pac/ajax_paciente.php?setor='+ setor +'&data='+data);
             }
         });   
     }else{
@@ -445,7 +445,7 @@
     resultado = confirm("Deseja excluir a observação?");
     if(resultado == true){
       $.ajax({
-        url: "configuracao/modal_passagem/ajax/ajax_apagar_observacao_paci.php",
+        url: "configuracao/modal_passagem/ajax/obs_pac/ajax_apagar_observacao_paci.php",
         type: "POST",
         data: {
             cd_obs
@@ -455,7 +455,7 @@
           var setor = document.getElementById('frm_unid').value;
           var data = document.getElementById('frm_dta').value;
 
-          $('#div-paci').load('configuracao/modal_passagem/ajax/ajax_paciente.php?setor='+ setor +'&data='+data);
+          $('#div-paci').load('configuracao/modal_passagem/ajax/obs_pac/ajax_paciente.php?setor='+ setor +'&data='+data);
         }
       });  
     }
@@ -470,7 +470,7 @@
       
       if(obs != ''){
           $.ajax({
-              url: "configuracao/modal_passagem/ajax/ajax_salvar_observacao_inter.php",
+              url: "configuracao/modal_passagem/ajax/obs_inter/ajax_salvar_observacao_inter.php",
               type: "POST",
               data: {
                   setor: setor,
@@ -480,7 +480,7 @@
               success: function(dataResult){
                 
                   document.getElementById('input_observacao_inter').value = '';
-                  $('#div-inter').load('configuracao/modal_passagem/ajax/ajax_inter.php?setor='+ setor+'&data='+data);
+                  $('#div-inter').load('configuracao/modal_passagem/ajax/obs_inter/ajax_inter.php?setor='+ setor+'&data='+data);
               }
           });   
       }else{
@@ -492,7 +492,7 @@
       resultado = confirm("Deseja excluir a observação?");
       if(resultado == true){
         $.ajax({
-          url: "configuracao/modal_passagem/ajax/ajax_apagar_observacao_inter.php",
+          url: "configuracao/modal_passagem/ajax/obs_inter/ajax_apagar_observacao_inter.php",
           type: "POST",
           data: {
               cd_obs
@@ -501,7 +501,7 @@
           success: function(dataResult){
             var setor = document.getElementById('frm_unid').value;
             var data = document.getElementById('frm_dta').value;
-            $('#div-inter').load('configuracao/modal_passagem/ajax/ajax_inter.php?setor='+ setor+'&data='+data);
+            $('#div-inter').load('configuracao/modal_passagem/ajax/obs_inter/ajax_inter.php?setor='+ setor+'&data='+data);
           }
         });  
       }

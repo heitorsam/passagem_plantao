@@ -1,12 +1,5 @@
 <?php 
-    include '../../../conexao.php';
-
-
-?>
-
-
-<?php 
-    include '../../../conexao.php';
+    include '../../../../conexao.php';
 
     session_start();
 

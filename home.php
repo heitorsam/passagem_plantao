@@ -4,7 +4,9 @@
 
     include 'conexao.php';
 
-    $var_sn_adm = @$_SESSION['sn_administrador'];
+    $var_sn_adm = $_SESSION['sn_administrador'];
+
+    $var_sn_pas = $_SESSION['sn_passagem'];
 
 ?>
 
@@ -22,13 +24,13 @@
                 <h11><i class="far fa-calendar-alt"></i> Passagem Plantão</h11>
 
                 <div class="div_br"> </div>
-
-                    <a href="passagem_plantao.php" class="botao_home" type="submit"><i class="far fa-clipboard"></i> Passagem Plantão</a>
-                    <span class="espaco_pequeno"></span> 
-                    
-                    <a href="historico_pp.php" class="botao_home" type="submit"><i class="fa-solid fa-list"></i> Histórico Plantão</a>
-                    <span class="espaco_pequeno"></span> 
-
+                    <?php if($var_sn_pas == 'S'){ ?>
+                        <a href="passagem_plantao.php" class="botao_home" type="submit"><i class="far fa-clipboard"></i> Passagem Plantão</a>
+                        <span class="espaco_pequeno"></span> 
+                        
+                        <a href="historico_pp.php" class="botao_home" type="submit"><i class="fa-solid fa-list"></i> Histórico Plantão</a>
+                        <span class="espaco_pequeno"></span> 
+                    <?php } ?>
                     <a href="quadros.php" class="botao_home" type="submit"><i class="fa-solid fa-table"></i> Quadro</a>
                     <span class="espaco_pequeno"></span> 
 

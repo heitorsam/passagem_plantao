@@ -10,7 +10,9 @@ $consulta_banho="SELECT DISTINCT resp.DS_RESPOSTA
                  ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                  WHERE sel.CD_PERGUNTA_HISTORICO IN (472, 367, 219)
                  AND she.CD_ATENDIMENTO = $var_atd 
-                 AND TO_DATE('$var_exibir_dt','YYYY-MM-DD') BETWEEN TRUNC(she.DT_INICIO) and sysdate
+                 AND she.DT_INICIO = (SELECT MAX(sh.DT_INICIO)
+                          FROM dbamv.SAE_HISTORICO_ENFERMAGEM sh
+                         WHERE sh.cd_atendimento = $var_atd)
                  ";
 
 

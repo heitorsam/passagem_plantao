@@ -13,7 +13,7 @@
 <script>
 
     $(document).ready(function() {
-        $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/ajax_tabela_obs_especial.php?id='+ <?php echo $id ?>);
+        $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/obs/ajax_tabela_obs_especial.php?id='+ <?php echo $id ?>);
     });
 
     function salvar_observacao(id){
@@ -22,7 +22,7 @@
         
         if(obs != ''){
             $.ajax({
-                url: "configuracao/modal_passagem/ajax/ajax_salvar_observacao.php",
+                url: "configuracao/modal_passagem/ajax/obs/ajax_salvar_observacao.php",
                 type: "POST",
                 data: {
                     id: id,
@@ -32,7 +32,7 @@
                 success: function(dataResult){
 
                     document.getElementById('input_observacao').value = '';
-                    $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/ajax_tabela_obs_especial.php?id='+ id);
+                    $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/obs/ajax_tabela_obs_especial.php?id='+ id);
                 }
             });   
         }else{
@@ -44,14 +44,14 @@
         resultado = confirm("Deseja excluir a observação?");
         if(resultado == true){
             $.ajax({
-                url: "configuracao/modal_passagem/ajax/ajax_apagar_observacao.php",
+                url: "configuracao/modal_passagem/ajax/obs/ajax_apagar_observacao.php",
                 type: "POST",
                 data: {
                     cd_obs
                     },
                 cache: false,
                 success: function(dataResult){
-                    $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/ajax_tabela_obs_especial.php?id='+ <?php echo $id ?>);
+                    $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/obs/ajax_tabela_obs_especial.php?id='+ <?php echo $id ?>);
                 }
             });  
         }
@@ -61,7 +61,7 @@
         resultado = confirm("Deseja mudar a situação?");
         if(resultado == true){
             $.ajax({
-                url: "configuracao/modal_passagem/ajax/ajax_situacao_observacao.php",
+                url: "configuracao/modal_passagem/ajax/obs/ajax_situacao_observacao.php",
                 type: "POST",
                 data: {
                     cd_obs,
@@ -69,7 +69,7 @@
                     },
                 cache: false,
                 success: function(dataResult){
-                    $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/ajax_tabela_obs_especial.php?id='+ <?php echo $id ?>);
+                    $('#div_tabela_obs').load('configuracao/modal_passagem/ajax/obs/ajax_tabela_obs_especial.php?id='+ <?php echo $id ?>);
                 }
             }); 
         } 
