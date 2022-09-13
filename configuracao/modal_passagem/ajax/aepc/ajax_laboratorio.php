@@ -36,13 +36,46 @@
                         AND pm.CD_ATENDIMENTO = $var_atd
                         AND itpm.CD_ITPRE_MED in
                             (SELECT hr.cd_itpre_med FROM dbamv.hritpre_cons hr WHERE hr.cd_itpre_med = itpm.cd_itpre_med)
-                        ORDER BY dt desc, tf.DS_TIP_FRE asc";
+                        AND itpm.CD_ITPRE_MED not in
+                            (SELECT distinct itpms.cd_itpre_med
+                            FROM dbamv.atendime atd
+                            INNER JOIN dbamv.PED_LAB pdl
+                                ON pdl.CD_ATENDIMENTO = atd.CD_ATENDIMENTO
+                            INNER JOIN dbamv.RES_EXA re
+                                ON re.CD_PED_LAB = pdl.CD_PED_LAB
+                            INNER JOIN dbamv.EXA_LAB exl
+                                ON exl.CD_EXA_LAB = re.CD_EXA_LAB
+                            INNER JOIN dbamv.ITPRE_MED itpms
+                                ON itpms.CD_PRE_MED = pdl.cd_pre_med
+                            WHERE atd.cd_atendimento = $var_atd
+                            AND itpms.cd_tip_esq = 'LAB')
+                        ORDER BY dt desc, tp.DS_TIP_PRESC asc";
         
+    $consulta_obs_resultado = "SELECT distinct TO_CHAR(pdl.dt_exame, 'DD/MM/YYYY HH24:MI') as dt, 
+                                                tp.DS_TIP_PRESC as ds
+                                                FROM dbamv.atendime atd
+                                            INNER JOIN dbamv.PED_LAB pdl
+                                                ON pdl.CD_ATENDIMENTO = atd.CD_ATENDIMENTO
+                                            INNER JOIN dbamv.RES_EXA re
+                                                ON re.CD_PED_LAB = pdl.CD_PED_LAB
+                                            INNER JOIN dbamv.EXA_LAB exl
+                                                ON exl.CD_EXA_LAB = re.CD_EXA_LAB
+                                            INNER JOIN dbamv.ITPRE_MED itpm
+                                                ON itpm.CD_PRE_MED = pdl.cd_pre_med
+                                            INNER JOIN dbamv.TIP_PRESC tp
+                                                ON tp.CD_TIP_PRESC = itpm.CD_TIP_PRESC
+                                            WHERE atd.cd_atendimento = $var_atd
+                                            AND itpm.cd_tip_esq = 'LAB'
+                                            AND itpm.CD_ITPRE_MED in (SELECT hr.cd_itpre_med FROM dbamv.hritpre_cons hr WHERE hr.cd_itpre_med = itpm.cd_itpre_med)
+                                            ORDER BY dt desc, tp.DS_TIP_PRESC asc";
+      
  
     $result_obs = oci_parse($conn_ora, $consulta_obs);
     $result_obs_realizado = oci_parse($conn_ora, $consulta_obs_realizado);
+    $result_obs_resultado = oci_parse($conn_ora, $consulta_obs_resultado);
     oci_execute($result_obs);
     oci_execute($result_obs_realizado);
+    oci_execute($result_obs_resultado);
         
 
 
@@ -150,11 +183,11 @@
 
             <?php
                 if($var_atd != null){
-                    while(@$row_dur_realizado = oci_fetch_array(@$result_obs_realizado)){
+                    while(@$row_dur_resultado = oci_fetch_array(@$result_obs_resultado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_realizado['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_realizado['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_resultado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_resultado['DS'] . '</td>';
 
                     echo'</tr>';
                     }
