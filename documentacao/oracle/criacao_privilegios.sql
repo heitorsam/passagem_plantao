@@ -52,6 +52,13 @@ GRANT SELECT ON dbamv.PW_CASO_PROTOCOLO TO passagem_plantao;
 GRANT SELECT ON dbamv.PW_ALERTA_PROTOCOLO TO passagem_plantao;
 GRANT SELECT ON dbamv.MOV_INT TO passagem_plantao;
 GRANT SELECT ON dbamv.SETOR TO passagem_plantao;
+GRANT SELECT ON dbamv.AGE_CIR TO passagem_plantao;
+GRANT SELECT ON dbamv.HRITPRE_CONS TO passagem_plantao;
+GRANT SELECT ON dbamv.PED_LAB TO passagem_plantao;
+GRANT SELECT ON dbamv.RES_EXA TO passagem_plantao;
+GRANT SELECT ON dbamv.EXA_LAB TO passagem_plantao;
+GRANT SELECT ON dbamv.TIP_ESQ TO passagem_plantao;
+
 
 
 
