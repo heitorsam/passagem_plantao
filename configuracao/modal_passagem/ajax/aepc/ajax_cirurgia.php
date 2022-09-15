@@ -8,12 +8,30 @@
 
     
     //A - Em Aviso / R - Realizada / C - Cancelada / G - Agendada / T - Controle de Checagem / P - Pre Agendamento
-    $consulta_obs = "SELECT TO_CHAR(ac.dt_realizacao, 'DD/MM/YYYY HH24:MI') as dt,
-                            cir.DS_CIRURGIA as ds,
+
+    $consulta_agendado = "SELECT TO_CHAR(ag.dt_inicio_age_cir, 'DD/MM/YYYY HH24:MI') AS dt,
+                                    cir.DS_CIRURGIA AS ds,
+                                    CASE
+                                        WHEN ac.TP_SITUACAO = 'G' THEN
+                                        'Agendado'
+                                    END AS STATUS
+                                FROM dbamv.AVISO_CIRURGIA ac
+                                INNER JOIN dbamv.CIRURGIA_AVISO ca
+                                ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
+                                INNER JOIN dbamv.CIRURGIA cir
+                                ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
+                                INNER JOIN dbamv.age_cir ag
+                                ON ag.Cd_Aviso_Cirurgia = AC.CD_AVISO_CIRURGIA
+                                WHERE ac.TP_SITUACAO = 'G'
+                                AND ac.CD_ATENDIMENTO = $var_atd
+                                ORDER BY dt DESC";
+
+    $consulta_realizado = "SELECT TO_CHAR(ac.dt_realizacao, 'DD/MM/YYYY HH24:MI') AS dt,
+                            cir.DS_CIRURGIA AS ds,
                             CASE
                                 WHEN ac.TP_SITUACAO = 'R' THEN
                                 'Realizado'
-                            end as status
+                            end AS status
                         FROM dbamv.AVISO_CIRURGIA ac
                         INNER JOIN dbamv.CIRURGIA_AVISO ca
                         ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
@@ -22,28 +40,13 @@
                         WHERE ac.TP_SITUACAO = 'R'
                         AND ac.CD_ATENDIMENTO = $var_atd
                         ORDER BY dt desc";
-    $consulta_obs_null = "SELECT TO_CHAR(ag.dt_inicio_age_cir, 'DD/MM/YYYY HH24:MI') as dt,
-                                cir.DS_CIRURGIA as ds,
-                                CASE
-                                WHEN ac.TP_SITUACAO = 'G' THEN
-                                'Agendado'
-                                end as status
-                        FROM dbamv.AVISO_CIRURGIA ac
-                        INNER JOIN dbamv.CIRURGIA_AVISO ca
-                            ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
-                        INNER JOIN dbamv.CIRURGIA cir
-                            ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
-                            INNER JOIN dbamv.age_cir ag
-                            ON ag.Cd_Aviso_Cirurgia = AC.CD_AVISO_CIRURGIA
-                        WHERE ac.TP_SITUACAO = 'G'
-                        AND ac.CD_ATENDIMENTO = $var_atd
-                        ORDER BY dt desc";
-    $consulta_obs_cancelado = "SELECT TO_CHAR(ac.dt_cancelamento, 'DD/MM/YYYY HH24:MI') as dt,
-                            cir.DS_CIRURGIA as ds,
+   
+    $consulta_cancelado = "SELECT TO_CHAR(ac.dt_cancelamento, 'DD/MM/YYYY HH24:MI') AS dt,
+                            cir.DS_CIRURGIA AS ds,
                             CASE
                                 WHEN ac.TP_SITUACAO = 'C' THEN
                                 'Cancelado'
-                            end as status
+                            end AS status
                         FROM dbamv.AVISO_CIRURGIA ac
                         INNER JOIN dbamv.CIRURGIA_AVISO ca
                         ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
@@ -52,12 +55,13 @@
                         WHERE ac.TP_SITUACAO = 'C'
                         AND ac.CD_ATENDIMENTO = $var_atd
                         ORDER BY dt desc";
-    $consulta_obs_g = "SELECT TO_CHAR(ac.dt_aviso_cirurgia, 'DD/MM/YYYY HH24:MI') as dt,
-                            cir.DS_CIRURGIA as ds,
+
+    $consulta_aviso = "SELECT TO_CHAR(ac.dt_aviso_cirurgia, 'DD/MM/YYYY HH24:MI') AS dt,
+                            cir.DS_CIRURGIA AS ds,
                             CASE
                                 WHEN ac.TP_SITUACAO = 'A' THEN
                                 'Em aviso'
-                            end as status
+                            end AS status
                         FROM dbamv.AVISO_CIRURGIA ac
                         INNER JOIN dbamv.CIRURGIA_AVISO ca
                         ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
@@ -66,12 +70,13 @@
                         WHERE ac.TP_SITUACAO = 'A'
                         AND ac.CD_ATENDIMENTO = $var_atd
                         ORDER BY dt desc";
-    $consulta_obs_T = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') as dt,
-                            cir.DS_CIRURGIA as ds,
+
+    $consulta_controle = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') AS dt,
+                            cir.DS_CIRURGIA AS ds,
                             CASE
                                 WHEN ac.TP_SITUACAO = 'T' THEN
                                 'Controle de checagem'
-                            end as status
+                            end AS status
                         FROM dbamv.AVISO_CIRURGIA ac
                         INNER JOIN dbamv.CIRURGIA_AVISO ca
                         ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
@@ -80,12 +85,13 @@
                         WHERE ac.TP_SITUACAO = 'T'
                         AND ac.CD_ATENDIMENTO = $var_atd
                         ORDER BY ac.DT_INICIO_CIRURGIA desc";
-    $consulta_obs_P = "SELECT TO_CHAR(ac.Dt_Pre_Agendamento, 'DD/MM/YYYY HH24:MI') as dt,
-                            cir.DS_CIRURGIA as ds,
+
+    $consulta_pre_agen = "SELECT TO_CHAR(ac.Dt_pre_Agendamento, 'DD/MM/YYYY HH24:MI') AS dt,
+                            cir.DS_CIRURGIA AS ds,
                             CASE
                                 WHEN ac.TP_SITUACAO = 'P' THEN
                                 'Pre agendado'
-                            end as status
+                            end AS status
                         FROM dbamv.AVISO_CIRURGIA ac
                         INNER JOIN dbamv.CIRURGIA_AVISO ca
                         ON ca.CD_AVISO_CIRURGIA = ac.CD_AVISO_CIRURGIA
@@ -96,21 +102,23 @@
                         ORDER BY dt desc";
     
 
-    $result_obs = oci_parse($conn_ora, @$consulta_obs);
-    oci_execute(@$result_obs);
-    
-    $result_obs_null = oci_parse($conn_ora, @$consulta_obs_null);
-    oci_execute(@$result_obs_null);
-    
+    $result_agendado = oci_parse($conn_ora, $consulta_agendado);
+    oci_execute($result_agendado);
 
-    $result_obs_cancelado = oci_parse($conn_ora, @$consulta_obs_cancelado);
-    oci_execute(@$result_obs_cancelado);
-    $result_obs_g = oci_parse($conn_ora, @$consulta_obs_g);
-    oci_execute(@$result_obs_g);
-    $result_obs_T = oci_parse($conn_ora, @$consulta_obs_T);
-    oci_execute(@$result_obs_T);
-    $result_obs_P = oci_parse($conn_ora, @$consulta_obs_P);
-    oci_execute(@$result_obs_P);
+    $result_realizado = oci_parse($conn_ora, $consulta_realizado);
+    oci_execute($result_realizado);
+    
+    $result_cancelado = oci_parse($conn_ora, $consulta_cancelado);
+    oci_execute($result_cancelado);
+    
+    $result_aviso = oci_parse($conn_ora, @$consulta_aviso);
+    oci_execute($result_aviso);
+    
+    $result_controle = oci_parse($conn_ora, @$consulta_controle);
+    oci_execute(@$result_controle);
+
+    $result_pre_agen = oci_parse($conn_ora, @$consulta_pre_agen);
+    oci_execute(@$result_pre_agen);
         
 
 
@@ -121,7 +129,7 @@
 
 <h11>Agendada</h11>
 
-<span class="espaco_pequeno" style="width: 6px"></span>
+<span class="espaco_penequeno" style="width: 6px"></span>
 <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">   
 
         <table class="table table-striped"  cellspacing="0" cellpadding="0">
@@ -140,12 +148,12 @@
 
             <?php
                 if($var_atd != null){
-                    while($row_dur_null = oci_fetch_array(@$result_obs_null)){
+                    while($row_agendado = oci_fetch_array($result_agendado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_null['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_null['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_null['STATUS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_agendado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_agendado['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_agendado['STATUS'] . '</td>';
                     echo'</tr>';
                     }
                 }     
@@ -161,7 +169,7 @@
 </br> 
 
 <h11>Realizado</h11>
-<span class="espaco_pequeno" style="width: 6px"></span>
+<span class="espaco_penequeno" style="width: 6px"></span>
 
 <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">
 
@@ -182,12 +190,12 @@
 
             <?php
                 if($var_atd != null){
-                    while(@$row_dur = oci_fetch_array(@$result_obs)){
+                    while($row_realizado = oci_fetch_array($result_realizado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['STATUS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_realizado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_realizado['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_realizado['STATUS'] . '</td>';
                         
                     echo'</tr>';
                     }
@@ -204,7 +212,7 @@
 
 </br> 
 <h11>Cancelado</h11>
-<span class="espaco_pequeno" style="width: 6px"></span>
+<span class="espaco_penequeno" style="width: 6px"></span>
 <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">   
 
         <table class="table table-striped"  cellspacing="0" cellpadding="0">
@@ -223,12 +231,12 @@
 
             <?php
                 if($var_atd != null){
-                    while($row_dur_cancelado = oci_fetch_array(@$result_obs_cancelado)){
+                    while($row_cancelado = oci_fetch_array($result_cancelado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_cancelado['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_cancelado['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_cancelado['STATUS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_cancelado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_cancelado['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_cancelado['STATUS'] . '</td>';
                     echo'</tr>';
                 }
                 }      
@@ -245,7 +253,7 @@
 
 </br> 
 <h11>Em aviso</h11>
-<span class="espaco_pequeno" style="width: 6px"></span>
+<span class="espaco_penequeno" style="width: 6px"></span>
 <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">   
 
         <table class="table table-striped"  cellspacing="0" cellpadding="0">
@@ -264,12 +272,12 @@
 
             <?php
                 if($var_atd != null){
-                    while($row_dur_g = oci_fetch_array(@$result_obs_g)){
+                    while($row_aviso = oci_fetch_array($result_aviso)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_g['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_g['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_g['STATUS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_aviso['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_aviso['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_aviso['STATUS'] . '</td>';
                     echo'</tr>';
                     }
                 }         
@@ -284,7 +292,7 @@
 </div>
 </br> 
 <h11>Controle de Checagem</h11>
-<span class="espaco_pequeno" style="width: 6px"></span>
+<span class="espaco_penequeno" style="width: 6px"></span>
 <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">   
 
         <table class="table table-striped"  cellspacing="0" cellpadding="0">
@@ -303,12 +311,12 @@
 
             <?php
                 if($var_atd != null){
-                    while($row_dur_T = oci_fetch_array($result_obs_T)){
+                    while($row_controle = oci_fetch_array($result_controle)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_T['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_T['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_T['STATUS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_controle['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_controle['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_controle['STATUS'] . '</td>';
                     echo'</tr>';
                     }
                 }            
@@ -323,7 +331,7 @@
 </div>
 </br> 
 <h11>Pré agendado</h11>
-<span class="espaco_pequeno" style="width: 6px"></span>
+<span class="espaco_penequeno" style="width: 6px"></span>
 <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">   
 
         <table class="table table-striped"  cellspacing="0" cellpadding="0">
@@ -342,12 +350,12 @@
 
             <?php
                 if($var_atd != null){
-                    while($row_dur_P = oci_fetch_array(@$result_obs_P)){
+                    while($row_pre_agen = oci_fetch_array($result_pre_agen)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_P['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_P['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_P['STATUS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_pre_agen['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_pre_agen['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_pre_agen['STATUS'] . '</td>';
                     echo'</tr>';
                     }
                 } 

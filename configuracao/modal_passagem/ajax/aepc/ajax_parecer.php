@@ -6,7 +6,7 @@
 
     $var_atd = $_GET['atend'];
 
-    $consulta_obs = "SELECT TO_CHAR(pm.dt_parecer, 'DD/MM/YYYY HH24:MI') as dt,
+    $consulta_solicitado = "SELECT TO_CHAR(pm.dt_parecer, 'DD/MM/YYYY HH24:MI') as dt,
                             esp.DS_ESPECIALID as ds,
                             pm.DS_SITUACAO as status
                         FROM dbamv.PAR_MED pm
@@ -16,7 +16,7 @@
                         AND pm.DS_SITUACAO = 'Realizado'
                         ORDER BY dt desc";
 
-    $consulta_obs_realizado = "SELECT TO_CHAR(pm.DT_SOLICITACAO, 'DD/MM/YYYY HH24:MI') as dt,
+    $consulta_realizado = "SELECT TO_CHAR(pm.DT_SOLICITACAO, 'DD/MM/YYYY HH24:MI') as dt,
                             esp.DS_ESPECIALID as ds,
                             pm.DS_SITUACAO as status
                         FROM dbamv.PAR_MED pm
@@ -26,7 +26,7 @@
                         AND pm.DS_SITUACAO = 'Solicitado'
                         ORDER BY dt desc";
 
-    $consulta_obs_cancelado = "SELECT TO_CHAR(pm.dt_cancelamento, 'DD/MM/YYYY HH24:MI') as dt,
+    $consulta_cancelado = "SELECT TO_CHAR(pm.dt_cancelamento, 'DD/MM/YYYY HH24:MI') as dt,
                                     esp.DS_ESPECIALID as ds,
                                     pm.DS_SITUACAO as status
                                 FROM dbamv.PAR_MED pm
@@ -38,15 +38,15 @@
     
     
 
-    $result_obs = oci_parse($conn_ora, @$consulta_obs);
-    oci_execute(@$result_obs);
+    $result_solicitado = oci_parse($conn_ora, $consulta_solicitado);
+    oci_execute($result_solicitado);
 
-    $result_obs_realizado = oci_parse($conn_ora, @$consulta_obs_realizado);
-    oci_execute(@$result_obs_realizado);
+    $result_realizado = oci_parse($conn_ora, $consulta_realizado);
+    oci_execute(@$result_realizado);
  
 
-    $result_obs_cancelado = oci_parse($conn_ora, @$consulta_obs_cancelado);
-    oci_execute(@$result_obs_cancelado);
+    $result_cancelado = oci_parse($conn_ora, @$consulta_cancelado);
+    oci_execute(@$result_cancelado);
        
 
 
@@ -75,12 +75,12 @@
 
     <?php
         if($var_atd != null){
-            while($row_dur_realizado = oci_fetch_array(@$result_obs_realizado)){
+            while($row_realizado = oci_fetch_array($result_realizado)){
 
             echo'<tr>';
-                echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_realizado['DT'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_realizado['DS'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_realizado['STATUS'] . '</td>';
+                echo '<td class="align-middle" style="text-align: center;">' . $row_realizado['DT'] . '</td>';
+                echo '<td class="align-middle" style="text-align: center;">' . $row_realizado['DS'] . '</td>';
+                echo '<td class="align-middle" style="text-align: center;">' . $row_realizado['STATUS'] . '</td>';
             echo'</tr>';
             }
         }     
@@ -118,15 +118,15 @@
 
             <?php
                 if($var_atd != null){
-                    while(@$row_dur = oci_fetch_array(@$result_obs)){
+                    while($row_solicitado = oci_fetch_array($result_solicitado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['DS'] . '</td>';
                         if($tipo == 'lab'){ 
-                            echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DS_TIP_FRE'] . '</td>';
+                            echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['DS_TIP_FRE'] . '</td>';
                         }else{ 
-                            echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['STATUS'] . '</td>';
+                            echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['STATUS'] . '</td>';
                         }
                     echo'</tr>';
                     }
@@ -161,12 +161,12 @@
 
             <?php
                 if($var_atd != null){
-                    while($row_dur_cancelado = oci_fetch_array(@$result_obs_cancelado)){
+                    while($row_cancelado = oci_fetch_array($result_cancelado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_cancelado['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_cancelado['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_cancelado['STATUS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_cancelado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_cancelado['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_cancelado['STATUS'] . '</td>';
                     echo'</tr>';
                 }
                 }      

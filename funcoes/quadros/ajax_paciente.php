@@ -4,7 +4,7 @@
 
     include '../../conexao.php';
 
-    $consulta= "SELECT DISTINCT pc.nm_paciente AS NM FROM dbamv.PACIENTE pc
+    $consulta = "SELECT DISTINCT pc.nm_paciente AS NM FROM dbamv.PACIENTE pc
                 INNER JOIN dbamv.atendime at
                     ON at.cd_paciente = pc.cd_paciente
                 INNER JOIN dbamv.mov_int mov

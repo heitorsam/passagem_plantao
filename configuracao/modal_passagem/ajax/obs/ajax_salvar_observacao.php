@@ -10,7 +10,7 @@
     $usuario = $_SESSION['usuarioLogin'];
 
 
-    echo $cons_pp = "INSERT INTO passagem_plantao.OBSERVACAO_ESPECIAL
+    echo $cons_insert = "INSERT INTO passagem_plantao.OBSERVACAO_ESPECIAL
                     SELECT passagem_plantao.seq_obs_especial.NEXTVAL CD_OBSERVACAO,
                     '$id' AS CD_PACIENTE,
                     '$usuario' AS CD_USUARIO_CRIACAO,
@@ -22,10 +22,10 @@
                     FROM DUAL";
 
     //UNIFICANDO CONSULTA COM A CONEXAO
-    $result_pp = oci_parse($conn_ora,$cons_pp);
+    $result_insert = oci_parse($conn_ora,$cons_insert);
 
     //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
-    oci_execute($result_pp);
+    oci_execute($result_insert);
 
 
 

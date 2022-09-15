@@ -27,9 +27,6 @@
     AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') = TO_CHAR(TO_DATE('$dt', 'YYYY-MM-DD'), 'DD-MM-YYYY')
     ORDER BY 6 ASC";
 
-    $result_obs = oci_parse($conn_ora, $consulta_obs);
-    oci_execute($result_obs);
-
     $consulta_obs_dt = "SELECT obs.cd_observacao,
         obs.cd_paciente,
         pc.cd_paciente,
@@ -44,6 +41,9 @@
     AND TO_CHAR(obs.hr_criacao, 'DD-MM-YYYY') < TO_CHAR(TO_DATE('$dt', 'YYYY-MM-DD'), 'DD-MM-YYYY')
     AND obs.sn_solucionado = 'N'
     ORDER BY 6 ASC";
+
+    $result_obs = oci_parse($conn_ora, $consulta_obs);
+    oci_execute($result_obs);
 
     $result_obs_dt = oci_parse($conn_ora, $consulta_obs_dt);
     oci_execute($result_obs_dt);
@@ -73,23 +73,23 @@
 
             <?php
 
-                while(@$row_dur = oci_fetch_array($result_obs)){
+                while($row_obs = oci_fetch_array($result_obs)){
 
                 echo'</tr>';
 
-                    echo '<td class="align-middle" style="text-align: center;">' . $row_dur['OBSERVACAO'] . '</td>';
-                    echo '<td class="align-middle" style="text-align: center;">' . $row_dur['CD_USUARIO_CRIACAO'] . ' </td>';
-                    echo '<td class="align-middle" style="text-align: center;">' . $row_dur['HR_CRIACAO'] . ' </td>';
-                    if($row_dur['SN_SOLUCIONADO'] == 'S'){ 
+                    echo '<td class="align-middle" style="text-align: center;">' . $row_obs['OBSERVACAO'] . '</td>';
+                    echo '<td class="align-middle" style="text-align: center;">' . $row_obs['CD_USUARIO_CRIACAO'] . ' </td>';
+                    echo '<td class="align-middle" style="text-align: center;">' . $row_obs['HR_CRIACAO'] . ' </td>';
+                    if($row_obs['SN_SOLUCIONADO'] == 'S'){ 
                         if($date == $dt){?>
                     
-                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>', 'N')" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
+                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_obs['CD_OBSERVACAO'] ?>', 'N')" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
                         <?php }else{ ?>
                             <td class="align-middle" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
                         <?php } 
                     }else{
                         if($date == $dt){?>
-                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>', 'S')" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
+                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_obs['CD_OBSERVACAO'] ?>', 'S')" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
                         <?php }else{ ?>
                             <td class="align-middle" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
 
@@ -99,31 +99,31 @@
                     if($date == $dt){
                         
                         echo '<td class="align-middle" style="text-align: center;">'; 
-                        if($usuario == $row_dur['CD_USUARIO_CRIACAO']){
+                        if($usuario == $row_obs['CD_USUARIO_CRIACAO']){
                     ?> 
-                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="apagar_observacao('<?php echo $row_obs['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
                         <?php }else{ ?>
-                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" disabled><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="apagar_observacao('<?php echo $row_obs['CD_OBSERVACAO'] ?>')" class="btn btn-adm" disabled><i class="fa-solid fa-trash"></i></button>
                         <?php }echo'</td>';
                     }
                 echo'</tr>';
                 }
 
-                while(@$row_dur_dt = oci_fetch_array($result_obs_dt)){
+                while($row_obs_dt = oci_fetch_array($result_obs_dt)){
 
                     echo'</tr>';
     
-                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_dt['OBSERVACAO'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_dt['CD_USUARIO_CRIACAO'] . ' </td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . $row_dur_dt['HR_CRIACAO'] . ' </td>';
-                        if($row_dur_dt['SN_SOLUCIONADO'] == 'S'){ ?>
-                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur_dt['CD_OBSERVACAO'] ?>', 'N')" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_obs_dt['OBSERVACAO'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_obs_dt['CD_USUARIO_CRIACAO'] . ' </td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_obs_dt['HR_CRIACAO'] . ' </td>';
+                        if($row_obs_dt['SN_SOLUCIONADO'] == 'S'){ ?>
+                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_obs_dt['CD_OBSERVACAO'] ?>', 'N')" style="text-align: center;"><i style="color: green;" class="fa-solid fa-check"></i></td>
                         <?php }else{ ?>
-                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_dur_dt['CD_OBSERVACAO'] ?>', 'S')" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
+                            <td class="align-middle" onclick="mudar_situacao('<?php echo $row_obs_dt['CD_OBSERVACAO'] ?>', 'S')" style="text-align: center;"><i style="color: red;" class="fa-solid fa-xmark"></i></td>
                         <?php }
                         if($adm == 'S'&& $date == $dt){
                             echo '<td class="align-middle" style="text-align: center;">'; ?> 
-                            <button type="button" onclick="apagar_observacao('<?php echo $row_dur_td['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="apagar_observacao('<?php echo $row_obs_dt['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
                             <?php echo'</td>';
                         }
                     echo'</tr>';

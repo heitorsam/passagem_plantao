@@ -6,7 +6,7 @@
     $var_atd = $_GET['atend'];
 
 
-    $consulta_obs = "SELECT TO_CHAR(pm.hr_pre_med, 'DD/MM/YYYY HH24:MI') as dt,
+    $consulta_prescrito = "SELECT TO_CHAR(pm.hr_pre_med, 'DD/MM/YYYY HH24:MI') as dt,
                             tp.DS_TIP_PRESC as ds, 
                             tf.DS_TIP_FRE
                         FROM dbamv.PRE_MED pm
@@ -21,7 +21,7 @@
                         AND itpm.CD_ITPRE_MED not in (SELECT hr.cd_itpre_med FROM dbamv.hritpre_cons hr)
                         ORDER BY dt desc, tf.DS_TIP_FRE asc";
 
-    $consulta_obs_realizado = "SELECT tp.DS_TIP_PRESC as ds,
+    $consulta_coletado = "SELECT tp.DS_TIP_PRESC as ds,
                             TO_CHAR(hrit.dh_medicacao, 'DD/MM/YYYY HH24:MI') as dt
                         FROM dbamv.PRE_MED pm
                         INNER JOIN dbamv.ITPRE_MED itpm
@@ -51,7 +51,7 @@
                             AND itpms.cd_tip_esq = 'LAB')
                         ORDER BY dt desc, tp.DS_TIP_PRESC asc";
         
-    $consulta_obs_resultado = "SELECT distinct TO_CHAR(pdl.dt_exame, 'DD/MM/YYYY HH24:MI') as dt, 
+    $consulta_resultado = "SELECT distinct TO_CHAR(pdl.dt_exame, 'DD/MM/YYYY HH24:MI') as dt, 
                                                 tp.DS_TIP_PRESC as ds
                                                 FROM dbamv.atendime atd
                                             INNER JOIN dbamv.PED_LAB pdl
@@ -70,12 +70,12 @@
                                             ORDER BY dt desc, tp.DS_TIP_PRESC asc";
       
  
-    $result_obs = oci_parse($conn_ora, $consulta_obs);
-    $result_obs_realizado = oci_parse($conn_ora, $consulta_obs_realizado);
-    $result_obs_resultado = oci_parse($conn_ora, $consulta_obs_resultado);
-    oci_execute($result_obs);
-    oci_execute($result_obs_realizado);
-    oci_execute($result_obs_resultado);
+    $result_prescrito = oci_parse($conn_ora, $consulta_prescrito);
+    $result_coletado = oci_parse($conn_ora, $consulta_coletado);
+    $result_resultado = oci_parse($conn_ora, $consulta_resultado);
+    oci_execute($result_prescrito);
+    oci_execute($result_coletado);
+    oci_execute($result_resultado);
         
 
 
@@ -105,12 +105,12 @@
 
             <?php
                 if($var_atd != null){
-                    while(@$row_dur = oci_fetch_array(@$result_obs)){
+                    while($row_prescrito = oci_fetch_array($result_prescrito)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DS'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur['DS_TIP_FRE'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_prescrito['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_prescrito['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_prescrito['DS_TIP_FRE'] . '</td>';
 
                     echo'</tr>';
                     }
@@ -144,11 +144,11 @@
 
             <?php
                 if($var_atd != null){
-                    while(@$row_dur_realizado = oci_fetch_array(@$result_obs_realizado)){
+                    while($row_coletado = oci_fetch_array($result_coletado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_realizado['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_realizado['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_coletado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_coletado['DS'] . '</td>';
 
                     echo'</tr>';
                     }
@@ -183,11 +183,11 @@
 
             <?php
                 if($var_atd != null){
-                    while(@$row_dur_resultado = oci_fetch_array(@$result_obs_resultado)){
+                    while($row_resultado = oci_fetch_array(@$result_resultado)){
 
                     echo'<tr>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_resultado['DT'] . '</td>';
-                        echo '<td class="align-middle" style="text-align: center;">' . @$row_dur_resultado['DS'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_resultado['DT'] . '</td>';
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_resultado['DS'] . '</td>';
 
                     echo'</tr>';
                     }

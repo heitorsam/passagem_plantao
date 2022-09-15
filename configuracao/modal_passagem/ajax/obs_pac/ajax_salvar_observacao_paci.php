@@ -10,7 +10,7 @@
     $setor = $_POST['setor'];
 
 
-    echo $cons_pp = "INSERT INTO passagem_plantao.OBSERVACAO_PACIENTE
+    echo $cons_insert = "INSERT INTO passagem_plantao.OBSERVACAO_PACIENTE
                     SELECT passagem_plantao.seq_obs_paciente.NEXTVAL CD_OBSERVACAO,
                     $setor AS CD_SETOR,
                     NULL AS CD_DURANTE,
@@ -20,10 +20,10 @@
                     FROM DUAL";
 
     //UNIFICANDO CONSULTA COM A CONEXAO
-    $result_pp = oci_parse($conn_ora,$cons_pp);
+    $result_insert = oci_parse($conn_ora,$cons_insert);
 
     //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
-    oci_execute($result_pp);
+    oci_execute($result_insert);
 
 
 

@@ -6,13 +6,13 @@
     $cd_obs = $_POST['cd_obs'];
 
 
-    echo $cons_pp = "DELETE FROM passagem_plantao.OBSERVACAO_ESPECIAL oe WHERE oe.CD_OBSERVACAO = $cd_obs";
+    echo $cons_delete = "DELETE FROM passagem_plantao.OBSERVACAO_ESPECIAL oe WHERE oe.CD_OBSERVACAO = $cd_obs";
 
     //UNIFICANDO CONSULTA COM A CONEXAO
-    $result_pp = oci_parse($conn_ora,$cons_pp);
+    $result_delete = oci_parse($conn_ora,$cons_delete);
 
     //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
-    oci_execute($result_pp);
+    oci_execute($result_delete);
 
 
 

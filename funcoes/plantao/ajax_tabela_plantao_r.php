@@ -11,14 +11,52 @@
 
     $ck_temp = $_GET['sn_reserva'];
 
+    $con_sub ="SELECT lt_set.CD_PACIENTE
+                        FROM dbamv.ATENDIME atd
+                        INNER JOIN (SELECT mi.CD_ATENDIMENTO,
+                                        atd.CD_PACIENTE,
+                                        mi.CD_LEITO,
+                                        mi.CD_LEITO_ANTERIOR,
+                                        lt.DS_LEITO,
+                                        unid.CD_UNID_INT,
+                                        unid.DS_UNID_INT,
+                                        st.CD_SETOR,
+                                        st.NM_SETOR,
+                                        lt.DS_RESUMO,
+                                        mi.HR_MOV_INT AS DT_ENTRADA,
+                                        NVL(NVL((SELECT MIN(HR_MOV_INT) - 1 / (24 * 60 * 60)
+                                                FROM MOV_INT
+                                                WHERE CD_ATENDIMENTO = mi.CD_ATENDIMENTO
+                                                    AND CD_LEITO_ANTERIOR = mi.CD_LEITO
+                                                    AND HR_MOV_INT >= mi.HR_MOV_INT),
+                                                atd.DT_ALTA),
+                                            SYSDATE) AS DT_SAIDA
+                                    FROM dbamv.MOV_INT mi
+                                INNER JOIN dbamv.LEITO lt
+                                    ON lt.CD_LEITO = mi.CD_LEITO
+                                INNER JOIN dbamv.ATENDIME atd
+                                    ON atd.CD_ATENDIMENTO = mi.CD_ATENDIMENTO
+                                INNER JOIN dbamv.UNID_INT unid
+                                    ON unid.CD_UNID_INT = lt.CD_UNID_INT
+                                INNER JOIN dbamv.SETOR st
+                                    ON st.CD_SETOR = unid.CD_SETOR
+                                WHERE mi.CD_ATENDIMENTO IS NOT NULL
+                                    AND mi.TP_MOV IN ('I', 'O')) lt_set
+                        ON atd.CD_ATENDIMENTO = lt_set.CD_ATENDIMENTO
+                        INNER JOIN dbamv.PACIENTE pac
+                        ON pac.CD_PACIENTE = lt_set.CD_PACIENTE
+                        INNER JOIN dbamv.UNID_INT uni
+                        ON uni.CD_UNID_INT = lt_set.CD_UNID_INT
+                        WHERE lt_set.CD_UNID_INT = $var_exibir_pp
+                        AND TRUNC(TO_DATE('$var_exibir_dt','YYYY-MM-DD')) BETWEEN TRUNC(lt_set.DT_ENTRADA) AND TRUNC(lt_set.DT_SAIDA)";
+
     $con_exibir_paciente="SELECT lt.ds_leito,
                                 TO_CHAR(mi.hr_mov_int, 'DD/MM/YYYY'),
-                                pc.nm_paciente,
-                                pc.NM_PACIENTE,
-                                pc.TP_SEXO,
-                                at.CD_PACIENTE,
-                                FLOOR((SYSDATE - pc.DT_NASCIMENTO) / 365.242199) AS IDADE,
-                                pc.NM_MAE,
+                                pac.NM_PACIENTE,
+                                pac.TP_SEXO,
+                                atd.CD_PACIENTE,
+                                FLOOR((SYSDATE - pac.DT_NASCIMENTO) / 365.242199) AS IDADE,
+                                pac.NM_MAE,
                                 lt.CD_LEITO,
                                 lt.DS_RESUMO,
                                 unid.DS_UNID_INT,
@@ -26,17 +64,18 @@
                             FROM dbamv.LEITO lt
                             INNER JOIN dbamv.MOV_INT mi
                             ON mi.cd_leito = lt.cd_leito
-                            INNER JOIN dbamv.atendime at
-                            ON mi.cd_atendimento = at.cd_atendimento
-                            INNER JOIN dbamv.paciente pc
-                            ON pc.cd_paciente = at.cd_paciente
+                            INNER JOIN dbamv.atendime atd
+                            ON mi.cd_atendimento = atd.cd_atendimento
+                            INNER JOIN dbamv.paciente pac
+                            ON pac.cd_paciente = atd.cd_paciente
                             INNER JOIN dbamv.UNID_INT unid
                             ON unid.CD_UNID_INT = lt.CD_UNID_INT
 
-                            WHERE lt.tp_situacao = 'A'
-                            AND lt.tp_ocupacao = 'R'
+                            WHERE mi.tp_mov = 'R'
                             AND lt.cd_unid_int = $var_exibir_pp
                             AND TO_CHAR(mi.hr_mov_int, 'YYYY-MM-DD') = '$var_exibir_dt'
+                            AND pac.cd_paciente not in ($con_sub)
+
                         ORDER BY lt.DS_RESUMO ASC";
 
     $result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);

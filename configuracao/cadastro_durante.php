@@ -30,7 +30,7 @@ $row_nextval = oci_fetch_array($result_nextval);
 
 $nextval = $row_nextval['CD_DURANTE'];
 
-echo $cons_pp = "INSERT INTO passagem_plantao.durante
+echo $cons_insert = "INSERT INTO passagem_plantao.durante
                     SELECT $nextval AS CD_DURANTE,
                     SYSDATE AS DT_PLANTAO,
                     '$var_frm_unid' AS CD_UNID_INT,
@@ -55,30 +55,30 @@ echo $cons_pp = "INSERT INTO passagem_plantao.durante
                     FROM DUAL";
 
 //UNIFICANDO CONSULTA COM A CONEXAO
-$result_pp = oci_parse($conn_ora,$cons_pp);
+$result_insert = oci_parse($conn_ora,$cons_insert);
 
 //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
-oci_execute($result_pp);
+oci_execute($result_insert);
 
-$cons_paciente = "UPDATE passagem_plantao.OBSERVACAO_PACIENTE op 
+$cons_update_paciente = "UPDATE passagem_plantao.OBSERVACAO_PACIENTE op 
                     SET op.CD_DURANTE = $nextval 
                     WHERE op.CD_USUARIO_CRIACAO = '$var_adc_user_log' 
                     AND TO_CHAR(op.hr_criacao, 'DD/MM/YYYY') = TO_CHAR(SYSDATE,'DD/MM/YYYY')
                     AND op.CD_DURANTE IS NULL";
 
-$result_paciente = oci_parse($conn_ora,$cons_paciente);
+$result_update_paciente = oci_parse($conn_ora,$cons_update_paciente);
 
 //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
-oci_execute($result_paciente);
+oci_execute($result_update_paciente);
 
-$cons_intercorrencia = "UPDATE passagem_plantao.OBSERVACAO_INTERCORRENCIA oi 
+$cons_update_intercorrencia = "UPDATE passagem_plantao.OBSERVACAO_INTERCORRENCIA oi 
                     SET oi.CD_DURANTE = $nextval 
                     WHERE oi.CD_USUARIO_CRIACAO = '$var_adc_user_log' 
                     AND TO_CHAR(oi.hr_criacao, 'DD/MM/YYYY') = TO_CHAR(SYSDATE,'DD/MM/YYYY')
                     AND oi.CD_DURANTE IS NULL";
 
-$result_intercorrencia = oci_parse($conn_ora,$cons_intercorrencia);
+$result_update_intercorrencia = oci_parse($conn_ora,$cons_update_intercorrencia);
 
 //EXECUTANDO A CONSULTA NA CONEXAO INFORMADA
-oci_execute($result_intercorrencia);
+oci_execute($result_update_intercorrencia);
 ?>

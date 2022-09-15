@@ -46,16 +46,16 @@
 
             <?php
 
-                while(@$row_dur = oci_fetch_array($result_obs)){
+                while($row_obs = oci_fetch_array($result_obs)){
 
                 echo'</tr>';
 
-                    echo '<td class="align-middle" style="text-align: center;">' . $row_dur['OBSERVACAO'] . '</td>';
-                    echo '<td class="align-middle" style="text-align: center;">' . $row_dur['CD_USUARIO_CRIACAO'] . ' </td>';
-                    echo '<td class="align-middle" style="text-align: center;">' . $row_dur['HR_CRIACAO'] . ' </td>';
-                    if($row_dur['CD_USUARIO_CRIACAO'] == $usuario){
+                    echo '<td class="align-middle" style="text-align: center;">' . $row_obs['OBSERVACAO'] . '</td>';
+                    echo '<td class="align-middle" style="text-align: center;">' . $row_obs['CD_USUARIO_CRIACAO'] . ' </td>';
+                    echo '<td class="align-middle" style="text-align: center;">' . $row_obs['HR_CRIACAO'] . ' </td>';
+                    if($row_obs['CD_USUARIO_CRIACAO'] == $usuario){
                         echo '<td class="align-middle" style="text-align: center;">'; ?> 
-                        <button type="button" onclick="apagar_observacao_inter('<?php echo $row_dur['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
+                        <button type="button" onclick="apagar_observacao_inter('<?php echo $row_obs['CD_OBSERVACAO'] ?>')" class="btn btn-adm" ><i class="fa-solid fa-trash"></i></button>
                         <?php echo'</td>';
                     }
                 echo'</tr>';

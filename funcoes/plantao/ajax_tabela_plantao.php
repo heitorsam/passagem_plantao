@@ -11,7 +11,7 @@
 
     $ck_temp = $_GET['sn_temp'];
 
-    $con_exibir_paciente="SELECT lt_set.CD_ATENDIMENTO,
+    echo $con_exibir_paciente="SELECT lt_set.CD_ATENDIMENTO,
                             lt_set.CD_PACIENTE,
                             pac.NM_PACIENTE,
                             pac.TP_SEXO,
