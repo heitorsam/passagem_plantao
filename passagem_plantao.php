@@ -86,7 +86,7 @@
 
     <div class="col-md-3">  
         <br>
-        <button type="submit" class="btn btn-primary" onclick="ajax_buscar_plantao()" >
+        <button type="submit" id="btn_pesquisa" class="btn btn-primary" onclick="ajax_buscar_plantao()" >
         <i class="fa-solid fa-magnifying-glass"></i>
         </button> 
         </br>                                
@@ -129,6 +129,7 @@
     function carregamento(count){
         count_carregamento = count_carregamento + count;
         if(count_carregamento == 2){
+            document.getElementById('btn_pesquisa').disabled = false
             document.getElementById('loader').style.display = "none";
             document.getElementById('div_durante').style.display = "block";
             document.getElementById('div_plantao').style.display = "block";
@@ -166,6 +167,7 @@
             document.getElementById('div_durante').style.display = "none";
             document.getElementById('div_plantao').style.display = "none";
             document.getElementById('loader').style.display = "inline-block";
+            document.getElementById('btn_pesquisa').disabled = true
             if(ck_reserva == 'S'){
                 $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao_r.php?data='+ data +'&unid_int='+ unid_int+'&sn_reserva='+ ck_reserva);
             }else{
@@ -263,7 +265,6 @@
                                                         },
                                                     cache: false,
                                                     success: function(dataResult){
-
                                                         $('#id_criar_dur').modal('hide');
                                                         $('.modal-backdrop').remove();
                                                         $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int);
