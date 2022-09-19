@@ -37,7 +37,7 @@
                                 ON pac.cd_paciente = atd.cd_paciente
                                 INNER JOIN dbamv.UNID_INT unid
                                 ON unid.CD_UNID_INT = lt.CD_UNID_INT
-                                INNER JOIN dbamv.especialid esp
+                                LEFT JOIN dbamv.especialid esp
                                 ON esp.cd_especialid = atd.cd_especialid
                                 WHERE mi.tp_mov = 'R'
                                 AND lt.cd_unid_int = $var_exibir_pp
