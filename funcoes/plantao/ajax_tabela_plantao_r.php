@@ -144,21 +144,14 @@
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_ESPECIALID'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_RESUMO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['DS_UNID_INT'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">';  
-                if(@$row_exibir_pac['CD_ATENDIMENTO'] == ''){
-                    echo '<button disabled type="button" class="btn btn-primary"> <i class="fa-solid fa-eye"></i>';
-                    
-                    
-                }else{   
-                    ?>
+                echo '<td class="align-middle" style="text-align: center;">';  ?>
                 <button type="button" class="btn btn-primary" onclick="modal_paciente('<?php echo $row_exibir_pac['CD_PACIENTE'] ?>', '<?php echo @$row_exibir_pac['CD_ATENDIMENTO'] ?>', '<?php echo $var_exibir_dt ?>')" data-toggle="modal" data-target="#modal_paciente">
                 <i class="fa-solid fa-eye"></i>
-                <?php } ?>
                 </button>
                     
 
                 <?php echo '</td>';
-             
+            
 
                     
 
