@@ -4,7 +4,7 @@
 
 
 
-    $var_atd = $_GET['atend'];
+    $var_atd = @$_GET['atend'];
 
     $consulta_solicitado = "SELECT TO_CHAR(pm.dt_parecer, 'DD/MM/YYYY HH24:MI') as dt,
                             esp.DS_ESPECIALID as ds,
@@ -39,14 +39,14 @@
     
 
     $result_solicitado = oci_parse($conn_ora, $consulta_solicitado);
-    oci_execute($result_solicitado);
+    @oci_execute(@$result_solicitado);
 
     $result_realizado = oci_parse($conn_ora, $consulta_realizado);
-    oci_execute(@$result_realizado);
+    @oci_execute(@$result_realizado);
  
 
     $result_cancelado = oci_parse($conn_ora, @$consulta_cancelado);
-    oci_execute(@$result_cancelado);
+    @oci_execute(@$result_cancelado);
        
 
 

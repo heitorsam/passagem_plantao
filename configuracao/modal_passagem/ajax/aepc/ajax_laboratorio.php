@@ -3,7 +3,7 @@
     include '../../../../conexao.php';
 
 
-    $var_atd = $_GET['atend'];
+    $var_atd = @$_GET['atend'];
 
 
     $consulta_prescrito = "SELECT TO_CHAR(pm.hr_pre_med, 'DD/MM/YYYY HH24:MI') as dt,
@@ -71,11 +71,13 @@
       
  
     $result_prescrito = oci_parse($conn_ora, $consulta_prescrito);
+    @oci_execute($result_prescrito);
+
     $result_coletado = oci_parse($conn_ora, $consulta_coletado);
-    $result_resultado = oci_parse($conn_ora, $consulta_resultado);
-    oci_execute($result_prescrito);
-    oci_execute($result_coletado);
-    oci_execute($result_resultado);
+    @oci_execute($result_coletado);
+
+    $result_resultado = oci_parse($conn_ora, $consulta_resultado);   
+    @oci_execute($result_resultado);
         
 
 

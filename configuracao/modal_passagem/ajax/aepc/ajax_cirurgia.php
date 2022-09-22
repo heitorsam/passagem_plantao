@@ -4,7 +4,7 @@
 
 
 
-    $var_atd = $_GET['atend'];
+    $var_atd = @$_GET['atend'];
 
     
     //A - Em Aviso / R - Realizada / C - Cancelada / G - Agendada / T - Controle de Checagem / P - Pre Agendamento
@@ -103,22 +103,22 @@
     
 
     $result_agendado = oci_parse($conn_ora, $consulta_agendado);
-    oci_execute($result_agendado);
+    @oci_execute($result_agendado);
 
     $result_realizado = oci_parse($conn_ora, $consulta_realizado);
-    oci_execute($result_realizado);
+    @oci_execute($result_realizado);
     
     $result_cancelado = oci_parse($conn_ora, $consulta_cancelado);
-    oci_execute($result_cancelado);
+    @oci_execute($result_cancelado);
     
-    $result_aviso = oci_parse($conn_ora, @$consulta_aviso);
-    oci_execute($result_aviso);
+    $result_aviso = oci_parse($conn_ora, $consulta_aviso);
+    @oci_execute($result_aviso);
     
-    $result_controle = oci_parse($conn_ora, @$consulta_controle);
-    oci_execute(@$result_controle);
+    $result_controle = oci_parse($conn_ora, $consulta_controle);
+    @oci_execute($result_controle);
 
-    $result_pre_agen = oci_parse($conn_ora, @$consulta_pre_agen);
-    oci_execute(@$result_pre_agen);
+    $result_pre_agen = oci_parse($conn_ora, $consulta_pre_agen);
+    @oci_execute($result_pre_agen);
         
 
 

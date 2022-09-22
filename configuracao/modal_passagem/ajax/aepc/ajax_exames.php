@@ -4,7 +4,7 @@
 
 
 
-    $var_atd = $_GET['atend'];
+    $var_atd = @$_GET['atend'];
 
 
     $consulta_laudado = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
@@ -87,14 +87,14 @@
    
 
     $result_laudado = oci_parse($conn_ora, $consulta_laudado);
-    oci_execute($result_laudado);
+    @oci_execute($result_laudado);
 
     $result_realizado = oci_parse($conn_ora, $consulta_realizado);
-    oci_execute($result_realizado);
+    @oci_execute($result_realizado);
     
 
     $result_ag = oci_parse($conn_ora, $consulta_ag);
-    oci_execute($result_ag);
+    @oci_execute($result_ag);
     
 
     
