@@ -11,44 +11,92 @@
 
     $ck_temp = $_GET['sn_reserva'];
 
-    $con_exibir_paciente="SELECT lt.ds_leito,
-                                    TO_CHAR(mi.hr_mov_int, 'DD/MM/YYYY HH24:MI') as entrada,
-                                    CASE
-                                    WHEN atd.cd_atendimento IS NULL THEN
-                                    'RESERVA SEM ATENDIMENTO'
-                                    ELSE
-                                    pac.NM_PACIENTE
-                                    END AS NM_PACIENTE,
-                                    pac.TP_SEXO,
-                                    pac.CD_PACIENTE,
-                                    FLOOR((SYSDATE - pac.DT_NASCIMENTO) / 365.242199) AS IDADE,
-                                    lt.CD_LEITO,
-                                    lt.DS_RESUMO,
-                                    unid.DS_UNID_INT,
-                                    lt.CD_UNID_INT,
-                                    mi.cd_atendimento,
-                                    esp.ds_especialid
-                                FROM dbamv.LEITO lt
-                                INNER JOIN dbamv.MOV_INT mi
-                                ON mi.cd_leito = lt.cd_leito
-                                LEFT JOIN dbamv.atendime atd
-                                ON atd.cd_atendimento = mi.cd_atendimento
-                                LEFT JOIN dbamv.paciente pac
-                                ON pac.cd_paciente = atd.cd_paciente
-                                INNER JOIN dbamv.UNID_INT unid
-                                ON unid.CD_UNID_INT = lt.CD_UNID_INT
-                                LEFT JOIN dbamv.especialid esp
-                                ON esp.cd_especialid = atd.cd_especialid
-                                WHERE mi.tp_mov = 'R'
-                                AND lt.cd_unid_int = $var_exibir_pp
-                                AND lt.tp_ocupacao = 'R'
-                                AND mi.cd_mov_int in (SELECT cd_mov_int
-                                                        FROM dbamv.mov_int
-                                                    WHERE TRUNC(dt_mov_int) between TRUNC(sysdate - 1) and
-                                                            TRUNC(sysdate)
-                                                        AND tp_mov = 'R')
-                                ORDER BY lt.DS_RESUMO ASC
-                                ";
+    $con_exibir_paciente="SELECT res.*
+                               FROM(
+                               
+                               --PACIENTES COM ATENDIMENTO
+                               
+                               SELECT 
+                               lt.DS_LEITO,
+                               TO_CHAR(mi.HR_MOV_INT, 'DD/MM/YYYY HH24:MI') as ENTRADA,
+                               CASE
+                               WHEN atd.CD_ATENDIMENTO IS NULL THEN
+                               'RESERVA SEM ATENDIMENTO'
+                               ELSE
+                               pac.NM_PACIENTE
+                               END AS NM_PACIENTE,
+                               pac.TP_SEXO,
+                               pac.CD_PACIENTE,
+                               FLOOR((SYSDATE - pac.DT_NASCIMENTO) / 365.242199) AS IDADE,
+                               lt.CD_LEITO,
+                               lt.DS_RESUMO,
+                               unid.DS_UNID_INT,
+                               lt.CD_UNID_INT,
+                               mi.CD_ATENDIMENTO,
+                               esp.DS_ESPECIALID
+                               FROM dbamv.LEITO lt
+                               
+                               INNER JOIN dbamv.MOV_INT mi
+                               ON mi.CD_LEITO = lt.CD_LEITO
+                               
+                               INNER JOIN dbamv.ATENDIME atd
+                               ON atd.CD_ATENDIMENTO = mi.CD_ATENDIMENTO
+                               
+                               LEFT JOIN dbamv.PACIENTE pac
+                               ON pac.CD_PACIENTE = atd.CD_PACIENTE
+                               
+                               INNER JOIN dbamv.UNID_INT unid
+                               ON unid.CD_UNID_INT = lt.CD_UNID_INT
+                               
+                               LEFT JOIN dbamv.ESPECIALID esp
+                               ON esp.CD_ESPECIALID = atd.CD_ESPECIALID
+                               
+                               WHERE mi.TP_MOV = 'R'
+                               AND lt.TP_OCUPACAO = 'R'
+                               AND mi.CD_MOV_INT IN (SELECT CD_MOV_INT
+                                                   FROM dbamv.MOV_INT
+                                                   WHERE TRUNC(DT_MOV_INT) BETWEEN TRUNC(SYSDATE - 1) and
+                                                   TRUNC(SYSDATE)
+                                                   AND TP_MOV = 'R')
+                               
+                               UNION ALL
+                               
+                               --PACIENTES SEM ATENDIMENTO
+                               
+                               SELECT
+                               lt.DS_LEITO,
+                               TO_CHAR(rl.DT_PREV_INTERNACAO, 'DD/MM/YYYY HH24:MI') as ENTRADA,
+                               pac.NM_PACIENTE,
+                               pac.TP_SEXO,
+                               pac.CD_PACIENTE,
+                               FLOOR((SYSDATE - pac.DT_NASCIMENTO) / 365.242199) AS IDADE,
+                               lt.CD_LEITO,
+                               lt.DS_RESUMO,
+                               unid.DS_UNID_INT,
+                               lt.CD_UNID_INT,
+                               rl.CD_ATENDIMENTO,
+                               esp.DS_ESPECIALID
+                               
+                               --SELECT *
+                               FROM RES_LEI rl
+                               
+                               LEFT JOIN dbamv.LEITO lt
+                               ON lt.CD_LEITO = rl.CD_LEITO
+                               
+                               LEFT JOIN dbamv.PACIENTE pac
+                               ON pac.CD_PACIENTE = rl.CD_PACIENTE
+                               
+                               LEFT JOIN dbamv.UNID_INT unid
+                               ON unid.CD_UNID_INT = lt.CD_UNID_INT
+                               
+                               LEFT JOIN dbamv.ESPECIALID esp
+                               ON esp.CD_ESPECIALID = rl.CD_ESPECIALID
+                                   
+                               WHERE rl.CD_ATENDIMENTO IS NULL
+                               AND SYSDATE BETWEEN rl.DT_RESERVA AND rl.DT_PREV_ALTA) res
+                               
+                               WHERE res.CD_UNID_INT = $var_exibir_pp
+                               ORDER BY res.NM_PACIENTE ASC";
 
     $result_exibir_pac = oci_parse($conn_ora,$con_exibir_paciente);
 

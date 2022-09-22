@@ -58,6 +58,7 @@ GRANT SELECT ON dbamv.PED_LAB TO passagem_plantao;
 GRANT SELECT ON dbamv.RES_EXA TO passagem_plantao;
 GRANT SELECT ON dbamv.EXA_LAB TO passagem_plantao;
 GRANT SELECT ON dbamv.TIP_ESQ TO passagem_plantao;
+GRANT SELECT ON dbamv.RES_LEI TO passagem_plantao;
 
 
 
