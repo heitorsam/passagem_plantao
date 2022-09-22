@@ -55,8 +55,7 @@
                                AND lt.TP_OCUPACAO = 'R'
                                AND mi.CD_MOV_INT IN (SELECT CD_MOV_INT
                                                    FROM dbamv.MOV_INT
-                                                   WHERE TRUNC(DT_MOV_INT) BETWEEN TRUNC(SYSDATE - 1) and
-                                                   TRUNC(SYSDATE)
+                                                   WHERE TRUNC(DT_MOV_INT) = TRUNC(SYSDATE)
                                                    AND TP_MOV = 'R')
                                
                                UNION ALL
