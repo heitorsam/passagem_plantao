@@ -13,8 +13,7 @@
 
     $con_exibir_paciente="SELECT res.*
                                FROM(
-                               
-                               --PACIENTES COM ATENDIMENTO
+
                                
                                SELECT 
                                lt.DS_LEITO,
@@ -57,11 +56,16 @@
                                                    FROM dbamv.MOV_INT
                                                    WHERE TRUNC(DT_MOV_INT) = TRUNC(SYSDATE)
                                                    AND TP_MOV = 'R')
+                                AND mi.CD_MOV_INT IN (SELECT MAX(CD_MOV_INT)
+                                FROM dbamv.MOV_INT
+                                WHERE CD_LEITO = mi.CD_LEITO)
+
+                                AND mi.CD_MOV_INT IN (SELECT MAX(CD_MOV_INT)
+                                FROM dbamv.MOV_INT                                 
+                                WHERE CD_ATENDIMENTO = atd.CD_ATENDIMENTO)
                                
                                UNION ALL
-                               
-                               --PACIENTES SEM ATENDIMENTO
-                               
+                                     
                                SELECT
                                lt.DS_LEITO,
                                TO_CHAR(rl.DT_PREV_INTERNACAO, 'DD/MM/YYYY HH24:MI') as ENTRADA,
@@ -76,8 +80,7 @@
                                rl.CD_ATENDIMENTO,
                                esp.DS_ESPECIALID
                                
-                               --SELECT *
-                               FROM RES_LEI rl
+                                  FROM RES_LEI rl
                                
                                LEFT JOIN dbamv.LEITO lt
                                ON lt.CD_LEITO = rl.CD_LEITO
