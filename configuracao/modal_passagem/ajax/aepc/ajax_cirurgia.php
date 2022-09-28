@@ -25,6 +25,7 @@
                                 WHERE ac.TP_SITUACAO = 'G'
                                 AND ac.CD_PACIENTE = $pac
                                 AND ac.cd_cen_cir = 1
+                                AND TRUNC(ag.dt_inicio_age_cir) >= TRUNC(SYSDATE -3)
                                 ORDER BY dt DESC";
 
     $consulta_realizado = "SELECT TO_CHAR(ac.dt_realizacao, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -41,6 +42,7 @@
                         WHERE ac.TP_SITUACAO = 'R'
                         AND ac.CD_PACIENTE = $pac
                         AND ac.cd_cen_cir = 1
+                        AND TRUNC(ac.dt_realizacao) >= TRUNC(SYSDATE -3)
                         ORDER BY dt desc";
    
     $consulta_cancelado = "SELECT TO_CHAR(ac.dt_cancelamento, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -57,6 +59,7 @@
                         WHERE ac.TP_SITUACAO = 'C'
                         AND ac.CD_PACIENTE = $pac
                         AND ac.cd_cen_cir = 1
+                        AND TRUNC(ac.dt_cancelamento) >= TRUNC(SYSDATE -3)
                         ORDER BY dt desc";
 
     $consulta_aviso = "SELECT TO_CHAR(ac.dt_aviso_cirurgia, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -73,6 +76,7 @@
                         WHERE ac.TP_SITUACAO = 'A'
                         AND ac.CD_PACIENTE = $pac
                         AND ac.cd_cen_cir = 1
+                        AND TRUNC(ac.dt_aviso_cirurgia) >= TRUNC(SYSDATE -3)
                         ORDER BY dt desc";
 
     $consulta_controle = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -89,6 +93,7 @@
                         WHERE ac.TP_SITUACAO = 'T'
                         AND ac.CD_PACIENTE = $pac
                         AND ac.cd_cen_cir = 1
+                        AND TRUNC(ac.DT_INICIO_CIRURGIA) >= TRUNC(SYSDATE -3)
                         ORDER BY ac.DT_INICIO_CIRURGIA desc";
 
     $consulta_pre_agen = "SELECT TO_CHAR(ac.Dt_pre_Agendamento, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -105,6 +110,7 @@
                         WHERE ac.TP_SITUACAO = 'P'
                         AND ac.CD_PACIENTE = $pac
                         AND ac.cd_cen_cir = 1
+                        AND TRUNC(ac.Dt_pre_Agendamento) >= TRUNC(SYSDATE -3)
                         ORDER BY dt desc";
     
 
