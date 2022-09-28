@@ -123,11 +123,8 @@
                     echo'<tr>';
                         echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['DT'] . '</td>';
                         echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['DS'] . '</td>';
-                        if($tipo == 'lab'){ 
-                            echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['DS_TIP_FRE'] . '</td>';
-                        }else{ 
-                            echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['STATUS'] . '</td>';
-                        }
+                        echo '<td class="align-middle" style="text-align: center;">' . $row_solicitado['STATUS'] . '</td>';
+                        
                     echo'</tr>';
                     }
                 }        

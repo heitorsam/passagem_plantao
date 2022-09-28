@@ -7,7 +7,7 @@
     $var_atd = @$_GET['atend'];
 
 
-    echo $consulta_laudado = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
+    $consulta_laudado = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
                             tp.DS_TIP_PRESC as ds,
                             CASE
                             WHEN itrx.CD_LAUDO IS NOT NULL THEN
