@@ -1,6 +1,6 @@
 <?php
 
-$consulta_iso ="SELECT resp.DS_RESPOSTA
+    $consulta_iso ="SELECT resp.DS_RESPOSTA
                 FROM dbamv.SAE_HISTORICO_ENFERMAGEM she
                 INNER JOIN dbamv.SAE_RESP_SELCND_HIST_ENFERMG sel
                 ON sel.CD_HISTORICO_ENFERMAGEM = she.CD_HISTORICO_ENFERMAGEM
@@ -10,6 +10,9 @@ $consulta_iso ="SELECT resp.DS_RESPOSTA
                 ON sel.CD_RESPOSTA_HISTORICO = resp.CD_RESPOSTA
                 WHERE sel.CD_PERGUNTA_HISTORICO IN (475, 419, 289, 343)
                 AND she.CD_ATENDIMENTO = $var_atd
+                AND she.DT_INICIO = (SELECT MAX(sh.DT_INICIO)
+                          FROM dbamv.SAE_HISTORICO_ENFERMAGEM sh
+                         WHERE sh.cd_atendimento = $var_atd)
                 ";
 
 

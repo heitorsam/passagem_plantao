@@ -52,6 +52,7 @@
                                
                                WHERE mi.TP_MOV = 'R'
                                AND lt.TP_OCUPACAO = 'R'
+                               
                                AND mi.CD_MOV_INT IN (SELECT CD_MOV_INT
                                                    FROM dbamv.MOV_INT
                                                    WHERE TRUNC(DT_MOV_INT) = TRUNC(SYSDATE)

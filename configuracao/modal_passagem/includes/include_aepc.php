@@ -7,7 +7,7 @@
 
             <button type="button" style="color: #fff; background-color: #3185c1;" onclick="tab_laboratorio('<?php echo @$var_atd ?>')" class="nav-link" >Laboratoriais</button>
 
-            <button type="button" style="color: #fff; background-color: #3185c1;" onclick="tab_cirurgia('<?php echo @$var_atd ?>')" class="nav-link" >Cirurgias</button>
+            <button type="button" style="color: #fff; background-color: #3185c1;" onclick="tab_cirurgia('<?php echo @$id ?>')" class="nav-link" >Cirurgias</button>
         </div>
     </nav>
 </div>
@@ -37,7 +37,7 @@
 
     function tab_cirurgia(atend){
 
-        $('#div_tab').load("configuracao/modal_passagem/ajax/aepc/ajax_cirurgia.php?atend="+ atend);
+        $('#div_tab').load("configuracao/modal_passagem/ajax/aepc/ajax_cirurgia.php?paciente="+ atend);
 
     }
 

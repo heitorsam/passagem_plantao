@@ -4,7 +4,7 @@
 
 
 
-    $var_atd = @$_GET['atend'];
+    $pac = @$_GET['paciente'];
 
     
     //A - Em Aviso / R - Realizada / C - Cancelada / G - Agendada / T - Controle de Checagem / P - Pre Agendamento
@@ -23,7 +23,8 @@
                                 INNER JOIN dbamv.age_cir ag
                                 ON ag.Cd_Aviso_Cirurgia = AC.CD_AVISO_CIRURGIA
                                 WHERE ac.TP_SITUACAO = 'G'
-                                AND ac.CD_ATENDIMENTO = $var_atd
+                                AND ac.CD_PACIENTE = $pac
+                                AND ac.cd_cen_cir = 1
                                 ORDER BY dt DESC";
 
     $consulta_realizado = "SELECT TO_CHAR(ac.dt_realizacao, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -38,7 +39,8 @@
                         INNER JOIN dbamv.CIRURGIA cir
                         ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                         WHERE ac.TP_SITUACAO = 'R'
-                        AND ac.CD_ATENDIMENTO = $var_atd
+                        AND ac.CD_PACIENTE = $pac
+                        AND ac.cd_cen_cir = 1
                         ORDER BY dt desc";
    
     $consulta_cancelado = "SELECT TO_CHAR(ac.dt_cancelamento, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -53,7 +55,8 @@
                         INNER JOIN dbamv.CIRURGIA cir
                         ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                         WHERE ac.TP_SITUACAO = 'C'
-                        AND ac.CD_ATENDIMENTO = $var_atd
+                        AND ac.CD_PACIENTE = $pac
+                        AND ac.cd_cen_cir = 1
                         ORDER BY dt desc";
 
     $consulta_aviso = "SELECT TO_CHAR(ac.dt_aviso_cirurgia, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -68,7 +71,8 @@
                         INNER JOIN dbamv.CIRURGIA cir
                         ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                         WHERE ac.TP_SITUACAO = 'A'
-                        AND ac.CD_ATENDIMENTO = $var_atd
+                        AND ac.CD_PACIENTE = $pac
+                        AND ac.cd_cen_cir = 1
                         ORDER BY dt desc";
 
     $consulta_controle = "SELECT TO_CHAR(ac.DT_INICIO_CIRURGIA, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -83,7 +87,8 @@
                         INNER JOIN dbamv.CIRURGIA cir
                         ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                         WHERE ac.TP_SITUACAO = 'T'
-                        AND ac.CD_ATENDIMENTO = $var_atd
+                        AND ac.CD_PACIENTE = $pac
+                        AND ac.cd_cen_cir = 1
                         ORDER BY ac.DT_INICIO_CIRURGIA desc";
 
     $consulta_pre_agen = "SELECT TO_CHAR(ac.Dt_pre_Agendamento, 'DD/MM/YYYY HH24:MI') AS dt,
@@ -98,7 +103,8 @@
                         INNER JOIN dbamv.CIRURGIA cir
                         ON cir.CD_CIRURGIA = ca.CD_CIRURGIA
                         WHERE ac.TP_SITUACAO = 'P'
-                        AND ac.CD_ATENDIMENTO = $var_atd
+                        AND ac.CD_PACIENTE = $pac
+                        AND ac.cd_cen_cir = 1
                         ORDER BY dt desc";
     
 
@@ -147,7 +153,7 @@
         <tbody>
 
             <?php
-                if($var_atd != null){
+                if($pac != null){
                     while($row_agendado = oci_fetch_array($result_agendado)){
 
                     echo'<tr>';
@@ -189,7 +195,7 @@
         <tbody>
 
             <?php
-                if($var_atd != null){
+                if($pac != null){
                     while($row_realizado = oci_fetch_array($result_realizado)){
 
                     echo'<tr>';
@@ -230,7 +236,7 @@
         <tbody>
 
             <?php
-                if($var_atd != null){
+                if($pac != null){
                     while($row_cancelado = oci_fetch_array($result_cancelado)){
 
                     echo'<tr>';
@@ -271,7 +277,7 @@
         <tbody>
 
             <?php
-                if($var_atd != null){
+                if($pac != null){
                     while($row_aviso = oci_fetch_array($result_aviso)){
 
                     echo'<tr>';
@@ -310,7 +316,7 @@
         <tbody>
 
             <?php
-                if($var_atd != null){
+                if($pac != null){
                     while($row_controle = oci_fetch_array($result_controle)){
 
                     echo'<tr>';
@@ -349,7 +355,7 @@
         <tbody>
 
             <?php
-                if($var_atd != null){
+                if($pac != null){
                     while($row_pre_agen = oci_fetch_array($result_pre_agen)){
 
                     echo'<tr>';
