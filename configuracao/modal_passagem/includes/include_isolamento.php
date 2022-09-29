@@ -12,7 +12,10 @@
                 AND she.CD_ATENDIMENTO = $var_atd
                 AND she.DT_INICIO = (SELECT MAX(sh.DT_INICIO)
                           FROM dbamv.SAE_HISTORICO_ENFERMAGEM sh
-                         WHERE sh.cd_atendimento = $var_atd)
+                          INNER JOIN dbamv.SAE_RESP_SELCND_HIST_ENFERMG sel
+                            ON sel.CD_HISTORICO_ENFERMAGEM = sh.CD_HISTORICO_ENFERMAGEM
+                         WHERE sh.cd_atendimento = $var_atd
+                         AND sel.CD_PERGUNTA_HISTORICO IN (475, 419, 289, 343))
                 ";
 
 
