@@ -96,7 +96,7 @@
                                ON esp.CD_ESPECIALID = rl.CD_ESPECIALID
                                    
                                WHERE rl.CD_ATENDIMENTO IS NULL
-                               AND TRUNC(SYSDATE) BETWEEN TRUNC(rl.DT_RESERVA) AND TRUNC(rl.DT_PREV_ALTA)) res
+                               AND TRUNC(SYSDATE) >= TRUNC(rl.DT_RESERVA)) res
                                
                                WHERE res.CD_UNID_INT = $var_exibir_pp
                                ORDER BY res.NM_PACIENTE ASC";
