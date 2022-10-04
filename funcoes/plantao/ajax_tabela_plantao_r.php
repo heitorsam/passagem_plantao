@@ -70,7 +70,7 @@
                                SELECT
                                lt.DS_LEITO,
                                TO_CHAR(rl.DT_PREV_INTERNACAO, 'DD/MM/YYYY HH24:MI') as ENTRADA,
-                               pac.NM_PACIENTE,
+                               NVL(pac.NM_PACIENTE,rl.NM_PACIENTE) AS NM_PACIENTE,
                                pac.TP_SEXO,
                                pac.CD_PACIENTE,
                                FLOOR((SYSDATE - pac.DT_NASCIMENTO) / 365.242199) AS IDADE,
@@ -96,7 +96,7 @@
                                ON esp.CD_ESPECIALID = rl.CD_ESPECIALID
                                    
                                WHERE rl.CD_ATENDIMENTO IS NULL
-                               AND SYSDATE BETWEEN rl.DT_RESERVA AND rl.DT_PREV_ALTA) res
+                               AND TRUNC(SYSDATE) BETWEEN TRUNC(rl.DT_RESERVA) AND TRUNC(rl.DT_PREV_ALTA)) res
                                
                                WHERE res.CD_UNID_INT = $var_exibir_pp
                                ORDER BY res.NM_PACIENTE ASC";
