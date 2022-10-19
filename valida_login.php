@@ -54,17 +54,32 @@
 		
 		//Encontrado um usuario na tabela usuário com os mesmos dados digitado no formulário
 		if(isset($resultado)){
+
+			$cons_acesso_login="INSERT INTO portal_projetos.ACESSO
+										SELECT portal_projetos.SEQ_CD_ACESSO.NEXTVAL AS CD_ACESSO,
+										'PASSAGEM DE PLANTAO' AS DS_PROJETO,
+										'$usuario' AS CD_USUARIO_ACESSO,
+										SYSDATE AS HR_ACESSO
+										FROM DUAL";
+
+			$result_acesso = oci_parse($conn_ora,$cons_acesso_login);
+
+			$valida_acesso = oci_execute($result_acesso);
+
+			if($valida_acesso){
 			
-			if($resultado[0] == 'Login efetuado com sucesso') {
-				echo $_SESSION['usuarioLogin'] = $usuario;
-				echo $_SESSION['usuarioNome'] = $resultado[1];
-				echo $_SESSION['sn_administrador'] = $resultado[2];
-				echo $_SESSION['sn_enfermagem'] = $resultado[3];
-				echo $_SESSION['sn_passagem'] = $resultado[4];
-				header("Location: $pag_apos");
-			} else { 
-				$_SESSION['msgerro'] = $resultado[0] . '!';
-				header("Location: $pag_login");		
+				if($resultado[0] == 'Login efetuado com sucesso') {
+					echo $_SESSION['usuarioLogin'] = $usuario;
+					echo $_SESSION['usuarioNome'] = $resultado[1];
+					echo $_SESSION['sn_administrador'] = $resultado[2];
+					echo $_SESSION['sn_enfermagem'] = $resultado[3];
+					echo $_SESSION['sn_passagem'] = $resultado[4];
+					header("Location: $pag_apos");
+				} else { 
+					$_SESSION['msgerro'] = $resultado[0] . '!';
+					header("Location: $pag_login");		
+				}
+
 			}
 		//Não foi encontrado um usuario na tabela usuário com os mesmos dados digitado no formulário
 		//redireciona o usuario para a página de login
