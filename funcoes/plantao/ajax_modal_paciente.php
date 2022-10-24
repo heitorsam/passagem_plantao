@@ -19,7 +19,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     <?php include '../../configuracao/modal_passagem/includes/include_informacoes_gerais.php'; ?>
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-laptop-medical"></i> Diagnostico</div>
 
@@ -31,8 +31,18 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
+                    </br>
 
+                    <div class='fnd_azul'><i class="fas fa-comment-alt"></i> Observações Especiais</div>
+
+                    <div class='row'>
+
+                        <?php include '../../configuracao/modal_passagem/includes/include_obs_especiais.php'; ?>
+
+                    </div>
+
+                    </br>
+                    
                     <div class='fnd_azul'><i class="fas fa-allergies"></i> Alergias/Comorbidades</div>
 
                     <div class='row'>
@@ -43,7 +53,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-file-medical"></i> Ventilação</div>
 
@@ -53,7 +63,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-apple-alt"></i> Dieta/Jejum</div>
 
@@ -63,7 +73,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-plus"></i> Dispositivos</div>
 
@@ -73,7 +83,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-comment-medical"></i> Eliminações</div>
 
@@ -84,7 +94,7 @@ $_SESSION['data'] = $var_exibir_dt;
                     </div>
 
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-band-aid"></i> Curativos/Lesões/Drenos</div>
 
@@ -94,7 +104,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-user-md"></i> Avaliações/Exames Pendentes/Cirurgias</div>
 
@@ -104,7 +114,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
+                    </br>
 
                     <div class='fnd_azul'><i class="fas fa-hand-holding-medical"></i> Protocolos Clínicos Abertos</div>
 
@@ -114,15 +124,8 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </div>
 
-                    <br>
-
-                    <div class='fnd_azul'><i class="fas fa-comment-alt"></i> Observações Especiais</div>
-
-                    <div class='row'>
-
-                        <?php include '../../configuracao/modal_passagem/includes/include_obs_especiais.php'; ?>
-
-                    </div>
+                    </br>
 
 
-                    <br>
+
+                    </br>

@@ -184,7 +184,7 @@
             <tr>
 
                 <th style="text-align: center;">Atendimento</th>
-                <th style="text-align: center;">Prontuario</th>
+                <!--<th style="text-align: center;">Prontuario</th>-->
                 <th style="text-align: center;">Paciente</th>
                 <th style="text-align: center;">Sexo</th>
                 <th style="text-align: center;">Idade</th>
@@ -206,7 +206,7 @@
                 echo'</tr>';
 
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_ATENDIMENTO'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_PACIENTE'] . '</td>';
+                //echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['CD_PACIENTE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['NM_PACIENTE'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['TP_SEXO'] . '</td>';
                 echo '<td class="align-middle" style="text-align: center;">' . $row_exibir_pac['IDADE'] . '</td>';
