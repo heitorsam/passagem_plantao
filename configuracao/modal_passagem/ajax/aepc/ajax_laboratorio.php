@@ -22,7 +22,7 @@
                         ORDER BY dt desc, tf.DS_TIP_FRE asc";
 
     $consulta_coletado = "SELECT tp.DS_TIP_PRESC as ds,
-                            TO_CHAR(hrit.dh_medicacao, 'DD/MM/YYYY HH24:MI') as dt
+                            TO_CHAR(hrit.dh_checagem, 'DD/MM/YYYY HH24:MI') as dt
                         FROM dbamv.PRE_MED pm
                         INNER JOIN dbamv.ITPRE_MED itpm
                         ON itpm.CD_PRE_MED = pm.CD_PRE_MED
