@@ -80,7 +80,6 @@
                             AND pm.CD_ATENDIMENTO = $var_atd
                             AND itrx.CD_LAUDO IS NULL
                             AND itrx.sn_realizado = 'N'
-                            AND pm.dt_validade > sysdate
                             ORDER BY status ,itrx.dt_entrega desc";
 
         

@@ -62,7 +62,7 @@
                                         ON uni.CD_UNID_INT = lt_set.CD_UNID_INT
                                     INNER JOIN dbamv.especialid esp
                                         ON esp.cd_especialid = atd.cd_especialid
-                                    WHERE lt_set.CD_UNID_INT = 1
+                                    WHERE lt_set.CD_UNID_INT = $var_exibir_pp
                                         AND TRUNC(TO_DATE('$var_exibir_dt', 'YYYY-MM-DD')) BETWEEN 
                                             TRUNC(lt_set.DT_ENTRADA) AND TRUNC(lt_set.DT_SAIDA)
                 
