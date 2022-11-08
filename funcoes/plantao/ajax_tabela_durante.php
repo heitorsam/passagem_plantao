@@ -7,6 +7,10 @@
 
     $var_exibir_pp = $_GET['unid_int'];
 
+    $ck_temp = $_GET['sn_temp'];
+
+    $ck_res = $_GET['sn_reserva'];
+
 
     @$con_exibir_durante = "SELECT dur.CD_DURANTE, 
                         TO_CHAR(dur.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,  
@@ -40,19 +44,25 @@
 ?>
 
 <?php 
-
-    $aux_sel = date('d/m/Y', strtotime($var_exibir_dt));
-    $hoje = date('d/m/Y'); 
-
-    if($aux_sel == $hoje AND $qtd_durante == 0){
-
+    if($ck_temp == 'S'){
         include '../../configuracao/modal_pp.php';
 
     }else{
-
-        //echo 'Não é Igual';
+        $aux_sel = date('d/m/Y', strtotime($var_exibir_dt));
+        $hoje = date('d/m/Y'); 
     
+        if($aux_sel == $hoje AND $qtd_durante == 0){
+    
+            include '../../configuracao/modal_pp.php';
+    
+        }else{
+    
+            //echo 'Não é Igual';
+        
+        }
     }
+
+    
 
     
 
@@ -60,7 +70,7 @@
 
 <div class="div_br"> </div>
 <div class="div_br"> </div>
-
+<?php if($ck_res == 'N'){ ?>
 <div class="table-responsive col-md-7" style="padding: 0px !important;">
 
     <table class="table table-striped" cellspacing="0" cellpadding="0">
@@ -121,9 +131,8 @@
     </table>
 
 </div>
-
-
-<?php 
+<?php } 
+ 
     include '../../configuracao/modal_passagem/visu_durante.php';
     
     include '../../configuracao/modal_passagem/editar_dur.php';

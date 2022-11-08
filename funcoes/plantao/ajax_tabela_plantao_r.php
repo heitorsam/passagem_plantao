@@ -173,7 +173,7 @@
 
 <script>
     $(document).ready(function() {
-        carregamento(2);
+        carregamento(1);
     });
     function modal_paciente(id, atd, dt) {
         $('#div_modal_paciente').load('funcoes/plantao/ajax_modal_paciente.php?id='+ id +'&atd='+ atd +'&dt='+ dt);
