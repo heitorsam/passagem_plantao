@@ -42,8 +42,7 @@
                 
                 if($_SESSION['sn_administrador'] == 'S'){
                     
-                ?>
-                    
+                ?>                   
 
                     <div class="div_br"> </div>
                     <div class="div_br"> </div>
