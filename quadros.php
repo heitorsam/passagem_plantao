@@ -4,10 +4,8 @@ include 'cabecalho.php';
 
 include 'conexao.php';
 
-
 ?>
-
-                    
+                   
 <h11><i class="fa-solid fa-table"></i>  Quadro</h11>
 <span class="espaco_pequeno" style="width: 6px"></span>
 <h27><a href="home.php" style="color: #444444; text-decoration: none;"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</a></h27>
@@ -49,7 +47,6 @@ include 'conexao.php';
     include 'rodape.php';
 
 ?>
-
 
 <script>
 

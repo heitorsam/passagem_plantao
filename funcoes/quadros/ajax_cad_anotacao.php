@@ -32,9 +32,10 @@
     echo $consulta_insert = "INSERT INTO passagem_plantao.QUADRO_ENF (CD_ANOTACAO, CD_LEITO, CD_PACIENTE, CD_UNID_INT, OBS, COR, DT_ANOTACAO, TP_ANOTACAO, CD_USUARIO_CADASTRO, HR_CADASTRO, CD_USUARIO_ULT_ALT, HR_ULT_ALT)
                     (SELECT $nextval AS CD_ANOTACAO,
                     '$leito' AS CD_LEITO,
-                    (SELECT pc.cd_paciente FROM dbamv.paciente pc where pc.nm_paciente = '$cd_paciente') AS CD_PACIENTE,
-                    (SELECT lt.cd_unid_int FROM dbamv.LEITO lt
-                        WHERE lt.ds_enfermaria = '$leito') AS CD_UNID_INT,
+                    (SELECT MAX(pc.cd_paciente) FROM dbamv.paciente pc where pc.nm_paciente = '$cd_paciente') AS CD_PACIENTE,
+                    (SELECT MAX(lt.cd_unid_int) FROM dbamv.LEITO lt
+                     WHERE lt.ds_enfermaria = '$leito'
+                     AND lt.TP_SITUACAO = 'A') AS CD_UNID_INT,
                     '$observacao' AS OBS,
                     '$cor' AS COR,
                     TO_DATE('$dia','YYYY-MM-DD HH24:MI') AS DT_ANOTACAO,
