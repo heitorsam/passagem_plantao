@@ -57,11 +57,11 @@
                             and itrx.Sn_Realizado = 'S'
                             ORDER BY status ,itrx.dt_realizado desc";
 
-    $consulta_ag = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
+    $consulta_sol = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
                                 tp.DS_TIP_PRESC as ds,
                                 CASE
                                     WHEN itrx.sn_realizado = 'N' then
-                                    'Agendado'
+                                    'Solicitado'
                                     else
                                     'Realizado'
                                 end as Status
@@ -93,8 +93,8 @@
     @oci_execute($result_realizado);
     
 
-    $result_ag = oci_parse($conn_ora, $consulta_ag);
-    @oci_execute($result_ag);
+    $result_sol = oci_parse($conn_ora, $consulta_sol);
+    @oci_execute($result_sol);
     
 
     
@@ -103,7 +103,7 @@
 </br>
 
 
-<h11>Agendada</h11>
+<h11>Solicitado</h11>
 
     <span class="espaco_pequeno" style="width: 6px"></span>
     <div class="table-responsive col-md-12" style="padding: 0px !important;overflow-y: auto; max-height: 150px; overflow-x: hidden;">   
@@ -124,7 +124,7 @@
 
                 <?php
                     if($var_atd != null){
-                        while($row_ag = oci_fetch_array($result_ag)){
+                        while($row_ag = oci_fetch_array($result_sol)){
 
                         echo'<tr>';
                             echo '<td class="align-middle" style="text-align: center;">' . $row_ag['DT'] . '</td>';

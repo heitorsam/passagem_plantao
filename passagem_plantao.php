@@ -69,7 +69,7 @@
         </br>                          
     </div>
 
-    <div class='col-md-2'>
+    <div class='col-md-2' id="div_data">
         Data
         <input class='form-control' id='data' type='date'>
     </div>
@@ -119,9 +119,17 @@
 
     function btn_reserva(id1, id2){
         var x = document.getElementById(id1).checked
+        var y = document.getElementById(id2).checked
         if (x == true){
             document.getElementById(id2).checked = false
         }
+        if(x == true || y == true){
+            document.getElementById('div_data').style.display = 'none'
+
+        }else{
+            document.getElementById('div_data').style.display = 'block'
+        }
+        
     }
 
     var count_carregamento = 0;
@@ -159,7 +167,7 @@
                 ck_reserva = 'N';
         }
 
-        if(data == ''){
+        if(data == '' && ck_temp == 'N' && ck_reserva == 'N'){
             document.getElementById('data').focus();
         }else if(unid_int == ''){
             document.getElementById('unid_int').focus();
@@ -169,11 +177,13 @@
             document.getElementById('loader').style.display = "inline-block";
             document.getElementById('btn_pesquisa').disabled = true
             if(ck_reserva == 'S'){
+                $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int +'&sn_temp='+ ck_temp+'&sn_reserva='+ ck_reserva);
+                
                 $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao_r.php?data='+ data +'&unid_int='+ unid_int+'&sn_reserva='+ ck_reserva);
             }else{
-                $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int );
+                $('#div_durante').load('funcoes/plantao/ajax_tabela_durante.php?data='+ data +'&unid_int='+ unid_int +'&sn_temp='+ ck_temp+'&sn_reserva='+ ck_reserva);
                 
-                $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao.php?data='+ data +'&unid_int='+ unid_int+'&sn_temp='+ ck_temp);
+                $('#div_plantao').load('funcoes/plantao/ajax_tabela_plantao.php?data='+ data +'&unid_int='+ unid_int +'&sn_temp='+ ck_temp);
             }
         }
     }
