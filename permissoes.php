@@ -21,15 +21,9 @@
             
                 //CONSULTA_LISTA
                 $consulta_lista = "SELECT usu.CD_USUARIO AS NOME
-                                    FROM dbamv.PRESTADOR prest
-                                INNER JOIN dbamv.TIP_PRESTA tp
-                                    ON tp.CD_TIP_PRESTA = prest.CD_TIP_PRESTA
-                                INNER JOIN dbasgu.USUARIOS usu
-                                    ON usu.CD_PRESTADOR = prest.CD_PRESTADOR
-                                WHERE prest.TP_SITUACAO = 'A'
-                                    AND prest.CD_TIP_PRESTA = 4
-                                ORDER BY prest.NM_PRESTADOR ASC
-                                ";
+                                        FROM dbasgu.USUARIOS usu
+                                        WHERE usu.sn_ativo = 'S'
+                                    ORDER BY 1 ASC";
                 $result_lista = oci_parse($conn_ora, $consulta_lista);																									
 
                 //EXECUTANDO A CONSULTA SQL (ORACLE)
@@ -131,6 +125,7 @@
                             },
                         cache: false,
                         success: function(dataResult){
+                            console.log(dataResult)
                             $('#div_permissoes').load('funcoes/permissoes/ajax_permissoes.php?cd_usuario='+ usuario);
                             $('#tabela_permissoes').load('funcoes/permissoes/ajax_tabela_permissoes.php?cd_usuario='+ usuario);
                         }

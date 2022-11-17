@@ -21,7 +21,7 @@
 		$result_usuario = oci_parse($conn_ora, "SELECT passagem_plantao.VALIDA_SENHA_FUNC_LOGIN(:usuario,:senha) AS RESP_LOGIN,
 												(SELECT INITCAP(usu.NM_USUARIO)
 													FROM dbasgu.USUARIOS usu
-													WHERE usu.CD_USUARIO = :usuario) AS NM_USUARIO,													
+													WHERE usu.CD_USUARIO = '$usuario') AS NM_USUARIO,													
 													CASE
 														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
 																			FROM dbasgu.PAPEL_USUARIOS puia
@@ -33,13 +33,13 @@
 																			FROM dbasgu.PAPEL_USUARIOS puia
 																			WHERE puia.CD_PAPEL = 383) THEN 'S' --ENFERMAGEM
 														ELSE 'N'
-													END SN_CALL_CENTER,
+													END SN_ENFERMAGEM,
 													CASE
 														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
 																			FROM dbasgu.PAPEL_USUARIOS puia
 																			WHERE puia.CD_PAPEL = 388) THEN 'S' --PASSAGEM
 														ELSE 'N'
-													END SN_CALL_CENTER
+													END SN_NORMAL
 												FROM DUAL");																															
 												
 		oci_bind_by_name($result_usuario, ':usuario', $usuario);
@@ -49,7 +49,7 @@
 		
 		oci_execute($result_usuario);
         $resultado = oci_fetch_row($result_usuario);
-
+		print_r($resultado);
 		echo '</br> COLUNA 0:' . $resultado['0']  . ' - ' . $resultado['1'] . '</br>';
 		
 		//Encontrado um usuario na tabela usuário com os mesmos dados digitado no formulário

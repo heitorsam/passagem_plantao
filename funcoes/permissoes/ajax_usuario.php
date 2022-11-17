@@ -6,15 +6,10 @@
     $_SESSION['CD_USUARIO'] = '';
 
     $qtd_lista = "SELECT COUNT(*) AS QTD
-                                    FROM dbamv.PRESTADOR prest
-                                INNER JOIN dbamv.TIP_PRESTA tp
-                                    ON tp.CD_TIP_PRESTA = prest.CD_TIP_PRESTA
-                                INNER JOIN dbasgu.USUARIOS usu
-                                    ON usu.CD_PRESTADOR = prest.CD_PRESTADOR
-                                WHERE prest.TP_SITUACAO = 'A'
-                                    AND prest.CD_TIP_PRESTA = 4
+                                    FROM dbasgu.USUARIOS usu
+                                        WHERE usu.sn_ativo = 'S'
                                     AND CD_USUARIO = '$var_frm_usuario'
-                                ORDER BY prest.NM_PRESTADOR ASC
+                                    ORDER BY 1 ASC
                                 ";
                 $result_lista = oci_parse($conn_ora, $qtd_lista);																									
 
@@ -22,17 +17,11 @@
                 oci_execute($result_lista);   
                 $QTD = oci_fetch_array($result_lista);  
     if($QTD['QTD'] != 0){
-        $consulta_usuario = "SELECT usu.CD_USUARIO, usu.NM_USUARIO,
-        prest.CD_TIP_PRESTA, tp.NM_TIP_PRESTA
-        FROM dbamv.PRESTADOR prest
-        INNER JOIN dbamv.TIP_PRESTA tp
-        ON tp.CD_TIP_PRESTA = prest.CD_TIP_PRESTA
-        INNER JOIN dbasgu.USUARIOS usu
-        ON usu.CD_PRESTADOR = prest.CD_PRESTADOR
-        WHERE usu.CD_USUARIO = UPPER('$var_frm_usuario')
-        AND prest.TP_SITUACAO = 'A'
-        AND prest.CD_TIP_PRESTA = 4
-        ORDER BY prest.NM_PRESTADOR ASC";
+        $consulta_usuario = "SELECT usu.CD_USUARIO,
+                                            usu.NM_USUARIO,
+                                            usu.ds_observacao
+                                    FROM dbasgu.USUARIOS usu
+                                    WHERE usu.CD_USUARIO = UPPER('$var_frm_usuario')";
 
         $result_usuario = oci_parse($conn_ora,$consulta_usuario);
 
@@ -42,7 +31,7 @@
     }
         $var_cod = @$row_usu['CD_USUARIO'];
         $var_nome = @$row_usu['NM_USUARIO'];
-        $var_funcao = @$row_usu['NM_TIP_PRESTA'];
+        $var_funcao = @$row_usu['DS_OBSERVACAO'];
         if($var_cod != ''){
             $_SESSION['CD_USUARIO'] = $var_cod;
         }
@@ -71,12 +60,12 @@
 </div>
 
 <br>
-
+<!--
 <script>
     $(document).ready(function() {
         carregamento(1);
     });
-</script>
+</script>-->
 
 
 

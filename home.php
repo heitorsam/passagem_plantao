@@ -6,7 +6,7 @@
 
     $var_sn_adm = $_SESSION['sn_administrador'];
 
-    $var_sn_pas = $_SESSION['sn_passagem'];
+    $var_sn_enf = $_SESSION['sn_enfermagem'];
 
 ?>
 
@@ -24,7 +24,7 @@
                 <h11><i class="far fa-calendar-alt"></i> Passagem Plantão</h11>
 
                 <div class="div_br"> </div>
-                    <?php if($var_sn_pas == 'S'){ ?>
+                    <?php if($var_sn_enf == 'S'){ ?>
                         <a href="passagem_plantao.php" class="botao_home" type="submit"><i class="far fa-clipboard"></i> Passagem Plantão</a>
                         <span class="espaco_pequeno"></span> 
                         

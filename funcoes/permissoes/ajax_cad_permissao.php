@@ -8,15 +8,10 @@
     $var_adc_user_log = $_SESSION['usuarioLogin'];
 
     $qtd_lista = "SELECT COUNT(*) AS QTD
-                                    FROM dbamv.PRESTADOR prest
-                                INNER JOIN dbamv.TIP_PRESTA tp
-                                    ON tp.CD_TIP_PRESTA = prest.CD_TIP_PRESTA
-                                INNER JOIN dbasgu.USUARIOS usu
-                                    ON usu.CD_PRESTADOR = prest.CD_PRESTADOR
-                                WHERE prest.TP_SITUACAO = 'A'
-                                    AND prest.CD_TIP_PRESTA = 4
-                                    AND CD_USUARIO = '$var_adc_frm_cd_usuario'
-                                ORDER BY prest.NM_PRESTADOR ASC
+                    FROM dbasgu.USUARIOS usu
+                        WHERE usu.sn_ativo = 'S'
+                    AND CD_USUARIO = '$var_adc_frm_cd_usuario'
+                    ORDER BY 1 ASC
                                 ";
                 $result_lista = oci_parse($conn_ora, $qtd_lista);																									
 
