@@ -131,9 +131,9 @@
 
         var_cor.style.backgroundColor = var_cor.value
         if(var_cor.value == '#fff'){
-            //var_cor.style.color = '#000'
+            var_cor.style.color = '#000'
         }else{
-            //var_cor.style.color = '#fff'
+            var_cor.style.color = '#fff'
         }
 
     }
