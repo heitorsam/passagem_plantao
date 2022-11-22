@@ -66,7 +66,7 @@
     </div>
     <div class="col-md-1">
         Cor:
-        <select class="form-control tp_quadro" id="slct_cor" onchange="fnc_cor()">
+        <select class="form-control" id="slct_cor" onchange="fnc_cor()">
             <option style="background-color: #fff !important; color: #000 !important" value="#fff"></option>
             <option style="background-color: #dae0fc !important;" value="#dae0fc"></option>
             <option style="background-color: #dbedfb !important;" value="#dbedfb"></option>
