@@ -67,16 +67,16 @@
     <div class="col-md-1">
         Cor:
         <select class="form-control tp_quadro" id="slct_cor" onchange="fnc_cor()">
-            <option style="background-color: #fff; color: #000" value="#fff"></option>
-            <option style="background-color: #dae0fc;" value="#dae0fc"></option>
-            <option style="background-color: #dbedfb;" value="#dbedfb"></option>
-            <option style="background-color: #aae4ff;" value="#aae4ff"></option>
-            <option style="background-color: #c5f0e6;" value="#c5f0e6"></option>
-            <option style="background-color: #fbf994;" value="#fbf994"></option>
-            <option style="background-color: #ffd92d;" value="#ffd92d"></option>
-            <option style="background-color: #facde2;" value="#facde2"></option>
-            <option style="background-color: #ffd9ac;" value="#ffd9ac"></option>
-            <option style="background-color: #f4a9a4;" value="#f4a9a4"></option>
+            <option style="background-color: #fff!important; color: #000 !important" value="#fff"></option>
+            <option style="background-color: #dae0fc !important;" value="#dae0fc"></option>
+            <option style="background-color: #dbedfb !important;" value="#dbedfb"></option>
+            <option style="background-color: #aae4ff !important;" value="#aae4ff"></option>
+            <option style="background-color: #c5f0e6 !important;" value="#c5f0e6"></option>
+            <option style="background-color: #fbf994 !important;" value="#fbf994"></option>
+            <option style="background-color: #ffd92d !important;" value="#ffd92d"></option>
+            <option style="background-color: #facde2 !important;" value="#facde2"></option>
+            <option style="background-color: #ffd9ac !important;" value="#ffd9ac"></option>
+            <option style="background-color: #f4a9a4 !important;" value="#f4a9a4"></option>
         </select>
     </div>
 </div>
