@@ -68,15 +68,15 @@
         Cor:
         <select class="form-control" id="slct_cor" onchange="fnc_cor()">
             <option style="background-color: #fff !important; color: #000 !important" value="#fff"></option>
-            <option style="background-color: #dae0fc !important;" value="#dae0fc">Roxo</option>
-            <option style="background-color: #dbedfb !important;" value="#dbedfb">Azul-claro</option>
-            <option style="background-color: #aae4ff !important;" value="#aae4ff">Azul</option>
-            <option style="background-color: #c5f0e6 !important;" value="#c5f0e6">Verde</option>
-            <option style="background-color: #fbf994 !important;" value="#fbf994">Amarelo</option>
-            <option style="background-color: #ffd92d !important;" value="#ffd92d">Amarelo-escuro</option>
-            <option style="background-color: #facde2 !important;" value="#facde2">Rosa</option>
-            <option style="background-color: #ffd9ac !important;" value="#ffd9ac">Laranja</option>
-            <option style="background-color: #f4a9a4 !important;" value="#f4a9a4">Vermelho</option>
+            <option style="background-color: #dae0fc !important;color: #dae0fc !important;" value="#dae0fc">Roxo</option>
+            <option style="background-color: #dbedfb !important;color: #dbedfb !important;" value="#dbedfb">Azul-claro</option>
+            <option style="background-color: #aae4ff !important;color: #aae4ff !important;" value="#aae4ff">Azul</option>
+            <option style="background-color: #c5f0e6 !important;color: #c5f0e6 !important;" value="#c5f0e6">Verde</option>
+            <option style="background-color: #fbf994 !important;color: #fbf994 !important;" value="#fbf994">Amarelo</option>
+            <option style="background-color: #ffd92d !important;color: #ffd92d !important;" value="#ffd92d">Amarelo-escuro</option>
+            <option style="background-color: #facde2 !important;color: #facde2 !important;" value="#facde2">Rosa</option>
+            <option style="background-color: #ffd9ac !important;color: #ffd9ac !important;" value="#ffd9ac">Laranja</option>
+            <option style="background-color: #f4a9a4 !important;color: #f4a9a4 !important;" value="#f4a9a4">Vermelho</option>
         </select>
     </div>
 </div>
