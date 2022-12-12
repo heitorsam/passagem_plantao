@@ -57,7 +57,7 @@
 
 			$cons_acesso_login="INSERT INTO portal_projetos.ACESSO
 										SELECT portal_projetos.SEQ_CD_ACESSO.NEXTVAL AS CD_ACESSO,
-										99999 AS CD_PORTFOLIO,
+										6 AS CD_PORTFOLIO,
 										'PASSAGEM DE PLANTAO' AS DS_PROJETO,
 										'$usuario' AS CD_USUARIO_ACESSO,
 										SYSDATE AS HR_ACESSO
