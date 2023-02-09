@@ -1,6 +1,6 @@
 <?php
   
-    $consulta_comorbi = "SELECT p.*
+    $consulta_perda = "SELECT p.*
                          FROM(SELECT
                               'PERDAS' AS TIPO_BALANCO,
                               pbh.CD_BALANCO_HIDRICO, pbh.CD_ATENDIMENTO, 
@@ -26,9 +26,9 @@
                               tp.CD_TIP_PRESC, tp.DS_TIP_PRESC
                               ORDER BY tp.DS_TIP_PRESC ASC) p";
 
-    $result_consulta_comorbi = oci_parse($conn_ora,$consulta_comorbi);
+    $result_consulta_perda = oci_parse($conn_ora,$consulta_perda);
     if(@$var_atd != ''){
-    oci_execute(@$result_consulta_comorbi);
+    oci_execute(@$result_consulta_perda);
     }
     $contador_while = 0;
 
@@ -50,16 +50,16 @@
         echo 'Paciente sem atendimento';
     }else{
     
-        while (@$row_comorbi = oci_fetch_array($result_consulta_comorbi)){
+        while (@$row_perda = oci_fetch_array($result_consulta_perda)){
 
 
             if ($contador_while == 0){
 
-                echo @$row_comorbi['DS_TIP_PRESC'] . ': <b style="color: #202020 !important;">' . @$row_comorbi['SUM_VL_COLETA'] . '</b>';
+                echo @$row_perda['DS_TIP_PRESC'] . ': <b style="color: #202020 !important;">' . @$row_perda['SUM_VL_COLETA'] . '</b>';
 
             }else{
 
-                echo '<br>' . @$row_comorbi['DS_TIP_PRESC'] . ': <b style="color: #202020 !important;">' . @$row_comorbi['SUM_VL_COLETA'] . '</b>';
+                echo '<br>' . @$row_perda['DS_TIP_PRESC'] . ': <b style="color: #202020 !important;">' . @$row_perda['SUM_VL_COLETA'] . '</b>';
             }
 
             $contador_while = $contador_while + 1;

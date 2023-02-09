@@ -126,7 +126,7 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </br>
 
-                    <div class='fnd_azul'><i class="fa-solid fa-scale-balanced"></i> Balanço Hídrico</div>
+                    <div class='fnd_azul'><i class="fa-solid fa-weight-scale"></i> Balanço Hídrico</div>
 
                     <div class='row'>
 
@@ -152,6 +152,8 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </br>
 
+                    <?php include '../../configuracao/modal_passagem/includes/include_uti_evolucao_diaria.php'; ?>
 
+                    </br>
 
                     </br>
