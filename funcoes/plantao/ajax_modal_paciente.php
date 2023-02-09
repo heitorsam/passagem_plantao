@@ -126,6 +126,32 @@ $_SESSION['data'] = $var_exibir_dt;
 
                     </br>
 
+                    <div class='fnd_azul'><i class="fa-solid fa-scale-balanced"></i> Balanço Hídrico</div>
+
+                    <div class='row'>
+
+                        <?php include '../../configuracao/modal_passagem/includes/include_uti_balanco_hidrico_ganhos.php'; ?>
+
+                    </div>
+
+                    <div class='row' style="margin-top: 6px;">
+
+                        <?php include '../../configuracao/modal_passagem/includes/include_uti_balanco_hidrico_perdas.php'; ?>
+
+                    </div>
+
+                    </br>
+
+                    <div class='fnd_azul'><i class="fa-solid fa-utensils"></i> Alimentação</div>
+
+                    <div class='row'>
+
+                        <?php include '../../configuracao/modal_passagem/includes/include_uti_alimentacao.php'; ?>
+
+                    </div>
+
+                    </br>
+
 
 
                     </br>

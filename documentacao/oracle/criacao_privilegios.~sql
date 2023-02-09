@@ -13,6 +13,11 @@ GRANT SELECT ON dbasgu.USUARIOS TO passagem_plantao;
 GRANT SELECT ON DBASGU.PAPEL_USUARIOS TO passagem_plantao;
 GRANT SELECT ON DBASGU.PAPEL TO passagem_plantao;
 
+GRANT SELECT ON portal_projetos.ACESSO TO passagem_plantao;
+GRANT INSERT ON portal_projetos.ACESSO TO passagem_plantao;
+GRANT SELECT ON portal_projetos.SEQ_CD_ACESSO TO passagem_plantao;
+
+
 --FUNCOES
 GRANT EXECUTE ON dbamv.FNC_ABREVIA_NOME_LPGD TO passagem_plantao;
 
@@ -59,6 +64,8 @@ GRANT SELECT ON dbamv.RES_EXA TO passagem_plantao;
 GRANT SELECT ON dbamv.EXA_LAB TO passagem_plantao;
 GRANT SELECT ON dbamv.TIP_ESQ TO passagem_plantao;
 GRANT SELECT ON dbamv.RES_LEI TO passagem_plantao;
+
+
 
 
 

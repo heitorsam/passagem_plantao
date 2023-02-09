@@ -72,6 +72,4 @@ include 'conexao.php';
 
     }
 
-
-
 </script>
