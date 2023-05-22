@@ -65,9 +65,14 @@ GRANT SELECT ON dbamv.EXA_LAB TO passagem_plantao;
 GRANT SELECT ON dbamv.TIP_ESQ TO passagem_plantao;
 GRANT SELECT ON dbamv.RES_LEI TO passagem_plantao;
 
-GRANT SELECT ON dbamv.RES_LEI TO passagem_plantao;
-GRANT SELECT ON dbamv.RES_LEI TO passagem_plantao;
-GRANT SELECT ON dbamv.RES_LEI TO passagem_plantao;
+GRANT SELECT ON dbamv.PW_BALANCO_HIDRICO TO passagem_plantao;
+GRANT SELECT ON dbamv.PW_ITBALANCO_HIDRICO TO passagem_plantao;
+GRANT SELECT ON dbamv.PW_GRUPO_BALANCO_HIDRICO TO passagem_plantao;
+GRANT SELECT ON dbamv.PW_ITBALANCO_HIDRICO TO passagem_plantao;
+
+
+
+GRANT SELECT ON dbamv.PW_GRUPO_BALANCO_HIDRICO TO passagem_plantao;
 
 
 

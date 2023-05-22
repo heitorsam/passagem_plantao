@@ -2,10 +2,7 @@
 
     include '../../../../conexao.php';
 
-
-
     $var_atd = @$_GET['atend'];
-
 
     $consulta_laudado = "SELECT TO_CHAR(itrx.dt_entrega, 'DD/MM/YYYY HH24:MI') as dt,
                             tp.DS_TIP_PRESC as ds,
@@ -26,8 +23,17 @@
                         ON ld.CD_LAUDO = itrx.CD_LAUDO
                         INNER JOIN dbamv.TIP_ESQ esq
                         ON esq.CD_TIP_ESQ = itpm.CD_TIP_ESQ
+                        INNER JOIN dbamv.ATENDIME atd
+                        ON atd.CD_ATENDIMENTO = pm.CD_ATENDIMENTO
                         WHERE esq.SN_EXA_RX = 'S'
-                        AND pm.CD_ATENDIMENTO = $var_atd
+                        AND atd.CD_ATENDIMENTO IN (SELECT aatd.CD_ATENDIMENTO 
+                           FROM dbamv.ATENDIME aatd
+                           WHERE aatd.DT_ATENDIMENTO >= (SELECT aux_atd.DT_ATENDIMENTO
+                                                         FROM dbamv.ATENDIME aux_atd
+                                                         WHERE aux_atd.CD_ATENDIMENTO = $var_atd)
+                           AND aatd.CD_PACIENTE IN (SELECT aux_pac.CD_PACIENTE 
+                                                    FROM dbamv.ATENDIME aux_pac
+                                                    WHERE aux_pac.CD_ATENDIMENTO = $var_atd))
                         AND itrx.CD_LAUDO IS NOT NULL
                         and itrx.Sn_Realizado = 'S'
                         ORDER BY status ,itrx.dt_entrega desc";
@@ -51,8 +57,17 @@
                             ON ld.CD_LAUDO = itrx.CD_LAUDO
                             INNER JOIN dbamv.TIP_ESQ esq
                             ON esq.CD_TIP_ESQ = itpm.CD_TIP_ESQ
+                            INNER JOIN dbamv.ATENDIME atd
+                            ON atd.CD_ATENDIMENTO = pm.CD_ATENDIMENTO
                             WHERE esq.SN_EXA_RX = 'S'
-                            AND pm.CD_ATENDIMENTO = $var_atd
+                            AND atd.CD_ATENDIMENTO IN (SELECT aatd.CD_ATENDIMENTO 
+                           FROM dbamv.ATENDIME aatd
+                           WHERE aatd.DT_ATENDIMENTO >= (SELECT aux_atd.DT_ATENDIMENTO
+                                                         FROM dbamv.ATENDIME aux_atd
+                                                         WHERE aux_atd.CD_ATENDIMENTO = $var_atd)
+                           AND aatd.CD_PACIENTE IN (SELECT aux_pac.CD_PACIENTE 
+                                                    FROM dbamv.ATENDIME aux_pac
+                                                    WHERE aux_pac.CD_ATENDIMENTO = $var_atd))
                             AND itrx.CD_LAUDO IS NULL
                             and itrx.Sn_Realizado = 'S'
                             ORDER BY status ,itrx.dt_realizado desc";
@@ -76,8 +91,17 @@
                             ON ld.CD_LAUDO = itrx.CD_LAUDO
                             INNER JOIN dbamv.TIP_ESQ esq
                             ON esq.CD_TIP_ESQ = itpm.CD_TIP_ESQ
+                            INNER JOIN dbamv.ATENDIME atd
+                            ON atd.CD_ATENDIMENTO = pm.CD_ATENDIMENTO
                             WHERE esq.SN_EXA_RX = 'S'
-                            AND pm.CD_ATENDIMENTO = $var_atd
+                            AND atd.CD_ATENDIMENTO IN (SELECT aatd.CD_ATENDIMENTO 
+                           FROM dbamv.ATENDIME aatd
+                           WHERE aatd.DT_ATENDIMENTO >= (SELECT aux_atd.DT_ATENDIMENTO
+                                                         FROM dbamv.ATENDIME aux_atd
+                                                         WHERE aux_atd.CD_ATENDIMENTO = $var_atd)
+                           AND aatd.CD_PACIENTE IN (SELECT aux_pac.CD_PACIENTE 
+                                                    FROM dbamv.ATENDIME aux_pac
+                                                    WHERE aux_pac.CD_ATENDIMENTO = $var_atd))
                             AND itrx.CD_LAUDO IS NULL
                             AND itrx.sn_realizado = 'N'
                             ORDER BY status ,itrx.dt_entrega desc";

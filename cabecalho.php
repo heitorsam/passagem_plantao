@@ -18,6 +18,7 @@
 
     //ACESSO RESTRITO
     include 'acesso_restrito.php';    
+    
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +46,6 @@
     <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
 </head>
 <body>
-
 
     <header>    
 
